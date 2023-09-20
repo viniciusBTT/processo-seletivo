@@ -23,6 +23,7 @@ public class GlobalSecurity
         http.authorizeHttpRequests((requests) ->
             requests
                 .requestMatchers("/").permitAll()
+                .requestMatchers("/auth", "/acesso").permitAll()
                 .requestMatchers("/assets/**").permitAll()
                     .anyRequest().authenticated()
         );
