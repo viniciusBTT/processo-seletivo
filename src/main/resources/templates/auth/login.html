@@ -1,15 +1,48 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
-<html>
+<html lang="pt-BR">
     <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+        <title>Login</title>
+        <!-- Fonte Rawline-->
+        <link rel="stylesheet" href="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/fonts/rawline/css/rawline.css"/>
+        <!-- Fonte Raleway-->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800,900&amp;display=swap"/>
+        <!-- Design System de Governo-->
+        <link rel="stylesheet" href="/assets/vendors/govBR/dist/core.css"/>
+        <!-- Fontawesome-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"/>
     </head>
-    <body>
-        <div>TODO write content</div>
+    <body style="background-color: #f1f1f1; height: 100vh">
+        <div class="template-base" >   
+            <main class="container-lg d-flex align-content-center justify-content-center " >                  
+                <div class="br-card hover col-lg-4 col-md-8 col-sm-11 mt-5">
+                    <div class="card-content ">
+                        <form class="" method="POST" th:action="@{/auth}">
+                            <div class="br-input">
+                                <label for="input-default">Usuário</label>
+                                <input id="input-default" type="text"/>
+                            </div>
+                            <div class="br-input input-button">
+                                <label for="input-password">Senha</label>
+                                <input id="input-password" type="password"/>
+                                <button class="br-button" type="button" aria-label="Mostrar senha"><i class="fas fa-eye" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                            <span class="text-danger" th:if="${param.error}">
+                                Usuario ou senha incorreto
+                            </span>
+                            <button class="br-button block primary btn-login mt-2" type="submit">
+                                <span class="material-symbols-outlined">login</span>
+                            </button>
+                        </form>
+                        <p class="text-center mt-2 text-weight-regular text-base">Francisco Morato © 2023</p>
+                    </div>
+                </div>
+            </main>            
+            <div class="br-cookiebar default d-none" tabindex="-1"></div>
+        </div>
+        <script src="/assets/vendors/govBR/dist/core-init.js"></script>
     </body>
 </html>
