@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-run maven</actionName>
+            <displayName>run maven</displayName>
+            <goals>
+                <goal>run</goal>
+                <goal>maven</goal>
+            </goals>
+        </action>
+        <action>
+            <actionName>CUSTOM-spring run</actionName>
+            <displayName>spring run</displayName>
+        </action>
+        <action>
+            <actionName>CUSTOM-run spring</actionName>
+            <displayName>run spring</displayName>
+        </action>
+    </actions>
