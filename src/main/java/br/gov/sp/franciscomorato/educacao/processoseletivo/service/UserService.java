@@ -31,6 +31,11 @@ public class UserService implements UserDetailsService
         return user;
     }
 
+    /**
+     * 
+     * @param user
+     * @return
+     */
     public User save(User user)
     {
         return userRepository.save(user);
@@ -41,5 +46,10 @@ public class UserService implements UserDetailsService
         User user = new User(username, password);
 
         return user;
+    }
+
+    public User findByUsername(String username)
+    {
+        return userRepository.findById(username).orElse(null);
     }
 }
