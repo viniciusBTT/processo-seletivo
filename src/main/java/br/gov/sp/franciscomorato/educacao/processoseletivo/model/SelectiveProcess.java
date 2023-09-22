@@ -26,7 +26,7 @@ public class SelectiveProcess {
     private String description;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Date starDate;
+    private Date startDate;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date endDate;
