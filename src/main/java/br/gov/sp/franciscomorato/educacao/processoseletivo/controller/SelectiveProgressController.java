@@ -71,6 +71,8 @@ public class SelectiveProgressController
             {
                 ra.addFlashAttribute("success", "Processo Seletivo criado com sucesso");
             }
+
+            return "redirect:/processo/" + (process.getId() != null ? process.getId() : "error");
         }
         catch (Exception e)
         {
@@ -78,7 +80,8 @@ public class SelectiveProgressController
             System.out.println("Erro ao salvar processo seletivo na linha 58: " + e.getMessage());
         }
 
-        return "redirect:/processo/" + process.getId();
+        return "process/process";
+
     }
 
     /**
