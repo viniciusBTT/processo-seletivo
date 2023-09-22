@@ -27,6 +27,11 @@ public class User implements UserDetails
 
     }
 
+    public User (String username)
+    {
+        this.username = username;
+    }
+
     public User (String username, String password) {
         this.username = username;
         this.password = new BCryptPasswordEncoder().encode(password);
