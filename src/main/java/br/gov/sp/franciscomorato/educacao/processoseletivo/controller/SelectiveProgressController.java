@@ -45,8 +45,9 @@ public class SelectiveProgressController
     }
 
     @GetMapping("/add")
-    public String add(SelectiveProcess process)
+    public String add(Model model)
     {
+        model.addAttribute("process", new SelectiveProcess());
         return "process/process";
     }
 
