@@ -42,7 +42,7 @@ public class SelectiveProcess {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Modality> modalities = new ArrayList<>();
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private User user;
 
     public boolean addModality(Modality modality)
