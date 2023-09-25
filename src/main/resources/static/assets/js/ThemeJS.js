@@ -1,6 +1,6 @@
-/* 
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Other/javascript.js to edit this template
- */
 
-
+//instacia do Step da pagina process/add
+const stepList = [] ;
+for (const brStep of window.document.querySelectorAll('.br-step')) {
+  stepList.push(new core.BRStep('br-step', brStep));
+}
