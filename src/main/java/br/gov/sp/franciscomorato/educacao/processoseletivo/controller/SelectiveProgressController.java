@@ -62,7 +62,7 @@ public class SelectiveProgressController
      * @return
      */
     @PostMapping
-    public String persist(SelectiveProcess process, RedirectAttributes ra)
+    public String persist(@ModelAttribute SelectiveProcess process, RedirectAttributes ra)
     {
         try
         {
