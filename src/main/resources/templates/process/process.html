@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+    <head th:replace="fragments/head"></head>
+    <body>
+        <div class="template-base">
+            <head th:replace="fragments/header"></head>
+            <main class="d-flex flex-fill mb-5" id="main">
+                <div class="container-lg">
+                    <h1>Cadastro do Processo Seletivo  </h1>
+                    <div class="br-card p-5">
+                        
+                        <form id="process" class="form-horizontal" th:action="@{/process}"
+                              method="POST" th:object="${process}" >                            
+                                <div class="br-input mb-3 col-12">
+                                    <label for="input-title">Título</label>
+                                    <input  name="title" type="text"  required="true"/>
+                                </div>        
+                                <div class="row">
+                                    <div class="br-input mb-3 col-lg-6 col-md-6 col-sm-12">
+                                        <label for="input-startDate">Inicio das incrições</label>
+                                        <input name="{startDate}" type="datetime-local"  required="true"/>
+                                    </div> 
+                                    <div class="br-input mb-3 col-lg-6 col-md-6 col-sm-12">
+                                        <label for="input-endDate">Final das incrições</label>
+                                        <input  name="{endDate}" type="datetime-local"  required="true"/>
+                                    </div> 
+                                </div>                                
+                                <div class="br-textarea mb-3 col-12">
+                                    <label for="textarea-id1">Descrição</label>
+                                    <textarea  name="{description}"  type="text" required="true" /> </textarea>
+                                </div>
+                            <div  class="d-flex justify-content-end">
+                                <button class="br-button primary dark-mode mr-3 " type="submit">Cadastrar
+                                </button>
+                            </div>
+                            
+                        </form>
+                    </div>
+                    <div class="br-step" data-initial="1" data-type="void">
+                        <div class="step-progress">
+                            <button class="step-progress-btn" type="button" data-tooltip-text="Exemplo de Rótulo 1"><span class="step-info">Informações do Processo</span></button>
+                            <button class="step-progress-btn" type="button" data-tooltip-text="Exemplo de Rótulo 2"><span class="step-info">Modalidades</span></button>
+                            <button class="step-progress-btn" type="button" data-tooltip-text="Exemplo de Rótulo 3"><span class="step-info">Finalizar</span></button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+
+        </div>
+        <script src="/assets/vendors/govBR/dist/core-init.js"></script>
+        <script src="/assets/js/ThemeJS.js"></script>
+        <script src="/assets/js/process/AddProcess.js"></script>
+
+        
+       
+    </body>
+</html>

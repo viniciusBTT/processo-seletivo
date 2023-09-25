@@ -22,11 +22,11 @@
                         <form class="" method="POST" th:action="@{/auth}">
                             <div class="br-input">
                                 <label for="input-default">Usuário</label>
-                                <input id="input-default" type="text"/>
+                                <input id="input-default" type="text" name="username"/>
                             </div>
                             <div class="br-input input-button">
                                 <label for="input-password">Senha</label>
-                                <input id="input-password" type="password"/>
+                                <input id="input-password" type="password" name="password"/>
                                 <button class="br-button" type="button" aria-label="Mostrar senha"><i class="fas fa-eye" aria-hidden="true"></i>
                                 </button>
                             </div>
@@ -41,7 +41,6 @@
                     </div>
                 </div>
             </main>            
-            <div class="br-cookiebar default d-none" tabindex="-1"></div>
         </div>
         <script src="/assets/vendors/govBR/dist/core-init.js"></script>
     </body>
