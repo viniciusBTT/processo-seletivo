@@ -1,7 +1,6 @@
 package br.gov.sp.franciscomorato.educacao.processoseletivo.controller;
 
 import br.gov.sp.franciscomorato.educacao.processoseletivo.dto.ModalityDTO;
-import br.gov.sp.franciscomorato.educacao.processoseletivo.dto.ModalityResponseDTO;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.Modality;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.SelectiveProcess;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.service.SelectiveProcessService;
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -45,9 +43,8 @@ public class SelectiveProgressController
     }
 
     @GetMapping("/add")
-    public String add(Model model)
+    public String add(SelectiveProcess selectiveProcess)
     {
-        model.addAttribute("process", new SelectiveProcess());
         return "process/process";
     }
 
@@ -62,7 +59,7 @@ public class SelectiveProgressController
      * @return
      */
     @PostMapping
-    public String persist(@ModelAttribute SelectiveProcess process, RedirectAttributes ra)
+    public String persist(SelectiveProcess process, RedirectAttributes ra)
     {
         try
         {
@@ -73,7 +70,7 @@ public class SelectiveProgressController
                 ra.addFlashAttribute("success", "Processo Seletivo criado com sucesso");
             }
 
-            return "redirect:/processo/" + (process.getId() != null ? process.getId() : "error");
+            return "redirect:/process/" + (process.getId() != null ? process.getId() : "error");
         }
         catch (Exception e)
         {

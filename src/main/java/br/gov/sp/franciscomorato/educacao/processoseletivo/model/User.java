@@ -1,6 +1,7 @@
 package br.gov.sp.franciscomorato.educacao.processoseletivo.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import lombok.Data;
@@ -25,6 +26,17 @@ public class User implements UserDetails
 
     private String password;
 
+    private boolean accountNonExpired;
+
+    private boolean accountNonLocked;
+
+    private boolean credentialsNonExpired;
+
+    private boolean enabled;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Role> roles = new ArrayList<>();
+
     public User () {
 
     }
@@ -39,8 +51,22 @@ public class User implements UserDetails
         this.password = new BCryptPasswordEncoder().encode(password);
     }
 
-    @ManyToMany
-    private List<Role> roles = new ArrayList<>();
+    public boolean addRole(Role role)
+    {
+        return this.roles.add(role);   
+    }
+
+    public boolean addRoles(List<Role> roles)
+    {
+        return this.roles.addAll(roles);
+    }
+
+    public boolean removeRole(Role role)
+    {
+        return this.roles.remove(role);
+    }
+
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -49,7 +75,7 @@ public class User implements UserDetails
 
     @Override
     public String getPassword() {
-        return "<PROTECTED>";
+        return this.password;
     }
 
     @Override
@@ -59,21 +85,21 @@ public class User implements UserDetails
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return this.accountNonExpired;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return this.accountNonLocked;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return this.credentialsNonExpired;
     }
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return this.enabled;
     }
 }

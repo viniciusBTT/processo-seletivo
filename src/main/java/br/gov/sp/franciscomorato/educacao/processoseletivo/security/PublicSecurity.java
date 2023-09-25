@@ -2,9 +2,13 @@ package br.gov.sp.franciscomorato.educacao.processoseletivo.security;
 
 import br.gov.sp.franciscomorato.educacao.processoseletivo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  * classe de configuração de autenticação pública
@@ -14,6 +18,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
  * @see UserService
  */
 @Configuration
+@EnableWebSecurity
 @Order(2)
 public class PublicSecurity
 {
@@ -23,6 +28,7 @@ public class PublicSecurity
     @Autowired
     protected void configure(AuthenticationManagerBuilder builder) throws Exception
     {
-        builder.userDetailsService(userService);
+        builder.userDetailsService(userService).passwordEncoder(new BCryptPasswordEncoder());
     }
+
 }
