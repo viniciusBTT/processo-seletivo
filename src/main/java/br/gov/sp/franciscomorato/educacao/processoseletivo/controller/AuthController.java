@@ -29,10 +29,15 @@ public class AuthController
     @GetMapping("/check")
     public String checkAuthentication()
     {
+        boolean isTheAuthenticationValid = userService.isTheAuthenticationValid();
+
+        if(!isTheAuthenticationValid) 
+        {
+            return "redirect:/auth?error=denied";
+        }
 
         return "redirect:/home";
 
-        // boolean isTheAuthenticationValid = userService.isTheAuthenticationValid();
         
         // if(isTheAuthenticationValid) return "redirect:/home";
 

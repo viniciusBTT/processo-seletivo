@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -88,6 +89,7 @@ public class UserService implements UserDetailsService
 
     public boolean isTheAuthenticationValid()
     {
+        System.out.println("ENTROU");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User authenticated = findByUsername(auth.getName());
 
@@ -98,8 +100,26 @@ public class UserService implements UserDetailsService
             if(allowed == null) 
             {
                 SecurityContextHolder.getContext().setAuthentication(null);
-                return true;
+                return false;
             }
+
+            Collection<SimpleGrantedAuthority> oldAuthorities = (Collection<SimpleGrantedAuthority>)SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+            List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+
+
+            List<SimpleGrantedAuthority> updatedAuthorities = new ArrayList<SimpleGrantedAuthority>();
+
+
+
+            updatedAuthorities.add(new SimpleGrantedAuthority(allowed.getRoles().get(0).getName()));
+            
+
+            SecurityContextHolder.getContext().setAuthentication(
+                    new UsernamePasswordAuthenticationToken(
+                            SecurityContextHolder.getContext().getAuthentication().getPrincipal(),
+                            SecurityContextHolder.getContext().getAuthentication().getCredentials(),
+                            updatedAuthorities)
+);
             
             return true;
         }
