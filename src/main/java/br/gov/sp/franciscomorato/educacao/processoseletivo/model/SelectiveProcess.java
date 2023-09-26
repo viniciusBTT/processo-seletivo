@@ -30,15 +30,15 @@ public class SelectiveProcess {
     private String description;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'hh:mm")
-    private LocalDateTime startDate;
+    @DateTimeFormat(pattern = "dd/mm/yyyy HH:mm")
+    private Date startDate;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'hh:mm")
-    private LocalDateTime endDate;
+    @DateTimeFormat(pattern = "dd/mm/yyyy HH:mm")
+    private Date endDate;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'hh:mm")
+    @DateTimeFormat(pattern = "dd/mm/yyyy HH:mm")
     private Date createdAt;
     
     @OneToMany(cascade = CascadeType.ALL)

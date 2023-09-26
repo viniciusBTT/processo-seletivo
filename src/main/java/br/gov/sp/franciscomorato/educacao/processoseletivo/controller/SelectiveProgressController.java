@@ -38,7 +38,7 @@ public class SelectiveProgressController
     @GetMapping("/{id}")
     public String process(Model model, @PathVariable Integer id)
     {
-        model.addAttribute("process", processService.findById(id));
+        model.addAttribute("selectiveProcess", processService.findById(id));
         return "process/process";
     }
 
