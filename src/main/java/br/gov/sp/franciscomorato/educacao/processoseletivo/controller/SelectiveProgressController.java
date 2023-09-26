@@ -59,18 +59,18 @@ public class SelectiveProgressController
      * @return
      */
     @PostMapping
-    public String persist(SelectiveProcess process, RedirectAttributes ra)
+    public String persist(SelectiveProcess selectiveProcess, RedirectAttributes ra)
     {
         try
         {
-            process = processService.save(process);
+            selectiveProcess = processService.save(selectiveProcess);
 
-            if(process != null)
+            if(selectiveProcess != null)
             {
                 ra.addFlashAttribute("success", "Processo Seletivo criado com sucesso");
             }
 
-            return "redirect:/process/" + (process.getId() != null ? process.getId() : "error");
+            return "redirect:/process/" + (selectiveProcess.getId() != null ? selectiveProcess.getId() : "error");
         }
         catch (Exception e)
         {
