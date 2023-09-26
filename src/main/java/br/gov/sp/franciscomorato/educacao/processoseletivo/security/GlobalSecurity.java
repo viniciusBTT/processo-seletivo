@@ -34,7 +34,7 @@ public class GlobalSecurity
         .formLogin((formLogin) ->
                 formLogin
                     .loginPage("/auth")
-                    .defaultSuccessUrl("/home")
+                    .defaultSuccessUrl("/auth/check")
         )
         .logout((logout) -> logout.logoutUrl("/logout"));
 

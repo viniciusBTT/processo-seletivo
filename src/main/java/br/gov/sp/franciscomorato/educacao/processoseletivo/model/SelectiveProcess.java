@@ -1,5 +1,6 @@
 package br.gov.sp.franciscomorato.educacao.processoseletivo.model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,12 +13,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 @Getter
 @Setter
 public class SelectiveProcess {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -29,11 +31,11 @@ public class SelectiveProcess {
 
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'hh:mm")
-    private Date startDate;
+    private LocalDateTime startDate;
 
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'hh:mm")
-    private Date endDate;
+    private LocalDateTime endDate;
 
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'hh:mm")
@@ -42,8 +44,8 @@ public class SelectiveProcess {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Modality> modalities = new ArrayList<>();
 
-    @ManyToOne(cascade = CascadeType.REFRESH)
-    private User user;
+    private String createdBy;
+
 
     public boolean addModality(Modality modality)
     {

@@ -26,10 +26,8 @@ public class SelectiveProcessService
     {
         //salva data atual do servidor
         process.setCreatedAt(new Date());
-        System.out.println(SecurityContextHolder.getContext().getAuthentication().getName());
 
-        //salva quem abriu o processo
-        process.setUser(new User(SecurityContextHolder.getContext().getAuthentication().getName()));
+        process.setCreatedBy(SecurityContextHolder.getContext().getAuthentication().getName());
 
         return this.processRepository.save(process);
     }
