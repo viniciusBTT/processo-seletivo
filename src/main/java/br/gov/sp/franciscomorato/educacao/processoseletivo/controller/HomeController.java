@@ -27,10 +27,11 @@ public class HomeController
     @GetMapping
     public String home(Authentication authentication)
     {
-        if(authentication.getAuthorities().contains(new Role("ROLE_ADMIN")) ||
-        authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ROOT"))
-        )
+        if( authentication.getAuthorities().contains(new Role("ROLE_ADMIN")) ||
+            authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ROOT"))
+        ) {
             return "home/home";
+        }
 
         
         
