@@ -36,7 +36,7 @@ public class SelectiveProgressController
     }
 
     @GetMapping("/{id}")
-    public String process(Model model, @PathVariable Integer id)
+    public String process(Model model, @PathVariable Integer id, ModalityDTO modalityDTO)
     {
         model.addAttribute("selectiveProcess", processService.findById(id));
         return "process/process";
