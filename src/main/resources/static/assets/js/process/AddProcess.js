@@ -1,21 +1,56 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-
-    <head th:replace="fragments/head"></head>
-    <body>
-        <div class="template-base">
-            <head th:replace="fragments/header"></head>
-            <main class="d-flex flex-fill mb-5" id="main">
-                <div class="container-lg">
-                    
-                </div>
-            </main>
+/**
+ * Função usada para setar os valores dos input do tipo date pois como o padrao de governos instancia os 
+ * inputs depois do carregamento da pagina sobrepondo os valores do thymeleaf.
+ */
+function setInputDate(){
+    datetimepickerList.forEach(item => {
+        item.calendar.setDate(new Date(item.component.getAttribute('data-input')));
+    })
+}
 
 
-        </div>
-        <script src="/assets/vendors/govBR/dist/core-init.js"></script>
-        <script src="/assets/js/ThemeJS.js"></script>
-      
+//Capturando o evento de submite do formulario, salvando a nova modalidade do processo seletivo
+const modalityForm = document.querySelector("#modalityForm");
+modalityForm.addEventListener("submit", (e) =>{
+    e.preventDefault();
+    let form = new FormData(modalityForm);
+    let name = form.get("name");
+    let processId = form.get("processId")
+
+    axios.post('/process/modality', {
+        name,processId       
+      })
+      .then(function (response) {
        
-    </body>
-</html>
+        document.querySelector("#modalitiesList").innerHTML += ` <span class="br-tag bg-green-cool-vivid-50 medium"  >
+                                                                    <i class="fa-solid fa-file "></i>
+                                                                    <span class="ml-2">${response.data.modalities[response.data.modalities.length - 1 ].name}</span>
+                                                                </span>
+                                                                `
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+})
+
+
+let cardProcess = document.querySelector(".process");
+let cardModalities = document.querySelector(".modaliti")
+
+function openDados()
+{     
+    if(cardProcess.classList.contains("d-none"))
+    {
+        cardProcess.classList.toggle("d-none")
+        cardModalities.classList.toggle("d-none")
+    }
+}
+
+function openModalities()
+{
+    if(cardModalities.classList.contains("d-none"))
+    {
+        cardProcess.classList.toggle("d-none")
+        cardModalities.classList.toggle("d-none")
+    }
+}
