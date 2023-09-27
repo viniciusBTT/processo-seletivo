@@ -1,88 +1,92 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-    
-    <head >
-        <!-- BootsTrap -->
-        <link rel="stylesheet" href="/assets/vendors/bootStrap/bootstrap.min.css"/>
-        <div th:replace="~{fragments/head}"></div>
-    </head>
-    <body>
-        <div class="template-base">
-            <header th:replace="~{fragments/header}"></header>
-            <main class="d-flex flex-fill mb-5" id="main">
-                <div class="container-lg">
-                    <h1>Processos Seletivos  </h1>
-                    <div class="br-card p-5">
-                        <div class="br-table" title="Tabela irregular 2">
-                           
-                            </div>
-                            <table id="table">
-                              <thead>                             
-                                <tr>
-                                  <th class="border-right col-1" >Id</th>
-                                  <th class="border-right col-4" >Título</th>
-                                  <th class="border-right col-3" >Data de abertura</th>
-                                  <th class="border-right col-3" >Data de fechamento</th>
-                                  <th class="border-right col-1" >Editar</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <td class="border-right ">Tiger Nixon</td>
-                                  <td class="border-right ">System Architect</td>
-                                  <td class="border-right ">$320,800</td>
-                                  <td class="border-right ">Edinburgh</td> 
-                                  <!-- <td th:text="${#dates.format(edital.publication, 'dd/MM/yyyy HH:mm')}"></td> -->
-                                  <td>
+
+<head>
+    <!-- BootsTrap -->
+    <link rel="stylesheet" href="/assets/vendors/bootStrap/bootstrap.min.css" />
+    <div th:replace="~{fragments/head}"></div>
+</head>
+
+<body>
+    <div class="template-base">
+        <header th:replace="~{fragments/header}"></header>
+        <main class="d-flex flex-fill mb-5" id="main">
+            <div class="container-lg">
+                <h1>Processos Seletivos </h1>
+                [[${selectiveProcess}]]
+                <div class="br-card p-5">
+                    <div class="br-table" title="Tabela irregular 2">
+
+                    </div>
+                    <table id="table">
+                        <thead>
+                            <tr>
+                                <th class="border-right col-1">Id</th>
+                                <th class="border-right col-4">Título</th>
+                                <th class="border-right col-3">Data de abertura</th>
+                                <th class="border-right col-3">Data de fechamento</th>
+                                <th class="border-right col-1">Editar</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            <tr th:each="process: ${processList}">
+                                <td class="border-right" th:text="${process.id}"></td>                               
+
+                                <td class="border-right" th:text="${process.title}"></td> 
+                                <td class="border-right"  th:text="${#dates.format(process.startDate, 'dd/MM/yyyy HH:mm')}"></td> 
+                                <td class="border-right" th:text="${#dates.format(process.endDate, 'dd/MM/yyyy HH:mm')}"></td> 
+                                <td>
                                     <div class="text-nowrap ">
-                                        <a style="color: blue; cursor: pointer">
+                                        <a style="color: blue; cursor: pointer" th:href="'/process/' + ${process.id}">
                                             <i class="fa-solid fa-pen-to-square" title="Editar"></i>
                                         </a>
                                     </div>
-                                </td>                                 
-                                </tr>
-                               
-                              </tbody>
-                            </table>
-                          </div>
-                          
+                                </td>
+                            </tr>
 
-                    </div>
-             
+                        </tbody>
+                    </table>
                 </div>
-            </main>    
-        </div>
-        <script src="/assets/vendors/govBR/dist/core-init.js"></script>
-        <script src="/assets/vendors/govBR/dist/core.min.js"></script>       
-        <script src="/assets/js/ThemeJS.js"></script>
-        <script src="/assets/vendors/dataTable/js/datatables.min.js"></script>
-        <script src="/assets/vendors/dataTable/js/jquery-3.6.0.min.js"></script>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                let table = new DataTable('#table', {
-                    language: {
-                        decimal: ',',
-                        thousands: '.',
-                        emptyTable: "Nenhum registro localizado",
-                        search: "Pesquisar",
-                        loadingRecords: "Carregando",
-                        zeroRecords: "Nenhum registro localizado",
-                        lengthMenu: "Mostrar _MENU_ registros",
-                        info: "Mostrando de _START_ a _END_ de _TOTAL_ resultados",
-                        infoEmpty: "Mostrando 0 a 0 de 0 registros",
-                        infoFiltered: "Filtrado de _MAX_ entradas totais",
-                        paginate: {
-                            firts: "Primeiro",
-                            last: "Ultimo",
-                            next: "Proximo",
-                            previous: "Anterior"
-                        }
-                    },
-                    responsive: true
-                });
+
+            </div>
+
+    </div>
+    </main>
+    </div>
+    <script src="/assets/vendors/govBR/dist/core-init.js"></script>
+    <script src="/assets/vendors/govBR/dist/core.min.js"></script>
+    <script src="/assets/js/ThemeJS.js"></script>
+    <script src="/assets/vendors/dataTable/js/datatables.min.js"></script>
+    <script src="/assets/vendors/dataTable/js/jquery-3.6.0.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let table = new DataTable('#table', {
+                language: {
+                    decimal: ',',
+                    thousands: '.',
+                    emptyTable: "Nenhum registro localizado",
+                    search: "Pesquisar",
+                    loadingRecords: "Carregando",
+                    zeroRecords: "Nenhum registro localizado",
+                    lengthMenu: "Mostrar _MENU_ registros",
+                    info: "Mostrando de _START_ a _END_ de _TOTAL_ resultados",
+                    infoEmpty: "Mostrando 0 a 0 de 0 registros",
+                    infoFiltered: "Filtrado de _MAX_ entradas totais",
+                    paginate: {
+                        firts: "Primeiro",
+                        last: "Ultimo",
+                        next: "Proximo",
+                        previous: "Anterior"
+                    }
+                },
+                responsive: true
             });
-        </script>
+        });
+    </script>
 
-    </body>
+</body>
+
 </html>
