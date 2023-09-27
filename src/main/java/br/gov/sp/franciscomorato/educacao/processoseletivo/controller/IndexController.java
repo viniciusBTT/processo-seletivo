@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import br.gov.sp.franciscomorato.educacao.processoseletivo.service.SelectiveProcessService;
+
 /**
  * controladora de início
  * @author thiago
@@ -16,12 +18,12 @@ public class IndexController
 {
 
     @Autowired
-    SelectiveProgressController selectiveProgressController;
+    SelectiveProcessService processService;
 
     @GetMapping
     public String index(Model model)
     {
-        model.addAttribute("processList", selectiveProgressController.processService.findAll());
+        model.addAttribute("processList", processService.findAll());
         return "index";
     }
 }
