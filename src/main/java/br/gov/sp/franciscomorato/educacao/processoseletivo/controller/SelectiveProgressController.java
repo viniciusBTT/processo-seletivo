@@ -23,7 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class SelectiveProgressController
 {
     @Autowired
-    private SelectiveProcessService processService;
+    protected SelectiveProcessService processService;
 
     /******
      * ONLY VIEWS
