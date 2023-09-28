@@ -53,3 +53,9 @@ const tagList = []
 for (const brTag of window.document.querySelectorAll('.br-tag')) {
   tagList.push(new core.BRTag('br-tag', brTag))
 }
+
+//carrosel
+const carouselList = []
+for (const brCarousel of window.document.querySelectorAll('.br-carousel')) {
+  carouselList.push(new core.BRCarousel('br-carousel', brCarousel))
+}

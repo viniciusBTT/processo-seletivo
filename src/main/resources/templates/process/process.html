@@ -80,8 +80,8 @@
                             <input name="name" type="text" required="true" />
                         </div>
                         <input type="text" hidden name="processId" id="processId" th:value="${selectiveProcess.id}">
-                        <div id="modalitiesList" class="d-flex justify-content-start gap-3">
-                            <span class="br-tag bg-green-cool-vivid-50 medium"
+                        <div id="modalitiesList" class="d-flex justify-content-start gap-3 flex-wrap">
+                            <span class="br-tag bg-green-cool-vivid-50 medium mb-2"
                                 th:each="modaliti : ${selectiveProcess.modalities}">
                                 <i class="fa-solid fa-file "></i>
                                 <span class="ml-2" th:text="${modaliti.name}"></span>
