@@ -39,16 +39,8 @@ public class ProcessoSeletivoApplication
 
 	@PostConstruct
 	public void createDefaultUser()
-	{
-		User user = new User("admin", "123");
-		user.setAccountNonExpired(true);
-		user.setAccountNonLocked(true);
-		user.setCredentialsNonExpired(true);
-		user.setEnabled(true);
-
-		user.addRole(new Role("ROLE_ADMIN"));
-		
-		userService.save(user);
+	{	
+		userService.save(new User("admin", "123", new Role("ROLE_ADMIN")));
 	}
 	public static void main(String[] args) {
 		SpringApplication.run(ProcessoSeletivoApplication.class, args);

@@ -35,7 +35,7 @@ public class HomeController
 
         
         
-        return "index";
+        return "candidate/home";
     }
 
 }

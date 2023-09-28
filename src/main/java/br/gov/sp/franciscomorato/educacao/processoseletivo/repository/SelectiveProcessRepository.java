@@ -13,4 +13,5 @@ public interface SelectiveProcessRepository extends JpaRepository<SelectiveProce
 {
     @Query(value = "SELECT * FROM selective_process where end_date < now()", nativeQuery = true)
     List<SelectiveProcess> findInProgress();
+
 }

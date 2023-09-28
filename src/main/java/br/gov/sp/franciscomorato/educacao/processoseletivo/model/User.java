@@ -46,9 +46,16 @@ public class User implements UserDetails
         this.username = username;
     }
 
-    public User (String username, String password) {
+
+    //cria usuario
+    public User (String username, String password, Role role) {
         this.username = username;
         this.password = new BCryptPasswordEncoder().encode(password);
+        this.accountNonExpired = true;
+        this.accountNonLocked = true;
+        this.credentialsNonExpired = true;
+        this.enabled = true;
+        this.roles.add(role);
     }
 
     public boolean addRole(Role role)
@@ -65,8 +72,6 @@ public class User implements UserDetails
     {
         return this.roles.remove(role);
     }
-
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
