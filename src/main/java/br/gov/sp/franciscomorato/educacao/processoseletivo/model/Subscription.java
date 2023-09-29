@@ -36,7 +36,9 @@ public class Subscription
 
     public Subscription () {}
 
-    public Subscription (SelectiveProcess selectiveProcess) {
+    public Subscription (SelectiveProcess selectiveProcess, Candidate candidate) 
+    {
+        this.candidate = candidate;
         this.process = selectiveProcess;
     }
 
