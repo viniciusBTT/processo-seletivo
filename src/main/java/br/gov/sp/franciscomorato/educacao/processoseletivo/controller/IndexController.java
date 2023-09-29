@@ -12,6 +12,7 @@ import br.gov.sp.franciscomorato.educacao.processoseletivo.service.SelectiveProc
 /**
  * controladora de início
  * @author thiago
+ * @see SelectiveProcessService
  */
 @Controller
 @RequestMapping("/")
@@ -21,15 +22,23 @@ public class IndexController
     @Autowired
     SelectiveProcessService processService;
 
+    /*** VIEWS */
+
+    /**
+     * retorna index público
+     * @param model
+     * @param authentication
+     * @return
+     */
     @GetMapping
     public String index(Model model, Authentication authentication)
     {
         model.addAttribute("processList", processService.findInProgress());
 
-        if(authentication.isAuthenticated()) {
-            return "redirect:/home";
+        if(authentication == null) {
+            return "index";
         }
         
-        return "index";
+        return "redirect:/home";
     }
 }

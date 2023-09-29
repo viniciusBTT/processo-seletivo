@@ -1,6 +1,5 @@
 package br.gov.sp.franciscomorato.educacao.processoseletivo.service;
 
-import br.gov.sp.franciscomorato.educacao.processoseletivo.dto.SelectiveProcessDTO;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.SelectiveProcess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -8,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import br.gov.sp.franciscomorato.educacao.processoseletivo.repository.SelectiveProcessRepository;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 

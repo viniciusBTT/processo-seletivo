@@ -6,12 +6,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.SelectiveProcess;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.Subscription;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.service.SelectiveProcessService;
 
-
+/**
+ * controladora de inscrição
+ * @author thiago
+ * @see SelectiveProcessService
+ */
 @Controller
 @RequestMapping("/subscription")
 public class SubscriptionController 
@@ -21,7 +26,7 @@ public class SubscriptionController
     private SelectiveProcessService processService;
 
     @GetMapping("/{processId}")
-    public String subscriptionView(@PathVariable Integer processId, Model model)
+    public String subscriptionView(@PathVariable Integer processId, Model model, @RequestParam Integer[] modalities)
     {
 
         SelectiveProcess process = processService.findById(processId);
