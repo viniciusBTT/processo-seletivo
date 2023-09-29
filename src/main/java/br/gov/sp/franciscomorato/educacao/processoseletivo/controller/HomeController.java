@@ -4,11 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.Role;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.User;
+import br.gov.sp.franciscomorato.educacao.processoseletivo.service.SelectiveProcessService;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -22,18 +24,18 @@ public class HomeController
 {
 
     @Autowired
-    private UserService userService;
+    private SelectiveProcessService processService;
     
     @GetMapping
-    public String home(Authentication authentication)
+    public String home(Authentication authentication, Model model)
     {
         if( authentication.getAuthorities().contains(new Role("ROLE_ADMIN")) ||
             authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ROOT"))
         ) {
-            return "home/home";
+            return "redirect:/process";
         }
 
-        
+        model.addAttribute("processList", processService.findInProgress());
         
         return "candidate/home";
     }
