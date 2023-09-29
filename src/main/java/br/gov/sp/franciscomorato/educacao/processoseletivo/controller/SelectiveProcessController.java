@@ -20,14 +20,18 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  */
 @Controller
 @RequestMapping({"/process", "/processoseletivo"})
-public class SelectiveProgressController
+public class SelectiveProcessController
 {
     @Autowired
     protected SelectiveProcessService processService;
 
-    /******
-     * ONLY VIEWS
-     * ****/
+    /*** VIEWS */
+    
+    /**
+     * 
+     * @param model
+     * @return 
+     */
     @GetMapping
     public String selectiveProcess(Model model)
     {
@@ -35,6 +39,13 @@ public class SelectiveProgressController
         return "process/list";
     }
 
+    /**
+     * 
+     * @param model
+     * @param id
+     * @param modalityDTO
+     * @return 
+     */
     @GetMapping("/{id}")
     public String process(Model model, @PathVariable Integer id, ModalityDTO modalityDTO)
     {
@@ -42,6 +53,11 @@ public class SelectiveProgressController
         return "process/process";
     }
 
+    /**
+     * 
+     * @param selectiveProcess
+     * @return 
+     */
     @GetMapping("/add")
     public String add(SelectiveProcess selectiveProcess)
     {
@@ -54,7 +70,7 @@ public class SelectiveProgressController
 
     /**
      * salva processo
-     * @param process objeto de SelectiveProcess preenchido
+     * @param selectiveProcess
      * @param ra
      * @return
      */
@@ -95,7 +111,7 @@ public class SelectiveProgressController
         try
         {
             //verifica atributos nulos
-            if(modalityDTO.processId().equals(null) || modalityDTO.name().equals(null))
+            if(modalityDTO.processId() == null || modalityDTO.name() == null)
             {
                 return ResponseEntity.ofNullable("Objeto fornecido está incompleto.");
             }

@@ -1,6 +1,5 @@
 package br.gov.sp.franciscomorato.educacao.processoseletivo;
 
-import br.gov.sp.franciscomorato.educacao.processoseletivo.model.User;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,7 @@ class ProcessoSeletivoApplicationTests {
 
 	@Test
 	void contextLoads() {
-		userService.save(userService.createAuthentication("thiago", "123"));
+
 	}
 
 }

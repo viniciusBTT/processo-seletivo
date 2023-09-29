@@ -64,18 +64,7 @@ public class UserService implements UserDetailsService
         return userRepository.save(user);
     }
 
-    /**
-     * cria uma autenticação
-     * @param username
-     * @param password
-     * @return
-     */
-    public User createAuthentication(String username, String password)
-    {
-        User user = new User(username, password);
 
-        return user;
-    }
 
     /**
      * encontra pelo numero de usuário

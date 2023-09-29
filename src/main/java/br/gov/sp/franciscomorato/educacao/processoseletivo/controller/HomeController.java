@@ -9,15 +9,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.Role;
-import br.gov.sp.franciscomorato.educacao.processoseletivo.model.User;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.service.CandidateService;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.service.SelectiveProcessService;
-import br.gov.sp.franciscomorato.educacao.processoseletivo.service.UserService;
-import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * controladora home
  * @author thiago
+ * @see SelectiveProcessService
+ * @see CandidateService
  */
 @Controller
 @RequestMapping("/home")
@@ -30,6 +29,14 @@ public class HomeController
     @Autowired
     private CandidateService candidateService;
     
+    /*** VIEWS */
+
+    /**
+     * redireciona para home de acordo com a regra de usuário
+     * @param authentication
+     * @param model
+     * @return
+     */
     @GetMapping
     public String home(Authentication authentication, Model model)
     {
@@ -41,7 +48,7 @@ public class HomeController
         }
 
         model.addAttribute("processList", processService.findInProgress());
-        model.addAttribute("username", candidateService.findByCpf(Long.parseLong(authentication.getName())).getName());
+        model.addAttribute("username", candidateService.findByCpf(Long.valueOf(authentication.getName())).getName());
         
         return "candidate/home";
     }

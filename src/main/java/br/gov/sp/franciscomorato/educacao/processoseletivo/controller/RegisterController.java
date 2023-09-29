@@ -12,15 +12,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.Candidate;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.service.CandidateService;
-import br.gov.sp.franciscomorato.educacao.processoseletivo.service.UserService;
 
+/**
+ * controladora de cadastro de candidato
+ * @author thiago
+ */
 @Controller
 @RequestMapping("/register")
 public class RegisterController
 {
-
-    @Autowired
-    private UserService userService;
 
     @Autowired
     private CandidateService candidateService;
@@ -69,6 +69,11 @@ public class RegisterController
         }
     }
 
+    /**
+     * 
+     * @param cpf
+     * @return 
+     */
     @GetMapping("/candidate")
     @ResponseBody
     public ResponseEntity<?> findCandidate(@RequestParam Long cpf)
