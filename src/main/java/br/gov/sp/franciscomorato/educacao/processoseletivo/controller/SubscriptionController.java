@@ -13,8 +13,10 @@ import br.gov.sp.franciscomorato.educacao.processoseletivo.model.SelectiveProces
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.Subscription;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.service.CandidateService;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.service.SelectiveProcessService;
+import br.gov.sp.franciscomorato.educacao.processoseletivo.service.SubscriptionService;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * controladora de inscrição
@@ -31,6 +33,9 @@ public class SubscriptionController
     
     @Autowired
     private CandidateService candidateService;
+    
+    @Autowired
+    private SubscriptionService subscriptionService;
 
     @GetMapping("/{processId}")
     public String subscriptionView(@PathVariable Integer processId, Model model, Authentication auth)
@@ -53,8 +58,27 @@ public class SubscriptionController
     
     
     @PostMapping
-    public String postSubscription(Subscription subscription) {
-        return "";
+    public String postSubscription(Subscription subscription, 
+            RedirectAttributes ra,
+            @RequestParam Integer[] modalities) 
+    {
+        try 
+        {
+            subscription = subscriptionService.save(subscription, modalities);
+            
+            if(subscription == null) {
+                ra.addFlashAttribute("error", "Esse processo inválido.");
+            }
+            else {
+                ra.addAttribute("success", "A sua inscrição foi realizada com sucesso!");
+            }
+        } 
+        catch (Exception e)
+        {
+            System.out.println("Erro ao realizar inscrição: " + e.getMessage());
+                ra.addFlashAttribute("error", "Esse processo inválido.");
+        }
+        return "redirect:/home";
     }
     
 }
