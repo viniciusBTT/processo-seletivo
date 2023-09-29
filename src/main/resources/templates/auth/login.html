@@ -1,22 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-    <head>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-        <title>Login</title>
-        <!-- Fonte Rawline-->
-        <link rel="stylesheet" href="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/fonts/rawline/css/rawline.css"/>
-        <!-- Fonte Raleway-->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800,900&amp;display=swap"/>
-        <!-- Design System de Governo-->
-        <link rel="stylesheet" href="/assets/vendors/govBR/dist/core.css"/>
-        <!-- Fontawesome-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"/>
-       <!-- Fav Icon-->
-    <link rel="shortcut icon" href="/assets/images/logoMorato-p.png" type="image/x-icon">
+    <head th:replace="~{fragments/out/head}"></head>
 
-    </head>
     <body style="background-color: #f1f1f1; height: 100vh">
         <div class="template-base" >   
             <main class="container-lg d-flex align-content-center justify-content-center " >                  
@@ -24,7 +9,7 @@
                     <div class="card-content p-">
                         <form class="" method="POST" th:action="@{/auth}">
                             <div class="br-input">
-                                <label for="input-default">Usuário</label>
+                                <label for="input-default">Cpf</label>
                                 <input id="input-default" type="text" name="username"/>
                             </div>
                             <div class="br-input input-button">
@@ -37,13 +22,13 @@
                                 <span class="material-symbols-outlined">Entrar</span>
                             </button>
                             <span class="text-danger" th:if="${param.error}">
-                                Usuário ou senha incorreto
+                                Cpf ou senha incorreto
                             </span>
                         </form>
                         <div class="text-center mt-2">
                             <a href="" >Esqueceu a Senha?</a>
                             <span class="br-divider md my-3"></span>                            
-                            <a class="br-button  secondary " type="submit">
+                            <a class="br-button  secondary " type="button" href="/register">
                                Criar Nova Conta
                             </a>
                             <p class="text-center  text-weight-regular text-base mt-2">Francisco Morato © 2023</p>
@@ -53,5 +38,7 @@
             </main>            
         </div>
         <script src="/assets/vendors/govBR/dist/core-init.js"></script>
+
+        
     </body>
 </html>

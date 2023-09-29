@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 
-<head th:replace="~{fragments/head}"></head>
+<head th:replace="~{fragments/internal/head}"></head>
 
 <body>
     <div class="template-base">
 
-        <head th:replace="~{fragments/header}"></head>
+        <head th:replace="~{fragments/internal/header}"></head>
         <main class="d-flex flex-fill mb-5" id="main">
             <div class="container-lg">
                 <h1>Cadastro do Processo Seletivo </h1>
@@ -106,8 +106,8 @@
         </main>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- <script src="/assets/vendors/govBR/dist/core.min.js"></script> -->
     <script src="/assets/vendors/govBR/dist/core-init.js"></script>
-    <script src="/assets/vendors/govBR/dist/core.min.js"></script>
     <script src="/assets/js/ThemeJS.js"></script>
     <script src="/assets/js/process/AddProcess.js"></script>
     <script>
@@ -120,9 +120,3 @@
 </html>
 
 
-
-<!-- 
-<span class="br-tag bg-mint-cool-vivid-40">
-                                    <i class="fa-solid fa-file"></i>
-                                    <span class="ml-2">Label</span>
-                                </span> -->

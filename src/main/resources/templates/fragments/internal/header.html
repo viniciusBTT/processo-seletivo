@@ -1,12 +1,13 @@
-<header class="br-header mb-4" id="header" data-sticky="data-sticky">
+<header class="br-header " id="header" data-sticky="data-sticky">
     <div class="container-lg">
         <div class="header-top">
             <div class="header-logo">
-                <img src="/assets/images/logo_morato-v2.png" alt="logo"/><span class="br-divider vertical"></span>
+                <a href="/home"><img src="/assets/images/logo_morato-v2.png" alt="logo"/></a>
+                    <span class="br-divider vertical"></span>
                 <div class="header-sign">Prefeitura de Francisco Morato</div>
             </div>
             <div class="header-actions">
-                <div class="header-links dropdown">
+                <div class="header-links dropdown" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_ROOT')">
                     <button class="br-button circle small" type="button" data-toggle="dropdown" aria-label="Abrir Acesso Rápido"><i class="fas fa-ellipsis-v" aria-hidden="true"></i>
                     </button>
                     <div class="br-list">
@@ -15,12 +16,26 @@
                         </div>
                         <a class="br-item" href="/process">Ver os Processos </a>
                         <a class="br-item" href="/process/add">Adicionar Processo </a>
-
                     </div>
                 </div>
                 <span class="br-divider vertical mx-half mx-sm-1"></span>   
 
-                <div>
+                <div th:if="${username}">
+                    <button class="br-sign-in" type="button" id="avatar-dropdown-trigger" onclick="dropdownToggle(this.id)" data-toggle="dropdown" data-target="avatar-menu" aria-label="Avatar com dropdown">
+                        <span class="br-avatar" title="Fulano da Silva">
+                            <span class="content bg-orange-vivid-30 text-pure-0">[[${#strings.arraySplit(username, '.')[0][0]}]]</span>                                
+                        </span>
+                        <span class="ml-2 text-gray-80 text-weight-regular">Olá, 
+                            <span class="text-weight-semi-bold">[[${#strings.arraySplit(username, '.')[0]}]]</span>                                
+                        </span>
+                        <i class="fas fa-caret-down" aria-hidden="true"></i>
+                    </button>
+                    <div class="br-list" id="avatar-menu" hidden="hidden">
+                        <a class="br-item" href="/logout">Sair</a>
+                       
+                    </div>
+                </div>
+                <div th:unless="${username}">
                     <button class="br-sign-in" type="button" id="avatar-dropdown-trigger" data-toggle="dropdown" data-target="avatar-menu" aria-label="Avatar com dropdown">
                         <span class="br-avatar" title="Fulano da Silva">
                             <span class="content bg-orange-vivid-30 text-pure-0">[[${#strings.arraySplit(#authentication.name, '.')[0][0]}]]</span>                                
@@ -35,6 +50,7 @@
                        
                     </div>
                 </div>
+                
             </div>
         </div>                     
     </div>

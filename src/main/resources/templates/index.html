@@ -1,105 +1,55 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Template básico</title>
-    <!-- Fonte Rawline-->
-    <link rel="stylesheet"
-        href="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/fonts/rawline/css/rawline.css" />
-    <!-- Fonte Raleway-->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800,900&amp;display=swap" />
-    <!-- Design System de Governo-->
-    <link rel="stylesheet" href="/assets/vendors/govBR/dist/core.css" />
-    <!-- Fav Icon-->
-    <link rel="shortcut icon" href="/assets/images/logoMorato-p.png" type="image/x-icon">
-    <!-- Fontawesome-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" />    
-</head>
+<head th:replace="~{fragments/out/head}"></head>
 
 <body>
     <div class="template-base">
-        <header class="br-header mb-0" id="header" data-sticky="data-sticky">
-            <div class="container-lg">
-                <div class="header-top">
-                    <div class="header-logo">
-                        <img src="/assets/images/logo_morato-v2.png" alt="logo" /><span
-                            class="br-divider vertical"></span>
-                        <div class="header-sign">Prefeitura de Francisco Morato</div>
-                    </div>
-                    <div class="header-actions">
-                        <div class="header-links dropdown">
-                            <button class="br-button circle small" type="button" data-toggle="dropdown"
-                                aria-label="Abrir Acesso Rápido"><i class="fas fa-ellipsis-v" aria-hidden="true"></i>
-                            </button>
-                            <div class="br-list">
-                                <div class="header">
-                                    <div class="title">Acesso Rápido</div>
-                                </div>
-                                <a class="br-item" href="javascript:void(0)">Consultar a Inscrição</a>
-                            </div>
-                        </div>
-                        <span class="br-divider vertical mx-half mx-sm-1"></span>
-                        <div class="header-login">
-                            <div class="header-sign-in">
-                                <a class="br-sign-in small" href="/auth" data-trigger="login"><i class="fas fa-user"
-                                        aria-hidden="true"></i><span class="d-sm-inline">Entrar</span>
-                                </a>
-                            </div>
-                            <div class="header-avatar"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
+
+        <head th:replace="~{fragments/out/header}"></head>
         <main class="container-fluid" id="main">
             <div class="row">
                 <div class="col-12">
                     <div class="br-carousel" data-stage="in" data-mobile-nav="1">
                         <div class="carousel-button">
-                            <button class="br-button carousel-btn-prev terciary circle" type="button" aria-label="Anterior">
+                            <button class="br-button carousel-btn-prev terciary circle" type="button"
+                                aria-label="Anterior">
                                 <i class="fas fa-chevron-left" aria-hidden="true"></i>
                             </button>
                         </div>
                         <div class="carousel-stage">
-                            <div class="carousel-page" active="active">
-                                <div class="carousel-content bg-blue-10" >
-                                    <div class="mt-auto  py-2 px-3 " style="background-color: rgba(0, 0, 0, 0.65);  width: 100%;margin-bottom: 45px;">
-                                        <a href="/aaaa">
-                                            <h4 class="h4 text-pure-0 m-0 mb-2">Titulo do processo</h4>
-                                            <span class="text-pure-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, corporis? Accusamus obcaecati quos aliquam corrupti voluptates omnis voluptatem, eveniet totam, optio quasi vero sit dolorem officiis, cum dolore ullam. Delectus.</span>
-                                        </a>  
-                                        
+                            <div class="carousel-page" th:each="process,status: ${processList}"
+                                th:active="${status.index == 0 ? 'active' : ''}">
+                                <div class="carousel-content bg-blue-10">
+                                    <div class="mt-auto  py-2 px-3 d-block "
+                                        style="background-color: rgba(0, 0, 0, 0.65);  width: 100%;margin-bottom: 45px;">
+                                        <a href="/auth">
+                                            <div class="d-flex justify-content-between">
+                                                <h4 class="h6 text-pure-0 m-0 mb-2" th:text="${process.title}"></h4>
+                                                <span class="text-pure-0 m-0 h6">Encerramento:
+                                                    [[${#dates.format(process.endDate, 'dd/MM/yyyy HH:mm')}]]</span>
+
+                                            </div>
+                                            <span class="text-pure-0 " th:text="${process.description}"></span>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="carousel-page" >
-                                <div class="carousel-content bg-blue-10" >
-                                    <div class="mt-auto  py-2 px-3 " style="background-color: rgba(0, 0, 0, 0.65);  width: 100%;margin-bottom: 45px;">
-                                        <h4 class="h4 text-pure-0 m-0 mb-2">Titulo do processo</h4>
-                                        <span class="text-pure-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, corporis? Accusamus obcaecati quos aliquam corrupti voluptates omnis voluptatem, eveniet totam, optio quasi vero sit dolorem officiis, cum dolore ullam. Delectus.</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
                         </div>
                         <div class="carousel-button">
-                            <button class="br-button carousel-btn-next terciary circle" type="button" aria-label="Próximo">
+                            <button class="br-button carousel-btn-next terciary circle" type="button"
+                                aria-label="Próximo">
                                 <i class="fas fa-chevron-right" aria-hidden="true"></i>
                             </button>
                         </div>
                         <div class="carousel-step">
                             <div class="br-step" data-initial="1" data-type="simple">
                                 <div class="step-progress">
-                                    <button class="step-progress-btn" type="button" step-num="1">
-                                        <span class="step-info">Exemplo de Rótulo 1</span>
+                                    <button class="step-progress-btn" type="button" th:step-num="${status.index}"
+                                        th:each="process, status: ${processList}">
+                                        <span class="step-info"></span>
                                     </button>
-                                    <button class="step-progress-btn" type="button" step-num="2">
-                                        <span class="step-info">Exemplo de Rótulo 2</span>
-                                    </button>
+
                                 </div>
                             </div>
                         </div>
@@ -108,24 +58,11 @@
             </div>
 
         </main>
-        <footer class="br-footer pt-3" id="footer">
-            <div class="container-lg">
-                <div class="info">
-                    <div class="text-down-01 text-medium pb-3">Direitos reservador a prefeitura de <strong><a
-                                href="https://www.franciscomorato.sp.gov.br/" target="_blank">Francisco
-                                Morato.</a></strong></div>
-                </div>
-            </div>
-        </footer>
+        <footer th:replace="~{fragments/out/footer}"></footer>
+
     </div>
-    <script src="/assets/vendors/govBR/dist/core.min.js"></script>   
+    <script src="/assets/vendors/govBR/dist/core.min.js"></script>
     <script src="/assets/js/ThemeJS.js"></script>
-
-    <script>
-        window.onload = () => {
-
-        }
-    </script>
 
 </body>
 
