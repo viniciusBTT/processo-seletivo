@@ -31,7 +31,6 @@ public class Candidate
     private User user;
 
 
-
     
 
 }
