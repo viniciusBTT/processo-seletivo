@@ -26,7 +26,7 @@ public class SubscriptionController
     private SelectiveProcessService processService;
 
     @GetMapping("/{processId}")
-    public String subscriptionView(@PathVariable Integer processId, Model model, @RequestParam Integer[] modalities)
+    public String subscriptionView(@PathVariable Integer processId, Model model)
     {
 
         SelectiveProcess process = processService.findById(processId);
