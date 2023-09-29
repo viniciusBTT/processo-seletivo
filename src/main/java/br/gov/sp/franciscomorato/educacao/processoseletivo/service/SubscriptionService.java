@@ -80,4 +80,14 @@ public class SubscriptionService
         return subscriptionRepository.hasSubscription(cpf, processId) != null;
     }
     
+    /**
+     * encontra inscrições em andamento
+     * @param cpf
+     * @return 
+     */
+    public List<Subscription> findSubscriptionByCandidateInProgress(Long cpf)
+    {
+        return subscriptionRepository.findSubscriptionByCandidateInProgress(cpf);
+    }
+    
 }
