@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.Role;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.service.CandidateService;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.service.SelectiveProcessService;
+import br.gov.sp.franciscomorato.educacao.processoseletivo.service.SubscriptionService;
 
 /**
  * controladora home
@@ -29,6 +30,9 @@ public class HomeController
     @Autowired
     private CandidateService candidateService;
     
+    @Autowired
+    private SubscriptionService subscriptionService;
+    
     /*** VIEWS */
 
     /**
@@ -41,12 +45,17 @@ public class HomeController
     public String home(Authentication authentication, Model model)
     {
         if( authentication.getAuthorities().contains(new Role("ROLE_ADMIN")) ||
-        authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ROOT"))
-        ) {
+        authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ROOT"))) 
+        {
             model.addAttribute("username", authentication.getName());
             return "redirect:/process";
         }
 
+        model.addAttribute(
+                "subscriptions", 
+                subscriptionService
+                                .findSubscriptionByCandidateInProgress(
+                                        Long.valueOf(authentication.getName())));
         model.addAttribute("processList", processService.findInProgress());
         model.addAttribute("username", candidateService.findByCpf(Long.valueOf(authentication.getName())).getName());
         
