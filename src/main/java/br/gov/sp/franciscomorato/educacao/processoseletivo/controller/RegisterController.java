@@ -75,13 +75,11 @@ public class RegisterController
     {
         try 
         {
-            Candidate candidate = candidateService.findByCpf(cpf);
-            
+            Candidate candidate = candidateService.findByCpf(cpf);            
             if(candidate == null) 
             {
                 return ResponseEntity.notFound().build();
             }
-
             return ResponseEntity.ok(candidate);
 
         } catch (Exception e) 
