@@ -26,9 +26,13 @@ public class CandidateService
     public Candidate save (Candidate candidate)
     {
 
+        System.out.println(candidate);
+
         //verificar se há usuário
-        if(candidate.getUser().equals(null))
+        if(!candidate.getUser().equals(null))
         {
+            candidate.getUser().setUsername(String.valueOf(candidate.getCpf()));
+
             User user = userService.findByUsername(candidate.getUser().getUsername());
 
             if(user != null) 
