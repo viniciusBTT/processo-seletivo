@@ -1,64 +1,88 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-    
-    <head th:replace="~{fragments/internal/head}"></head>
-    <body>
-        <div class="template-base">
-            <head th:replace="~{fragments/internal/header}"></head>
-            <main class="container-fluid" id="main">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="br-carousel" data-stage="in" data-mobile-nav="1">
-                            <div class="carousel-button">
-                                <button class="br-button carousel-btn-prev terciary circle" type="button"
-                                    aria-label="Anterior">
-                                    <i class="fas fa-chevron-left" aria-hidden="true"></i>
-                                </button>
-                            </div>
-                            <div class="carousel-stage">
-                                <div class="carousel-page" th:each="process,status: ${processList}"
-                                    th:active="${status.index == 0 ? 'active' : ''}">
-                                    <div class="carousel-content bg-blue-10">
-                                        <div class="mt-auto  py-2 px-3 d-block "
-                                            style="background-color: rgba(0, 0, 0, 0.65);  width: 100%;margin-bottom: 45px;">
-                                            <a th:href="'/subscription/' + ${process.id}">
-                                                <div class="d-flex justify-content-between">
-                                                    <h4 class="h6 text-pure-0 m-0 mb-2" th:text="${process.title}"></h4>
-                                                    <span class="text-pure-0 m-0 h6">Encerramento:
-                                                        [[${#dates.format(process.endDate, 'dd/MM/yyyy HH:mm')}]]</span>
-    
-                                                </div>
+
+<head th:replace="~{fragments/internal/head}"></head>
+
+<body>
+    <div class="template-base">
+
+        <head th:replace="~{fragments/internal/header}"></head>
+        <main class="container-fluid" id="main">
+            <div class="row">
+                <div class="col-12">
+                    <div class="br-carousel" data-stage="in" data-mobile-nav="1">
+                        <div class="carousel-button">
+                            <button class="br-button carousel-btn-prev terciary circle" type="button"
+                                aria-label="Anterior">
+                                <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <div class="carousel-stage">
+                            <div class="carousel-page" th:each="process,status: ${processList}"
+                                th:active="${status.index == 0 ? 'active' : ''}">
+                                <div class="carousel-content bg-blue-10">
+                                    <div class="mt-auto  py-2 px-3 d-block "
+                                        style="background-color: rgba(0, 0, 0, 0.65);  width: 100%;margin-bottom: 45px;">
+                                        <a th:href="'/subscription/' + ${process.id}">
+                                            <div class="d-flex justify-content-between">
+                                                <h4 class="h6 text-pure-0 m-0 mb-2" th:text="${process.title}"></h4>
+                                                <span class="text-pure-0 m-0 h6">Encerramento:
+                                                    [[${#dates.format(process.endDate, 'dd/MM/yyyy HH:mm')}]]</span>
+
+                                            </div>
+                                            <div class="d-flex justify-content-between">
                                                 <span class="text-pure-0 " th:text="${process.description}"></span>
-                                            </a>
-                                        </div>
+                                                <button class="br-button dark-mode" th:href="'/subscription/' + ${process.id}" type="button">Clique para ver mais
+                                                </button>
+                                            </div>
+                                            
+                                        </a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="carousel-button">
-                                <button class="br-button carousel-btn-next terciary circle" type="button"
-                                    aria-label="Próximo">
-                                    <i class="fas fa-chevron-right" aria-hidden="true"></i>
-                                </button>
-                            </div>
-                            <div class="carousel-step">
-                                <div class="br-step" data-initial="1" data-type="simple">
-                                    <div class="step-progress">
-                                        <button class="step-progress-btn" type="button" th:step-num="${status.index}"
-                                            th:each="process, status: ${processList}">
-                                            <span class="step-info"></span>
-                                        </button>
-    
-                                    </div>
+                        </div>
+                        <div class="carousel-button">
+                            <button class="br-button carousel-btn-next terciary circle" type="button"
+                                aria-label="Próximo">
+                                <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <div class="carousel-step">
+                            <div class="br-step" data-initial="1" data-type="simple">
+                                <div class="step-progress">
+                                    <button class="step-progress-btn" type="button" th:step-num="${status.index}"
+                                        th:each="process, status: ${processList}">
+                                        <span class="step-info"></span>
+                                    </button>
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-    
-            </main>
-            <footer th:replace="~{fragments/out/footer}"></footer>
-        </div>
-        <script src="/assets/vendors/govBR/dist/core-init.js"></script>
-        <script src="/assets/js/ThemeJS.js"></script>
-    </body>
+            </div>
+            
+            <h1 class="h4 m-0 mt-6 mb-2">Sua Inscrições</h1>
+            <div class="row mx-0 gap-4" th:if="${processList}">
+                
+                <div class="br-card col-md-4 col-sm-6 mx-3" th:each="process : ${processList}">
+                    <div class="card-content">
+                        <h3 class="h4 mb-2 mt-0" th:text="${process.title}"></h3>
+                        <span class="" th:text="${process.description}"></span>
+                        <p>Data de conclusão:  [[${#dates.format(process.endDate, 'dd/MM/yyyy HH:mm')}]]</span></p>
+                    </div>
+                </div>
+                
+                
+            </div>
+            <div class="row mx-0 gap-6" th:unless="${processList}">
+                <span>Nenhuma inscrição encontrada</span>
+            </div>
+        </main>
+        <footer th:replace="~{fragments/out/footer}"></footer>
+    </div>
+    <script src="/assets/vendors/govBR/dist/core-init.js"></script>
+    <script src="/assets/js/ThemeJS.js"></script>
+</body>
+
 </html>
