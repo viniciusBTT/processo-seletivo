@@ -41,7 +41,7 @@ public class HomeController
         }
 
         model.addAttribute("processList", processService.findInProgress());
-        model.addAttribute("username", candidateService.findByCpf(Long.parseLong(authentication.getName())));
+        model.addAttribute("username", candidateService.findByCpf(Long.parseLong(authentication.getName())).getName());
         
         return "candidate/home";
     }
