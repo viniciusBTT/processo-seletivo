@@ -1,6 +1,7 @@
 package br.gov.sp.franciscomorato.educacao.processoseletivo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,9 +22,14 @@ public class IndexController
     SelectiveProcessService processService;
 
     @GetMapping
-    public String index(Model model)
+    public String index(Model model, Authentication authentication)
     {
         model.addAttribute("processList", processService.findInProgress());
+
+        if(authentication.isAuthenticated()) {
+            return "redirect:/home";
+        }
+        
         return "index";
     }
 }
