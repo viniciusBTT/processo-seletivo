@@ -57,10 +57,12 @@ public class RegisterController
                 ra.addFlashAttribute("error", "Não foi possível salvar o candidato.");
                 return register(candidate);
             }
+            
+            
 
             ra.addFlashAttribute("success", "Sua candidatura foi salva com sucesso!");
             ra.addFlashAttribute("message", "Acesse o sistema para verificar sua inscrição.");
-            return "redirect:/auth";
+            return "redirect:/acesso";
         }
         catch (Exception e) 
         {
