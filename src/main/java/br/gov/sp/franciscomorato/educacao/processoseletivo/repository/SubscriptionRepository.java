@@ -15,7 +15,7 @@ public interface SubscriptionRepository extends JpaRepository<Subscription, Long
     @Query(value = "SELECT * FROM subscription WHERE candidate_cpf = :cpf AND process_id = :process", nativeQuery = true)
     Subscription hasSubscription(@Param("cpf") Long cpf, @Param("process") Integer process);
     
-    @Query(value = "SELECT s FROM Subscription s WHERE s.process.endDate > now()")
+    @Query(value = "SELECT s FROM Subscription s WHERE s.candidate.cpf = :cpf")
     List<Subscription> findSubscriptionByCandidateInProgress(@Param("cpf") Long cpf);
     
 }
