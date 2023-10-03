@@ -1,4 +1,4 @@
-import Collapse from './collapse'
+import Collapse from '/assets/vendors/govBR/dist/partial/js/behavior/collapse.js'
 
 /**
  * Classe para o comportamento Dropdown.

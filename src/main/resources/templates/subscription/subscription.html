@@ -6,7 +6,7 @@
 <body>
     <div class="template-base">
 
-        <head th:replace="~{fragments/out/header}"></head>
+        <head th:replace="~{fragments/internal/header}"></head>
         <main class="container-fluid" id="main">
             <div class="row">
                 <div class="col-12">
@@ -25,21 +25,24 @@
                 <h1>[[${subscription.process.title}]]</h1>
                 <span>[[${subscription.process.description}]]</span>
 
-                <span class="br-divider md my-6"></span>    
+                <span class="br-divider md my-6"></span>
+                
+                
 
 
-               
                 <p class="h4 m-0 my-2">Confirme os seu dados</p>
                 <div class="border-solid-sm p-3">
-                    <div class="form-horizontal" >
+                    <div class="form-horizontal">
                         <div class="row">
                             <div class="br-input mb-3 col-md-4 col-sm-12 ">
                                 <label for="name">Nome completo*</label>
-                                <input name="name" id="name" type="text"  readonly th:field="${subscription.candidate.name}"/>
+                                <input name="name" id="name" type="text" readonly
+                                    th:field="${subscription.candidate.name}" />
                             </div>
                             <div class="br-input mb-3 col-md-4 col-sm-12 ">
                                 <label for="cpf">CPF*</label>
-                                <input name="cpf" id="cpf" type="text"  readonly th:field="${subscription.candidate.cpf}"/>
+                                <input name="cpf" id="cpf" type="text" readonly
+                                    th:field="${subscription.candidate.cpf}" />
 
                             </div>
                             <div class="br-input mb-3 col-md-4 col-sm-12 ">
@@ -49,37 +52,31 @@
                         </div>
                         <div class="row">
                             <div class="mb-3 col-md-4 col-sm-12 ">
-                                <div class="br-datetimepicker" data-mode="single" data-type="text" th:data-input="${subscription.candidate.birthDate}" >
+                                <div class="br-datetimepicker" data-mode="single" data-type="text"
+                                    th:data-input="${subscription.candidate.birthDate}">
                                     <div class="br-input has-icon">
                                         <label for="birthDate">Data de nascimento*</label>
-                                        <input id="birthDate" name="birthDate" type="text" placeholder="dd/mm/aaaa" data-input="data-input"
-                                            readonly th:value="${subscription.candidate.birthDate}" /> 
-                                        <button class="br-button circle small" type="button" aria-label="Abrir Timepicker"
-                                            data-toggle="data-toggle" id="simples-input-btn"><i class="fas fa-calendar-alt"
-                                                aria-hidden="true"></i>
-                                        </button>
-                                       
+                                        <input name="rg" id="rg" type="text" readonly  th:value="${subscription.candidate.birthDate}"  />
                                     </div>
                                 </div>
                             </div>
                             <div class="br-input mb-3 col-md-4 col-sm-12 ">
                                 <label for="phone">Telefone*</label>
-                                <input name="phone" id="phone" type="tel" readonly th:field="${subscription.candidate.phone}" />
+                                <input name="phone" id="phone" type="tel" readonly
+                                    th:field="${subscription.candidate.phone}" />
                             </div>
                             <div class="br-input mb-3 col-md-4 col-sm-12 ">
                                 <label for="input-title">Email*</label>
-                                <input name="email" id="email" type="email" readonly th:field="${subscription.candidate.email}" />
+                                <input name="email" id="email" type="email" readonly
+                                    th:field="${subscription.candidate.email}" />
                             </div>
                         </div>
-                        <div class="row">                 
+                        <div class="row">
                             <div class="br-select mb-3 col-md-4 col-sm-12 " style="max-width: 100%!important;">
                                 <div class="br-input ">
                                     <label for="gender">Gênero*</label>
-                                    <input id="gender" name="gender" type="text" placeholder="Selecione o item" required th:field="${subscription.candidate.gender}"/>
-                                    <button class="br-button" type="button" aria-label="Exibir lista" tabindex="-1"
-                                        data-trigger="data-trigger">
-                                        <i class="fas fa-angle-down" aria-hidden="true"></i>
-                                    </button>
+                                    <input name="email" id="email" type="email" readonly
+                                    th:field="${subscription.candidate.gender}" />
                                 </div>
                                 <div class="br-list" tabindex="0">
                                     <div class="br-item" tabindex="-1">
@@ -100,58 +97,68 @@
                                             <label for="outher">Outro</label>
                                         </div>
                                     </div>
-                                </div> 
+                                </div>
                             </div>
                             <div class=" mb-3 col-md-4 col-sm-12 d-flex ">
-                                <div class="br-checkbox align-self-end mb-2" >
-                                  <input id="h-checkbox-1" name="checkSpecialCondition" type="checkbox" readonly onChange="showSpecialCondition()"/>
-                                  <label for="h-checkbox-1" id="checkSpecialCondition" >Possui alguma condição especial?</label>
+                                <div class="br-checkbox align-self-end mb-2">
+                                    <input id="h-checkbox-1" name="checkSpecialCondition" type="checkbox" readonly
+                                        onChange="showSpecialCondition()" />
+                                    <label for="h-checkbox-1" id="checkSpecialCondition" aria-readonly="true">Possui alguma condição
+                                        especial?</label>
                                 </div>
-                              </div>
-                            <div class="br-input mb-3 col-md-4 col-sm-12 " >
+                            </div>
+                            <div class="br-input mb-3 col-md-4 col-sm-12 ">
                                 <label for="specialCondition ">Especifique a condição*</label>
-                                <input name="specialCondition"  type="text"   id="specialCondition" th:field="${subscription.candidate.diseaseInducedDeficiency}" readonly/>
-                            </div>                         
-                        </div>                        
+                                <input name="specialCondition" type="text" id="specialCondition"
+                                    th:field="${subscription.candidate.diseaseInducedDeficiency}" readonly />
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <span class="br-divider md my-6"></span>   
+                <span class="br-divider md my-6"></span>
 
                 <p class="h4">Escolha as modalidades do processo que deseja participar</p>
                 <div class="mx-1 mb-6">
                     <form action="/subscription" method="post" id="formSubscription">
                         <input type="text" th:field="${subscription.process}" hidden>
-                        <input type="text"  th:field="${subscription.candidate}" hidden>
-                        <input type="text"  th:field="${subscription.candidate.cpf}" hidden>
+                        <input type="text" th:field="${subscription.candidate}" hidden>
+                        <input type="text" th:field="${subscription.candidate.cpf}" hidden>
 
+                        <div class="br-message info" role="alert">
+                            <div class="icon"><i class="fas fa-info-circle fa-lg" aria-hidden="true"></i>
+                            </div>
+                            <div class="content"><span class="message-title">Atenção.</span><span class="message-body"> É possivel se cadastar em mais de <strong>uma modalidade</strong> </span></div>
+                        </div>
+                        <div class=" d-flex justify-content-start align-intems-center gap-5 flex-wrap">
 
-                        <div class=" d-flex justify-content-start gap-5 flex-wrap">
-                            <span class="interaction-select br-tag  medium mb-2 "
-                                th:each="modality,state : ${subscription.process.modalities}">
-                                <input th:id="${modality.id}" th:value="${modality.id}" type="checkbox"  th:name="modalities"  />
-                                <label th:for="${modality.id}">
-                                    <i class="fa-solid fa-floppy-disk mr-2"></i>
-                                    <span>[[${modality.name}]]</span>
-                                </label>
-                            </span>
-                        </div> 
+                           
+                            <div class="br-checkbox ml-2 mt-0"  th:each="modality,state : ${subscription.process.modalities}">
+                                <input th:id="${modality.id}" th:value="${modality.id}" type="checkbox"
+                                th:name="modalities" th:data-child="check-01" />
+                                <label th:for="${modality.id}"> [[${modality.name}]]</label>
+                            </div>
+                           
+
+                        </div>
                         <div class="d-flex justify-content-end">
                             <button class="br-button primary dark-mode mr-3 " type="submit">Cadastrar
                             </button>
                         </div>
                     </form>
-                </div>           
+                </div>
             </div>
 
 
         </main>
         <footer th:replace="~{fragments/out/footer}"></footer>
     </div>
-    <script src="/assets/js/ThemeJS.js"></script>
     <script src="/assets/vendors/govBR/dist/core.min.js"></script>
+    <script src="/assets/vendors/govBR/dist/core-init.js"></script>
+    <script src="/assets/js/ThemeJS.js"></script>
+
     <script>
-        function setInputDate(){
+        function setInputDate() {
             datetimepickerList.forEach(item => {
                 item.calendar.setDate(new Date(item.component.getAttribute('data-input')));
             })

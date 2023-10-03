@@ -24,15 +24,17 @@
                                     <div class="mt-auto  py-2 px-3 d-block "
                                         style="background-color: rgba(0, 0, 0, 0.65);  width: 100%;margin-bottom: 45px;">
                                         <a th:href="'/subscription/' + ${process.id}">
-                                            <div class="d-flex justify-content-between">
+                                            <div class="d-flex flex-column flex-md-row justify-content-md-between justify-content-start">
                                                 <h4 class="h6 text-pure-0 m-0 mb-2" th:text="${process.title}"></h4>
-                                                <span class="text-pure-0 m-0 h6">Encerramento:
+                                                <span class="text-pure-0 m-0 h6 mb-2">Encerramento:
                                                     [[${#dates.format(process.endDate, 'dd/MM/yyyy HH:mm')}]]</span>
 
                                             </div>
-                                            <div class="d-flex justify-content-between">
-                                                <span class="text-pure-0 " th:text="${process.description}"></span>
-                                                <button class="br-button dark-mode" th:href="'/subscription/' + ${process.id}" type="button">Clique para ver mais
+                                            <div class="d-flex flex-column flex-md-row justify-content-md-between justify-content-start ">
+                                               
+                                                
+                                                    <span class="text-pure-0 mb-2 m-0" th:text="${process.description}"></span>
+                                                <button class="br-button primary mb-2" th:href="'/subscription/' + ${process.id}" type="button">Clique para se candidatar
                                                 </button>
                                             </div>
                                             
@@ -61,24 +63,63 @@
                     </div>
                 </div>
             </div>
+            <!-- sucess mensage -->
+            <div class="br-message danger mt-3" role="alert" th:if="${error}">
+                <div class="icon">
+                    <i class="fas fa-times-circle fa-lg" aria-hidden="true"></i>
+                </div>
+                <div class="content">
+                    <span class="message-title">Erro: </span>
+                    <span class="message-body" th:text="${error}"> </span>
+                </div>
+                <div class="close">
+                <button class="br-button circle small" type="button" aria-label="Fechar"><i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+                </div>
+            </div>
+            <!-- error mensage -->
+            <div class="br-message success" role="alert" th:if="${success}">
+                <div class="icon">
+                    <i class="fas fa-check-circle fa-lg" aria-hidden="true"></i>
+                </div>
+                <div class="content">
+                    <span class="message-title">Sucesso.</span>
+                    <span class="message-body" th:text="${success}"> </span>
+                </div>
+                <div class="close">
+                <button class="br-button circle small" type="button" aria-label="Fechar">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+                </div>
+            </div>
+
+            <h1 class="h2 m-0 mt-6 mb-2">Suas Inscrições: </h1>
             
-            <h1 class="h4 m-0 mt-6 mb-2">Sua Inscrições</h1>
-            <div class="row mx-0 gap-4" th:if="${processList}">
-                
-                <div class="br-card col-md-4 col-sm-6 mx-3" th:each="process : ${processList}">
+            <div class="row mx-0 gap-4" th:if="${subscriptions}">                
+                <div class="br-card  col-md-4 sol-sm-12 mr-3" th:each="subscription : ${subscriptions}" th:if="${subscriptions}">
                     <div class="card-content">
-                        <h3 class="h4 mb-2 mt-0" th:text="${process.title}"></h3>
-                        <span class="" th:text="${process.description}"></span>
-                        <p>Data de conclusão:  [[${#dates.format(process.endDate, 'dd/MM/yyyy HH:mm')}]]</span></p>
+                        <h3 class="h4 mb-2 mt-0" th:text="${subscription.process.title}"></h3>
+                        <p>Data de conclusão:  [[${#dates.format(subscription.process.endDate, 'dd/MM/yyyy HH:mm')}]]</p>
+                        <h3 class="h6">Modalidades inscritas</h3>
+                        <div class="d-flex justify-content-start gap-3 flex-wrap">
+                            <span class="br-tag bg-primary mb-2" th:each="modalitie: ${subscription.process.modalities}" 
+                            th:text="${modalitie.name}"></span>
+
+                        </div>
                     </div>
                 </div>
-                
-                
+                <div class="br-card  col-12" th:unless="${subscriptions}">
+                    <div class="card-content text-center">
+                        <p>Nenhuma inscrição realizada</span></p>
+                    </div>
+                </div>
             </div>
-            <div class="row mx-0 gap-6" th:unless="${processList}">
+
+            <div class="row mx-0 gap-6" th:unless="${subscriptions}">
                 <span>Nenhuma inscrição encontrada</span>
             </div>
         </main>
+        
         <footer th:replace="~{fragments/out/footer}"></footer>
     </div>
     <script src="/assets/vendors/govBR/dist/core-init.js"></script>

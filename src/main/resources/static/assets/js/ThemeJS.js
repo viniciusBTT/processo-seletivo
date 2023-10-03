@@ -1,3 +1,47 @@
+// import Dropdown from '/assets/vendors/govBR/dist/partial/js/behavior/dropdown.js'
+// /**
+//  * Classe para o exemplo do comportamento dropdown
+//  */
+// class BRAvatar {
+//   /**
+//    * Instancia um exemplo de comportamento dropdown
+//    * @param {string} name - Nome do componente
+//    * @param {object} component - Referência ao objeto do DOM
+//    */
+//   constructor(name, component) {
+//     this.name = name
+//     this.component = component
+//     this._setBehavior()
+//   }
+
+//   /**
+//    * Define os comportamentos do componente
+//    * @private
+//    */
+//   _setBehavior() {
+//     this._setDropdownBehavior()
+//   }
+
+//   /**
+//    * Define os comportamentos do dropdown
+//    * @private
+//    */
+//   _setDropdownBehavior() {
+//     if (this.component.parentElement.dataset.toggle === 'dropdown') {
+//       const config = {
+//         iconToHide: 'fa-caret-up',
+//         iconToShow: 'fa-caret-down',
+//         trigger: this.component.parentElement,
+//         useIcons: true,
+//       }
+//       const dropdown = new Dropdown(config)
+//       dropdown.setBehavior()
+//     }
+//   }
+// }
+
+// export default BRAvatar;
+
 
 
 
@@ -91,3 +135,25 @@ for (const brSelect of window.document.querySelectorAll('.br-select')) {
   selectList.push(brselect)
 }
 
+//upload
+const uploadList = []
+
+function uploadTimeout() {
+  return new Promise((resolve) => {
+    // Colocar aqui um upload para o servidor e retirar o timeout
+    return setTimeout(resolve, 3000)
+  })
+}
+
+for (const brUpload of window.document.querySelectorAll('.br-upload')) {
+  uploadList.push(new core.BRUpload('br-upload', brUpload, uploadTimeout))
+}
+
+
+
+
+//toast 
+const alertList = []
+for (const brAlert of window.document.querySelectorAll('.br-message')) {
+  alertList.push(new core.BRAlert('br-message', brAlert))
+}

@@ -23,9 +23,10 @@ modalityForm.addEventListener("submit", (e) =>{
       .then(function (response) {
        
         document.querySelector("#modalitiesList").innerHTML += ` <span class="br-tag bg-green-cool-vivid-50 medium mb-2"
-                                                                      <i class="fa-solid fa-file "></i>
+                                                                    <i class="fa-solid fa-file "></i>
                                                                     <span class="ml-2">${response.data.modalities[response.data.modalities.length - 1 ].name}</span>
                                                                 </span>`
+        document.querySelector("#modalitieName").value =  "";
       })
       .catch(function (error) {
         console.error(error);
