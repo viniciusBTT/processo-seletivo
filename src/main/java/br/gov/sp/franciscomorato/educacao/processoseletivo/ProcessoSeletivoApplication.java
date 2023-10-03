@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.Role;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.User;
+import br.gov.sp.franciscomorato.educacao.processoseletivo.repository.SubscriptionRepository;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.repository.UserRepository;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.service.UserService;
 
@@ -37,10 +38,14 @@ public class ProcessoSeletivoApplication
 	@Autowired
 	private UserRepository userService;
 
+        @Autowired
+        SubscriptionRepository subscriptionRepository;
+        
 	@PostConstruct
 	public void createDefaultUser()
-	{	
-		userService.save(new User("admin", "123", new Role("ROLE_ADMIN")));
+	{
+            subscriptionRepository.deleteAll();
+            userService.save(new User("admin", "123", new Role("ROLE_ADMIN")));
 	}
 	public static void main(String[] args) {
 		SpringApplication.run(ProcessoSeletivoApplication.class, args);

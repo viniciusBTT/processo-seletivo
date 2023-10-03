@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.gov.sp.franciscomorato.educacao.processoseletivo.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.http.HttpRequest;
 
 /**
  * controladora de autenticação
@@ -24,11 +26,17 @@ public class AuthController
 
     /**
      * 
+     * @param request
      * @return página de autenticação
      */
     @GetMapping
-    public String auth()
+    public String auth(HttpServletRequest request)
     {
+        if(request.getServletPath().equals("/acesso")) 
+        {   
+              return "auth/acesso";
+        }
+        
         return "auth/login";
     }
 
