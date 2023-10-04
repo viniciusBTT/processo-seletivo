@@ -4,9 +4,14 @@ import br.gov.sp.franciscomorato.educacao.processoseletivo.dto.ModalityDTO;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.Modality;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.SelectiveProcess;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.service.SelectiveProcessService;
+import jakarta.annotation.security.RolesAllowed;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -33,8 +38,10 @@ public class SelectiveProcessController
      * @return 
      */
     @GetMapping
+    @PostAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ROOT')")
     public String selectiveProcess(Model model)
     {
+        
         model.addAttribute("processList", processService.findAll());
         return "process/list";
     }
