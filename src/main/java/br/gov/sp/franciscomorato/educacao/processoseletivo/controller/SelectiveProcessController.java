@@ -99,6 +99,7 @@ public class SelectiveProcessController
         {
             ra.addFlashAttribute("error", "O processo não foi salvo. Por favor, entre em contato com o administrador do sistema.");
             System.out.println("Erro ao salvar processo seletivo na linha 58: " + e.getMessage());
+            ra.addAttribute("error", "O processo não foi salvo. Verifique com o administrador do sistema.");
         }
 
         return "process/process";
