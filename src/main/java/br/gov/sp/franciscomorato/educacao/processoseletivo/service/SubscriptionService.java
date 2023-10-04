@@ -90,4 +90,15 @@ public class SubscriptionService
         return subscriptionRepository.findSubscriptionByCandidateInProgress(cpf);
     }
     
+    /**
+     * 
+     * @param cpf
+     * @param processId
+     * @return 
+     */
+    public Subscription findSubscription(Long cpf, Integer processId)
+    {
+        return subscriptionRepository.hasSubscription(cpf, processId);
+    }
+    
 }

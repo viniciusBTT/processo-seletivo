@@ -49,13 +49,29 @@ public class SubscriptionController
 
         SelectiveProcess process = processService.findById(processId);
 
-        if(process != null) {
-            model.addAttribute(
-                    "subscription", 
-                    new Subscription(
-                            process,
-                            candidateService.findByCpf(Long.valueOf(auth.getName()))));
-        } else {
+        if(process != null) 
+        {
+            var cpf = Long.valueOf(auth.getName());
+            
+            boolean hasSubscription = subscriptionService.hasSubscription(cpf, processId);
+            
+            if(hasSubscription) 
+            {
+                model.addAttribute("hasSubscription", hasSubscription);
+                model.addAttribute( "subscription", subscriptionService.findSubscription(cpf, processId));    
+            }
+            else
+            {
+                model.addAttribute(
+                        "subscription", 
+                        new Subscription(
+                                process,
+                                candidateService.findByCpf(Long.valueOf(auth.getName()))));
+            }
+            
+        } 
+        else 
+        {
             return "error/404";
         }
 
