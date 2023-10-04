@@ -44,7 +44,7 @@ public class ProcessoSeletivoApplication
 	@PostConstruct
 	public void createDefaultUser()
 	{
-            subscriptionRepository.deleteAll();
+//            subscriptionRepository.deleteAll();
             userService.save(new User("admin", "123", new Role("ROLE_ADMIN")));
 	}
 	public static void main(String[] args) {
