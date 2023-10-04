@@ -63,35 +63,7 @@
                     </div>
                 </div>
             </div>
-            <!-- sucess mensage -->
-            <div class="br-message danger mt-3" role="alert" th:if="${error}">
-                <div class="icon">
-                    <i class="fas fa-times-circle fa-lg" aria-hidden="true"></i>
-                </div>
-                <div class="content">
-                    <span class="message-title">Erro: </span>
-                    <span class="message-body" th:text="${error}"> </span>
-                </div>
-                <div class="close">
-                <button class="br-button circle small" type="button" aria-label="Fechar"><i class="fas fa-times" aria-hidden="true"></i>
-                </button>
-                </div>
-            </div>
-            <!-- error mensage -->
-            <div class="br-message success" role="alert" th:if="${success}">
-                <div class="icon">
-                    <i class="fas fa-check-circle fa-lg" aria-hidden="true"></i>
-                </div>
-                <div class="content">
-                    <span class="message-title">Sucesso.</span>
-                    <span class="message-body" th:text="${success}"> </span>
-                </div>
-                <div class="close">
-                <button class="br-button circle small" type="button" aria-label="Fechar">
-                    <i class="fas fa-times" aria-hidden="true"></i>
-                </button>
-                </div>
-            </div>
+            
 
             <h1 class="h2 m-0 mt-6 mb-2">Suas Inscrições: </h1>
             
@@ -124,6 +96,11 @@
     </div>
     <script src="/assets/vendors/govBR/dist/core-init.js"></script>
     <script src="/assets/js/ThemeJS.js"></script>
+    <script>
+        let sucesso = "[[${success}]]"
+        let error = "[[${error}]]"  
+    </script>
+    <script src="/assets/js/AlertTrigger.js"></script>
 </body>
 
 </html>

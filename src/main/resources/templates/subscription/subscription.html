@@ -103,7 +103,7 @@
                                 <div class="br-checkbox align-self-end mb-2">
                                     <input id="h-checkbox-1" name="checkSpecialCondition" type="checkbox" readonly
                                         onChange="showSpecialCondition()" />
-                                    <label for="h-checkbox-1" id="checkSpecialCondition" aria-readonly="true">Possui alguma condição
+                                    <label for="h-checkbox-1" id="checkSpecialCondition" >Possui alguma condição
                                         especial?</label>
                                 </div>
                             </div>
@@ -128,7 +128,7 @@
                         <div class="br-message info" role="alert">
                             <div class="icon"><i class="fas fa-info-circle fa-lg" aria-hidden="true"></i>
                             </div>
-                            <div class="content"><span class="message-title">Atenção.</span><span class="message-body"> É possivel se cadastar em mais de <strong>uma modalidade</strong> </span></div>
+                            <div class="content"><span class="message-title">Atenção.</span><span class="message-body"> É possivel se cadastar em <strong>duas ou mais modalidades</strong> </span></div>
                         </div>
                         <div class=" d-flex justify-content-start align-intems-center gap-5 flex-wrap">
 
@@ -156,6 +156,7 @@
     <script src="/assets/vendors/govBR/dist/core.min.js"></script>
     <script src="/assets/vendors/govBR/dist/core-init.js"></script>
     <script src="/assets/js/ThemeJS.js"></script>
+    <script src="/assets/vendors/sweetAlert2/js/sweetalert2.all.js"></script>
 
     <script>
         function setInputDate() {
@@ -164,6 +165,12 @@
             })
         }
     </script>
+    
+     <script>
+        let sucesso = "[[${success}]]"
+        let error = "[[${error}]]"  
+    </script>
+    <script src="/assets/js/AlertTrigger.js"></script>
 </body>
 
 </html>

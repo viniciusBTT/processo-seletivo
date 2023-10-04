@@ -19,6 +19,7 @@ function showSpecialCondition(){
 let registerForm = document.querySelector("#formRegister")
 registerForm.addEventListener("submit", e => {
     e.preventDefault();
+    console.log(e)
     if(document.querySelector("#password").value === document.querySelector("#confirmPassword").value)
         e.currentTarget.submit();    
     else

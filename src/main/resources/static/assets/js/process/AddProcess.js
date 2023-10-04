@@ -34,8 +34,11 @@ modalityForm.addEventListener("submit", (e) =>{
 })
 
 
+//alterando entre as telas
 let cardProcess = document.querySelector(".process");
-let cardModalities = document.querySelector(".modaliti")
+let cardModalities = document.querySelector(".modaliti");
+let brStep = document.querySelector(".br-step");
+console.log(brStep)
 
 function openDados()
 {     
@@ -43,6 +46,7 @@ function openDados()
     {
         cardProcess.classList.toggle("d-none")
         cardModalities.classList.toggle("d-none")
+        
     }
 }
 
@@ -52,5 +56,8 @@ function openModalities()
     {
         cardProcess.classList.toggle("d-none")
         cardModalities.classList.toggle("d-none")
+        brStep.attributes[1].value = 2
     }
 }
+
+

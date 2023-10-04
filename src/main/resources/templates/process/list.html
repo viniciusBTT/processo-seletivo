@@ -13,7 +13,6 @@
         <main class="d-flex flex-fill mb-5" id="main">
             <div class="container-lg">
                 <h1>Processos Seletivos </h1>
-                [[${selectiveProcess}]]
                 <div class="br-card p-5">
                     <div class="br-table" title="Tabela irregular 2">
 
@@ -28,7 +27,6 @@
                                 <th class="border-right col-1">Editar</th>
                             </tr>
                         </thead>
-                        
                         <tbody>
                             <tr th:each="process: ${processList}">
                                 <td class="border-right" th:text="${process.id}"></td>                               
@@ -60,7 +58,6 @@
     <script src="/assets/js/ThemeJS.js"></script>
     <script src="/assets/vendors/dataTable/js/datatables.min.js"></script>
     <script src="/assets/vendors/dataTable/js/jquery-3.6.0.min.js"></script>
-
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             let table = new DataTable('#table', {
@@ -86,6 +83,7 @@
             });
         });
     </script>
+    
 
 </body>
 

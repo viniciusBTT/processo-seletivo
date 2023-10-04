@@ -86,8 +86,8 @@
                                     </div>
                                   </div>
                                 <div class="br-input mb-3 col-md-4 col-sm-12 " >
-                                    <label for="specialCondition ">Especifique a condição*</label>
-                                    <input name="specialCondition"  type="text" disabled  value=" "  id="specialCondition"/>
+                                    <label for="diseaseInducedDeficiency ">Especifique a condição*</label>
+                                    <input name="specialCondition"  type="text" disabled name="diseaseInducedDeficiency"  value=" "  id="diseaseInducedDeficiency"/>
                                 </div>
                              
                             </div>
@@ -113,6 +113,12 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="/assets/vendors/govBR/dist/core-init.js"></script>
-        <script src="/assets/js/auth/register.js"></script>
+        <script src="/assets/js/auth/register.js"></script>        
+        <script src="/assets/vendors/sweetAlert2/js/sweetalert2.all.js"></script>
+        <script>
+            let sucesso = "[[${success}]]"
+            let error = "[[${error}]]"  
+        </script>
+        <script src="/assets/js/AlertTrigger.js"></script>
     </body>
 </html>
