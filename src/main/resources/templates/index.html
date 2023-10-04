@@ -7,7 +7,7 @@
     <div class="template-base">
 
         <head th:replace="~{fragments/out/header}"></head>
-        <main class="container" id="main">
+        <main class="container-fluid" id="main">
             <div class="row">
                 <div class="col-12">
                     <div class="br-carousel" data-stage="in" data-mobile-nav="1">
@@ -23,16 +23,16 @@
                                 <div class="carousel-content bg-blue-10">
                                     <div class="mt-auto  py-2 px-3 d-block "
                                         style="background-color: rgba(0, 0, 0, 0.65);  width: 100%;margin-bottom: 45px;">
-                                        <a href="/auth">
+                                        <a href="/acesso">
                                             <div class="d-flex justify-content-between">
-                                                <h4 class="h4 text-pure-0 m-0 mb-2" th:text="${process.title}"></h4>
-                                                <span class="text-pure-0 m-0  h6">Encerramento:
+                                                <h4 class="h6 text-pure-0 m-0 mb-2" th:text="${process.title}"></h4>
+                                                <span class="text-pure-0 m-0 h6">Encerramento:
                                                     [[${#dates.format(process.endDate, 'dd/MM/yyyy HH:mm')}]]</span>
 
                                             </div>
                                             <div class="d-flex justify-content-between">
                                                 <span class="text-pure-0 " th:text="${process.description}"></span>
-                                                <button class="br-button primary" th:href="'/subscription/' + ${process.id}" type="button">Faça login para se candidatar
+                                                <button class="br-button primary" th:href="'/subscription/' + ${process.id}" type="button">Clique para ver mais
                                                 </button>
                                             </div>
                                         </a>
@@ -62,9 +62,7 @@
             </div>
 
         </main>
-        <div class="mt-auto">
-            <footer th:replace="~{fragments/out/footer}"></footer>
-        </div>
+        <footer th:replace="~{fragments/out/footer}"></footer>
 
     </div>
     <script src="/assets/vendors/govBR/dist/core.min.js"></script>

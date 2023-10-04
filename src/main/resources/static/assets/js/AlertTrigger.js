@@ -1,25 +1,20 @@
-if(sucesso){            
-    let timerInterval
+if(success){         
         Swal.fire({
-        icon: 'success',
-          position: 'bottom-end',   
-          html: sucesso,
+          icon: 'success',
+          html: success,
           timer: 1700,
           timerProgressBar: true,     
-          background: '#fff ',                  
-          backdrop: "rgba(0, 0, 0, 0)" ,
+          background: '#f1f1f1',        
           showConfirmButton: false,
         })
 }        
 else if(error)
 {
-    let timerInterval
         Swal.fire({
         icon: 'error',
-          position: 'bottom-end',   
           html: error,
           timerProgressBar: true,     
-          background: '#fff ',                  
+          background: '#f1f1f1 ',                  
           backdrop: "rgba(0, 0, 0, 0)" ,
         })
 }

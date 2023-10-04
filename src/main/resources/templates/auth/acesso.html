@@ -8,8 +8,8 @@
                 <div class="br-card  col-lg-4 col-md-8 col-sm-11 mt-6">
                     <div class="card-content p-">
                         <form class="" method="POST" th:action="@{/auth}">
-                            <div class="br-input">
-                                <label for="input-default">Cpf</label>
+                            <div class="br-input mb-2">
+                                <label for="input-default">CPF</label>
                                 <input id="input-default" type="text" name="username"/>
                             </div>
                             <div class="br-input input-button">
@@ -40,7 +40,7 @@
         <script src="/assets/vendors/govBR/dist/core-init.js"></script>
         <script src="/assets/vendors/sweetAlert2/js/sweetalert2.all.js"></script>        
         <script>
-            let sucesso = "[[${success}]]"
+            let success = "[[${success}]]"
             let error = "[[${error}]]"  
         </script>
         <script src="/assets/js/AlertTrigger.js"></script>

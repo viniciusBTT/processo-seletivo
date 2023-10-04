@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+<head>
+    <!-- BootStrap -->
+    <link rel="stylesheet" href="style">
+    
+    <div th:replace="~{fragments/internal/head}"></div>
+</head>
 
-<head th:replace="~{fragments/internal/head}"></head>
 
 <body>
     <div class="template-base">
-
         <head th:replace="~{fragments/internal/header}"></head>
         <main class="container-fluid" id="main">
             <div class="row">
@@ -63,33 +67,27 @@
                     </div>
                 </div>
             </div>
-            
-
             <h1 class="h2 m-0 mt-6 mb-2">Suas Inscrições: </h1>
-            
-            <div class="row mx-0 gap-4" th:if="${subscriptions}">                
-                <div class="br-card  col-md-4 sol-sm-12 mr-3" th:each="subscription : ${subscriptions}" th:if="${subscriptions}">
+            <div class="row mx-0 " >                
+                <div class="br-card  col-12 mr-3 shadow-lg" th:each="subscription : ${subscriptions}" th:if="${subscriptions.size > 0}">
                     <div class="card-content">
                         <h3 class="h4 mb-2 mt-0" th:text="${subscription.process.title}"></h3>
                         <p>Data de conclusão:  [[${#dates.format(subscription.process.endDate, 'dd/MM/yyyy HH:mm')}]]</p>
                         <h3 class="h6">Modalidades inscritas</h3>
                         <div class="d-flex justify-content-start gap-3 flex-wrap">
-                            <span class="br-tag bg-primary mb-2" th:each="modalitie: ${subscription.process.modalities}" 
-                            th:text="${modalitie.name}"></span>
+                            <span class="br-tag bg-primary mb-2" th:each="modality: ${subscription.modalities}" 
+                            th:text="${modality.name}"></span>
 
                         </div>
                     </div>
                 </div>
-                <div class="br-card  col-12" th:unless="${subscriptions}">
+                <div class="br-card  col-12" th:if="${subscriptions.size == 0}">
                     <div class="card-content text-center">
-                        <p>Nenhuma inscrição realizada</span></p>
+                        <p>Nenhuma inscrição realizada</p>
                     </div>
                 </div>
             </div>
 
-            <div class="row mx-0 gap-6" th:unless="${subscriptions}">
-                <span>Nenhuma inscrição encontrada</span>
-            </div>
         </main>
         
         <footer th:replace="~{fragments/out/footer}"></footer>
@@ -97,7 +95,7 @@
     <script src="/assets/vendors/govBR/dist/core-init.js"></script>
     <script src="/assets/js/ThemeJS.js"></script>
     <script>
-        let sucesso = "[[${success}]]"
+        let success = "[[${success}]]"
         let error = "[[${error}]]"  
     </script>
     <script src="/assets/js/AlertTrigger.js"></script>

@@ -38,7 +38,6 @@ modalityForm.addEventListener("submit", (e) =>{
 let cardProcess = document.querySelector(".process");
 let cardModalities = document.querySelector(".modaliti");
 let brStep = document.querySelector(".br-step");
-console.log(brStep)
 
 function openDados()
 {     
@@ -59,5 +58,7 @@ function openModalities()
         brStep.attributes[1].value = 2
     }
 }
+if(success)
+    openModalities()
 
 
