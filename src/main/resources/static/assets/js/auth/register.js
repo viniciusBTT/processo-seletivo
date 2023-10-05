@@ -1,4 +1,4 @@
-let inputSpecialCondition = document.querySelector("#specialCondition");
+let inputSpecialCondition = document.querySelector("#diseaseInducedDeficiency");
 
 function showSpecialCondition(){
     if(inputSpecialCondition.hasAttribute("disabled"))   

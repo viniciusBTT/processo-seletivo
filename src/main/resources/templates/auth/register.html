@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-    <head th:replace="~{fragments/out/head}"></head>
+    <head>
+    <link rel="stylesheet" href="/assets/vendors/bootStrap/bootstrap.min.css"/>
+    <div th:replace="~{fragments/out/head}"></div>
+
+    </head>
     
     <body style="background-color: #f1f1f1; height: 100vh">
         <div class="template-base" >   
             <main class="container-lg d-flex align-content-center justify-content-center " >                  
-                <div class="br-card  col-lg-8 col-md-8 col-sm-11 mt-6">
+                <div class="br-card  col-lg-10 col-md-10 col-sm-11 mt-6">
                     <div class="card-content p-3">
                         <h3 class="mt-2 h3">Informações Pessoais </h3>
                         <form class="form-horizontal" id="formRegister" 
@@ -49,7 +53,8 @@
                                 </div>
                             </div>
                             <div class="row">                 
-                                <div class="br-select mb-3 col-md-4 col-sm-12 " style="max-width: 100%!important;">
+                                <div class="br-select mb-3 col-md-4 col-sm-12 " >
+                                   
                                     <div class="br-input ">
                                         <label for="gender">Gênero*</label>
                                         <input id="gender" name="gender" type="text" placeholder="Selecione o item" required/>
@@ -58,7 +63,7 @@
                                             <i class="fas fa-angle-down" aria-hidden="true"></i>
                                         </button>
                                     </div>
-                                    <div class="br-list" tabindex="0">
+                                    <div class="br-list col-11 " tabindex="0" style="width: 95%!important;">
                                         <div class="br-item" tabindex="-1">
                                             <div class="br-radio">
                                                 <input id="men" type="radio" name="estados-simples" value="masculino" />
@@ -87,19 +92,31 @@
                                   </div>
                                 <div class="br-input mb-3 col-md-4 col-sm-12 " >
                                     <label for="diseaseInducedDeficiency ">Especifique a condição*</label>
-                                    <input  type="text" disabled name="diseaseInducedDeficiency"  value=" "  id="diseaseInducedDeficiency"/>
+                                    <input  type="text" disabled name="diseaseInducedDeficiency"   id="diseaseInducedDeficiency"/>
                                 </div>
                              
                             </div>
                             <div class="row">
-                                <div class="br-input mb-3 col-md-6 col-sm-12 " >
-                                    <label for="password ">Senha*<label>
-                                    <input name="user.password" type="text" id="password"/>
+                              
+                                <div class="mb-3 col-md-6 col-sm-12">
+                                    <div class="br-input input-button">
+                                        <label for="password">Senha*</label>
+                                        <input id="password" name="user.password" type="password" placeholder="Digite uma senha"/>
+                                        <button class="br-button" type="button" aria-label="Mostrar senha">
+                                            <i class="fas fa-eye" aria-hidden="true"></i>
+                                        </button>
+                                      </div>
                                 </div>
-                                <div class="br-input mb-3 col-md-6 col-sm-12 " >
-                                    <label for="confirmPassword ">Confirme a senha*</label>
-                                    <input name="confirmPassword" type="text" id="confirmPassword"/>
+                                <div class="mb-3 col-md-6 col-sm-12">
+                                    <div class="br-input input-button">
+                                        <label for="confirmPassword">Confirme a senha*</label>
+                                        <input id="confirmPassword" type="password" placeholder="Digite a senha novamente" name="confirmPassword"/>
+                                        <button class="br-button" type="button"   aria-label="Mostrar senha">
+                                            <i class="fas fa-eye" aria-hidden="true"></i>
+                                        </button>
+                                      </div>
                                 </div>
+                              
                             </div>
                             <div class="d-flex justify-content-end">
                                 <button class="br-button  primary btn-login mt-2" type="submit">

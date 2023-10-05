@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <!-- BootStrap -->
-    <link rel="stylesheet" href="style">
-    
+<head> 
     <div th:replace="~{fragments/internal/head}"></div>
 </head>
 
@@ -72,7 +69,7 @@
                 <div class="br-card  col-12 mr-3 shadow-lg" th:each="subscription : ${subscriptions}" th:if="${subscriptions.size > 0}">
                     <div class="card-content">
                         <h3 class="h4 mb-2 mt-0" th:text="${subscription.process.title}"></h3>
-                        <p>Data de conclusão:  [[${#dates.format(subscription.process.endDate, 'dd/MM/yyyy HH:mm')}]]</p>
+                        <p>Data de encerramento das inscrições:  [[${#dates.format(subscription.process.endDate, 'dd/MM/yyyy HH:mm')}]]</p>
                         <h3 class="h6">Modalidades inscritas</h3>
                         <div class="d-flex justify-content-start gap-3 flex-wrap">
                             <span class="br-tag bg-primary mb-2" th:each="modality: ${subscription.modalities}" 
@@ -93,6 +90,7 @@
         <footer th:replace="~{fragments/out/footer}"></footer>
     </div>
     <script src="/assets/vendors/govBR/dist/core-init.js"></script>
+    <script src="/assets/vendors/sweetAlert2/js/sweetalert2.all.js"></script>        
     <script src="/assets/js/ThemeJS.js"></script>
     <script>
         let success = "[[${success}]]"

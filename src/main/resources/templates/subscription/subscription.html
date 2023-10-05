@@ -101,8 +101,10 @@
                             </div>
                             <div class=" mb-3 col-md-4 col-sm-12 d-flex ">
                                 <div class="br-checkbox align-self-end mb-2">
-                                    <input id="h-checkbox-1" name="checkSpecialCondition" type="checkbox" readonly
-                                        onChange="showSpecialCondition()" />
+                                    <input id="h-checkbox-1" name="checkSpecialCondition" type="checkbox" 
+                                        onChange="showSpecialCondition()" th:if="${subscription.candidate.diseaseInducedDeficiency}" checked disabled/>
+                                    <input id="h-checkbox-1" name="checkSpecialCondition" type="checkbox" 
+                                        onChange="showSpecialCondition()" th:unless="${subscription.candidate.diseaseInducedDeficiency}" disabled />
                                     <label for="h-checkbox-1" id="checkSpecialCondition" >Possui alguma condição
                                         especial?</label>
                                 </div>
@@ -125,26 +127,45 @@
                         <input type="text" th:field="${subscription.candidate}" hidden>
                         <input type="text" th:field="${subscription.candidate.cpf}" hidden>
 
-                        <div class="br-message info" role="alert">
+                        <div class="br-message info" role="alert" th:if="${hasSubscription}">
                             <div class="icon"><i class="fas fa-info-circle fa-lg" aria-hidden="true"></i>
                             </div>
-                            <div class="content"><span class="message-title">Atenção.</span><span class="message-body"> É possivel se cadastar em <strong>duas ou mais modalidades</strong> </span></div>
+                            <div class="content">
+                                <span class="message-title">Você já está inscrito </span>
+                                <span class="message-body">neste processo seletivo</span>
+                            </div>
                         </div>
+                        <div class="br-message warning" role="alert"   th:unless="${hasSubscription}">
+                            <div class="icon">
+                                <i class="fas fa-exclamation-triangle fa-lg" aria-hidden="true"></i>
+                            </div>
+                            <div class="content">
+                                <span class="message-title">Atenção,</span>
+                                <span class="message-body">é possivel selecionar <strong>duas ou mais modalidades.</strong> após a inscrição não haverá possibilidade de mudanças
+                                </span>
+                            </div>
+
+                          </div>
                         <div class=" d-flex justify-content-start align-intems-center gap-5 flex-wrap">
 
-                           
-                            <div class="br-checkbox ml-2 mt-0"  th:each="modality,state : ${subscription.process.modalities}">
+                            <div class="br-checkbox ml-2 mt-0 p-3"  th:each="modality,state : ${subscription.process.modalities}">
                                 <input th:id="${modality.id}" th:value="${modality.id}" type="checkbox"
                                 th:name="modalities" th:data-child="check-01" />
-                                <label th:for="${modality.id}"> [[${modality.name}]]</label>
+                                <label th:for="${modality.id}" class="legend"> [[${modality.name}]]</label>
                             </div>
                            
 
                         </div>
-                        <div class="d-flex justify-content-end">
-                            <button class="br-button primary dark-mode mr-3 " type="submit">Cadastrar
-                            </button>
+                        <div>
+                           
+                            <div class="d-flex justify-content-end" th:if="!${hasSubscription}" >
+                                <button class="br-button primary dark-mode mr-3 " id="submitButton" 
+                                type="submit" onclick="loadingAlert()">
+                                    Inscrever-se
+                                </button>
+                            </div>
                         </div>
+                        
                     </form>
                 </div>
             </div>
@@ -157,19 +178,30 @@
     <script src="/assets/vendors/govBR/dist/core-init.js"></script>
     <script src="/assets/js/ThemeJS.js"></script>
     <script src="/assets/vendors/sweetAlert2/js/sweetalert2.all.js"></script>
-
     <script>
+        let successo = "[[${success}]]"
+        let error = "[[${error}]]"  
+        let timerInterval
+   
+
+
+       
+
+
+
+
+
+        //setando
         function setInputDate() {
             datetimepickerList.forEach(item => {
                 item.calendar.setDate(new Date(item.component.getAttribute('data-input')));
             })
+            
         }
-    </script>    
-    <script>
-        let successo = "[[${success}]]"
-        let error = "[[${error}]]"  
     </script>
     <script src="/assets/js/AlertTrigger.js"></script>
+ 
+    
 </body>
 
 </html>
