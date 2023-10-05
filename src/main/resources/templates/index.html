@@ -4,10 +4,10 @@
 <head th:replace="~{fragments/out/head}"></head>
 
 <body>
-    <div class="template-base" >
+    <div class="template-base">
 
         <head th:replace="~{fragments/out/header}"></head>
-        <main class="container-fluid" id="main" >
+        <main class="container-fluid" id="main">
             <div class="row">
                 <div class="col-12">
                     <div class="br-carousel" data-stage="in" data-mobile-nav="1">
@@ -23,19 +23,16 @@
                                 <div class="carousel-content bg-blue-10">
                                     <div class="mt-auto  py-2 px-3 d-block "
                                         style="background-color: rgba(0, 0, 0, 0.65);  width: 100%;margin-bottom: 45px;">
-                                        <a href="/acesso">
-                                            <div class="d-flex justify-content-between">
-                                                <h4 class="h4 text-pure-0 m-0 mb-2" th:text="${process.title}"></h4>
+                                            <div
+                                                class="d-flex flex-column flex-md-row justify-content-md-between justify-content-start mb-3">
+                                                <h4 class="h4 text-pure-0 m-0" th:text="${process.title}"></h4>
+
+                                            </div>
+                                            <div class="d-flex flex-column flex-md-row justify-content-md-between justify-content-start ">
+                                                <span class="text-pure-0 mb-2 m-0"
+                                                    th:text="${process.description}"></span>
                                                
                                             </div>
-                                            <div class="d-flex justify-content-between align-content-center">
-                                                <span class="text-pure-0  legend">Encerramento:
-                                                    [[${#dates.format(process.endDate, 'dd/MM/yyyy HH:mm')}]]</span>
-
-                                                <button class="br-button primary" th:href="'/subscription/' + ${process.id}" type="button">Clique para ver mais
-                                                </button>
-                                            </div>
-                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -60,7 +57,21 @@
                     </div>
                 </div>
             </div>
-            <div class="my-auto">
+            <div class="my-5">                
+                <div class="br-card">
+                    <div class="card-content">
+                        <div class="d-flex  justify-content-center align-items-center  flex-column">
+                            <!-- <div class="mb-3">                                    
+                                <button class="br-button block primary " type="button">
+                                    <i class="fas fa-user" aria-hidden="true"></i>Acesse o sistema
+                                </button>
+                            </div> -->
+                            <div class="">
+                                <p class="text-weight-semi-bold text-up-02">Faça login para se cadastrar nos processos seletivos ou para consultar as incrições já realizadas.</p>
+                            </div>                                
+                        </div>
+                    </div>  
+                </div>
             </div>
         </main>
         <footer th:replace="~{fragments/out/footer}"></footer>

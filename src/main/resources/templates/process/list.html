@@ -18,23 +18,23 @@
 
                     </div>
                     <table id="table">
-                        <thead>
-                            <tr>
-                                <th class="border-right col-1">Id</th>
-                                <th class="border-right col-4">Título</th>
-                                <th class="border-right col-3">Data de abertura</th>
-                                <th class="border-right col-3">Data de fechamento</th>
-                                <th class="border-right col-1">Editar</th>
+                        <thead class="border-solid-sm">
+                            <tr class="border-top">
+                                <th class="col-1">Id</th>
+                                <th class="col-4">Título</th>
+                                <th class="col-3">Data de abertura</th>
+                                <th class="col-3">Data de fechamento</th>
+                                <th class="col-1">Editar</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr th:each="process: ${processList}">
-                                <td class="border-right" th:text="${process.id}"></td>                               
+                                <td class="border-right border-left" th:text="${process.id}"></td>                               
 
                                 <td class="border-right" th:text="${process.title}"></td> 
                                 <td class="border-right"  th:text="${#dates.format(process.startDate, 'dd/MM/yyyy HH:mm')}"></td> 
                                 <td class="border-right" th:text="${#dates.format(process.endDate, 'dd/MM/yyyy HH:mm')}"></td> 
-                                <td>
+                                <td class="border-right">
                                     <div class="text-nowrap ">
                                         <a style="color: blue; cursor: pointer" th:href="'/process/' + ${process.id}">
                                             <i class="fa-solid fa-pen-to-square" title="Editar"></i>

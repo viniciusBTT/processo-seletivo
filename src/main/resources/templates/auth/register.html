@@ -21,7 +21,7 @@
                                 </div>
                                 <div class="br-input mb-3 col-md-4 col-sm-12 ">
                                     <label for="cpf">CPF*</label>
-                                    <input name="cpf" id="cpf" type="text" required="true" />
+                                    <input name="cpf" id="cpf" type="text" required="true" onblur="verifyCPF()"/>
                                     <input name="user.username" id="username" type="hidden" required="true" />
                                 </div>
                                 <div class="br-input mb-3 col-md-4 col-sm-12 ">
@@ -53,7 +53,7 @@
                                 </div>
                             </div>
                             <div class="row">                 
-                                <div class="br-select mb-3 col-md-4 col-sm-12 " >
+                                <div class="br-select mb-3 col-md-4 col-sm-12 "  style="max-width: 100%!important;">
                                    
                                     <div class="br-input ">
                                         <label for="gender">Gênero*</label>
@@ -63,7 +63,7 @@
                                             <i class="fas fa-angle-down" aria-hidden="true"></i>
                                         </button>
                                     </div>
-                                    <div class="br-list col-11 " tabindex="0" style="width: 95%!important;">
+                                    <div class="br-list " tabindex="0" style="width: 95%!important;">
                                         <div class="br-item" tabindex="-1">
                                             <div class="br-radio">
                                                 <input id="men" type="radio" name="estados-simples" value="masculino" />
@@ -130,12 +130,14 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="/assets/vendors/govBR/dist/core-init.js"></script>
-        <script src="/assets/js/auth/register.js"></script>        
         <script src="/assets/vendors/sweetAlert2/js/sweetalert2.all.js"></script>
+        <script src="/assets/js/auth/register.js"></script>        
         <script>
-            let sucesso = "[[${success}]]"
+            let success = "[[${success}]]"
             let error = "[[${error}]]"  
         </script>
         <script src="/assets/js/AlertTrigger.js"></script>
+
+        
     </body>
 </html>
