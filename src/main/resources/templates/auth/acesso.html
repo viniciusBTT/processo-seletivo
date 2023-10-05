@@ -5,7 +5,20 @@
     <body style="background-color: #f1f1f1; height: 100vh">
         <div class="template-base" >   
             <main class="container-lg d-flex align-content-center justify-content-center " >                  
-                <div class="br-card  col-lg-4 col-md-8 col-sm-11 mt-6">
+                <div class="br-card  col-lg-5 col-md-8 col-sm-11 mt-6" >
+                    <div class="br-message success" role="alert" th:if="${message}">
+                        <div class="icon">
+                            <i class="fas fa-check-circle fa-lg" aria-hidden="true"></i>
+                        </div>
+                        <div class="content">
+                            <span class="message-body" th:text="${message}"></span>
+                        </div>
+                        <div class="close">
+                            <button class="br-button circle small" type="button" aria-label="Fechar">
+                                <i class="fas fa-times"aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
                     <div class="card-content p-">
                         <form class="" method="POST" th:action="@{/auth}">
                             <div class="br-input mb-2">
@@ -35,6 +48,7 @@
                         </div>
                     </div>
                 </div>
+               
             </main>            
         </div>
         <script src="/assets/vendors/govBR/dist/core-init.js"></script>

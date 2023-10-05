@@ -4,10 +4,10 @@
 <head th:replace="~{fragments/out/head}"></head>
 
 <body>
-    <div class="template-base">
+    <div class="template-base" >
 
         <head th:replace="~{fragments/out/header}"></head>
-        <main class="container-fluid" id="main">
+        <main class="container-fluid" id="main" >
             <div class="row">
                 <div class="col-12">
                     <div class="br-carousel" data-stage="in" data-mobile-nav="1">
@@ -25,13 +25,13 @@
                                         style="background-color: rgba(0, 0, 0, 0.65);  width: 100%;margin-bottom: 45px;">
                                         <a href="/acesso">
                                             <div class="d-flex justify-content-between">
-                                                <h4 class="h6 text-pure-0 m-0 mb-2" th:text="${process.title}"></h4>
-                                                <span class="text-pure-0 m-0 h6">Encerramento:
+                                                <h4 class="h4 text-pure-0 m-0 mb-2" th:text="${process.title}"></h4>
+                                               
+                                            </div>
+                                            <div class="d-flex justify-content-between align-content-center">
+                                                <span class="text-pure-0  legend">Encerramento:
                                                     [[${#dates.format(process.endDate, 'dd/MM/yyyy HH:mm')}]]</span>
 
-                                            </div>
-                                            <div class="d-flex justify-content-between">
-                                                <span class="text-pure-0 " th:text="${process.description}"></span>
                                                 <button class="br-button primary" th:href="'/subscription/' + ${process.id}" type="button">Clique para ver mais
                                                 </button>
                                             </div>
@@ -60,7 +60,8 @@
                     </div>
                 </div>
             </div>
-
+            <div class="my-auto">
+            </div>
         </main>
         <footer th:replace="~{fragments/out/footer}"></footer>
 
