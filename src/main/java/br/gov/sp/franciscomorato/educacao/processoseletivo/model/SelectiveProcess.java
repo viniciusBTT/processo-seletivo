@@ -27,6 +27,7 @@ public class SelectiveProcess {
     private String title;
 
     @Lob
+    @Column(name = "description", columnDefinition = "LONGTEXT")
     private String description;
 
     @Temporal(TemporalType.TIMESTAMP)

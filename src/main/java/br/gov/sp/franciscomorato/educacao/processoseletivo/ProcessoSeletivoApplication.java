@@ -1,7 +1,6 @@
 package br.gov.sp.franciscomorato.educacao.processoseletivo;
 
 import jakarta.annotation.PostConstruct;
-import jakarta.persistence.Entity;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -12,9 +11,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.Role;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.User;
+import br.gov.sp.franciscomorato.educacao.processoseletivo.repository.RoleRepository;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.repository.SubscriptionRepository;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.repository.UserRepository;
-import br.gov.sp.franciscomorato.educacao.processoseletivo.service.UserService;
+import org.springframework.beans.factory.annotation.Value;
 
 @SpringBootApplication
 
@@ -33,19 +33,29 @@ import br.gov.sp.franciscomorato.educacao.processoseletivo.service.UserService;
 
 public class ProcessoSeletivoApplication
 {
+    
+        @Value("${spring.datasource.password}")
+        private String password; 
 
 
 	@Autowired
 	private UserRepository userService;
-
-        @Autowired
-        SubscriptionRepository subscriptionRepository;
         
+        @Autowired
+        private RoleRepository RoleRepository;
+
 	@PostConstruct
 	public void createDefaultUser()
 	{
-//            subscriptionRepository.deleteAll();
-            userService.save(new User("admin", "123", new Role("ROLE_ADMIN")));
+            Role roleComum = new Role("ROLE_COMUM");
+            Role roleAdmin = new Role("ROLE_ADMIN");
+            Role roleRoot = new Role("ROLE_ROOT");
+            
+            RoleRepository.save(roleComum);
+            RoleRepository.save(roleAdmin);
+            RoleRepository.save(roleRoot);
+            
+            userService.save(new User("admin", password, new Role("ROLE_ADMIN")));
 	}
 	public static void main(String[] args) {
 		SpringApplication.run(ProcessoSeletivoApplication.class, args);
