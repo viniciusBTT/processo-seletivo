@@ -7,9 +7,11 @@ br/gov/sp/franciscomorato/educacao/processoseletivo/repository/UserRepository.cl
 br/gov/sp/franciscomorato/educacao/processoseletivo/model/User.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/model/Modality.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/controller/IndexController.class
+br/gov/sp/franciscomorato/educacao/processoseletivo/controller/ExceptionHandlerController.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/controller/RegisterController.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/controller/SelectiveProcessController.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/repository/SelectiveProcessRepository.class
+br/gov/sp/franciscomorato/educacao/processoseletivo/controller/ModalityController.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/model/Role.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/model/Subscription.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/model/Candidate.class
@@ -21,6 +23,7 @@ br/gov/sp/franciscomorato/educacao/processoseletivo/ProcessoSeletivoApplication.
 br/gov/sp/franciscomorato/educacao/processoseletivo/controller/CandidateController.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/repository/ModalityRepository.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/controller/AuthController.class
+br/gov/sp/franciscomorato/educacao/processoseletivo/service/EmailService.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/controller/HomeController.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/dto/ModalityResponseDTO.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/repository/SubscriptionRepository.class

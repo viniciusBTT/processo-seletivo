@@ -13,6 +13,7 @@
 /home/thiago/Projects/Java/processo-seletivo/src/main/java/br/gov/sp/franciscomorato/educacao/processoseletivo/dto/ModalityDTO.java
 /home/thiago/Projects/Java/processo-seletivo/src/main/java/br/gov/sp/franciscomorato/educacao/processoseletivo/security/GlobalSecurity.java
 /home/thiago/Projects/Java/processo-seletivo/src/main/java/br/gov/sp/franciscomorato/educacao/processoseletivo/dto/ModalityResponseDTO.java
+/home/thiago/Projects/Java/processo-seletivo/src/main/java/br/gov/sp/franciscomorato/educacao/processoseletivo/controller/ModalityController.java
 /home/thiago/Projects/Java/processo-seletivo/src/main/java/br/gov/sp/franciscomorato/educacao/processoseletivo/model/Role.java
 /home/thiago/Projects/Java/processo-seletivo/src/main/java/br/gov/sp/franciscomorato/educacao/processoseletivo/model/User.java
 /home/thiago/Projects/Java/processo-seletivo/src/main/java/br/gov/sp/franciscomorato/educacao/processoseletivo/service/CandidateService.java
