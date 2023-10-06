@@ -51,10 +51,12 @@ function verifyCPF(){
 
             Swal.fire({
                 icon: 'info',
-                html: cpfValide,
+                title: 'Este CPF já foi cadastrado',
+                html:  "<a href='/acesso'>clique aqui para acessar o sistema</a> ",
                 timerProgressBar: true,     
                 background: '#f1f1f1 ',                  
-                backdrop: "rgba(0, 0, 0, 0)" ,
+                backdrop: "rgba(0, 0, 0, 0)" ,                     
+                showConfirmButton: false,  
                 })
         })
         .catch(function (error) {

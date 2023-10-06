@@ -94,15 +94,17 @@
                             <input name="name" type="text" required="true"  id="modalitieName"/>
                         </div>
                         <input type="text" hidden name="processId" id="processId" th:value="${selectiveProcess.id}">
+                        
                         <div id="modalitiesList" class="d-flex justify-content-start gap-3 flex-wrap">
-                            <span class="br-tag bg-green-cool-vivid-50 medium mb-2"
-                                th:each="modaliti : ${selectiveProcess.modalities}">
-                                <i class="fa-solid fa-file "></i>
+                            <span class="br-tag interaction medium bg-green-cool-vivid-50" th:id="${modaliti.id}"  th:each="modaliti : ${selectiveProcess.modalities}">
+                                <i class="fa-solid fa-file bg-green-cool-vivid-50"></i>
                                 <span class="ml-2" th:text="${modaliti.name}"></span>
+                                <button class="br-button bg-green-cool-vivid-50" type="button" aria-label="Fechar" 
+                                data-dismiss="interaction01" th:id="${modaliti.id}" onclick="deleteModality(this.id)">
+                                    <i class="fas fa-times" aria-hidden="true"></i>
+                                </button>
                             </span>
                         </div>
-
-
                     </form>
                 </div>
                 <div class="br-step" data-initial="1" data-label="bottom">
@@ -110,9 +112,13 @@
                         <button class="step-progress-btn " type="button" onclick="openDados()" value="1"><span
                                 class="step-info">Processo Seletivo</span></button>
                         <button th:if="${selectiveProcess?.id == null}" class="step-progress-btn " type="button"
-                            value="2" disabled><span class="step-info">Modalidades</span></button>
+                            value="2" disabled>
+                            <span class="step-info">Modalidades</span>
+                        </button>
                         <button th:unless="${selectiveProcess?.id == null}" class="step-progress-btn " type="button"
-                            value="2" onclick="openModalities()"><span class="step-info">Modalidades</span></button>
+                            value="2" onclick="openModalities()">
+                            <span class="step-info">Modalidades</span>
+                        </button>
 
                     </div>
                 </div>
@@ -128,7 +134,6 @@
     <script>
         let success = "[[${success}]]";
         let error = "[[${error}]]" ;
-        console.log("[[${error}]]"); 
     </script>
     <script src="/assets/js/process/AddProcess.js"></script> 
     <script src="/assets/js/AlertTrigger.js"></script>

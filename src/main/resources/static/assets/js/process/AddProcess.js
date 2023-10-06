@@ -38,7 +38,7 @@ modalityForm.addEventListener("submit", (e) =>{
 let cardProcess = document.querySelector(".process");
 let cardModalities = document.querySelector(".modaliti");
 let brStep = document.querySelector(".br-step");
-
+//função para abrir as informações de processo seltivo
 function openDados()
 {     
     if(cardProcess.classList.contains("d-none"))
@@ -49,6 +49,7 @@ function openDados()
     }
 }
 
+//função para abrir as modalidades do processo seltivo
 function openModalities()
 {
     if(cardModalities.classList.contains("d-none"))
@@ -58,7 +59,28 @@ function openModalities()
         brStep.attributes[1].value = 2
     }
 }
+
+
 if(success)
     openModalities()
+
+
+
+function deleteModality(id){
+    let modalitiesList =  document.querySelector(".interaction")
+    axios.delete(`/modality/${id}`)
+      .then(function (response) {
+        modalitiesList.forEach(item =>{
+            console.log(item.id)
+        })
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+    
+   
+
+}
 
 
