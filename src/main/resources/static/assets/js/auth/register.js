@@ -13,7 +13,7 @@ function showSpecialCondition(){
 }
 
 
-
+let validCpf = null;
 
 //Captura o envento de submit para fazer as devidas verificações
 let registerForm = document.querySelector("#formRegister")
@@ -32,6 +32,18 @@ registerForm.addEventListener("submit", e => {
             backdrop: "rgba(0, 0, 0, 0)" ,
             })
     }    
+    else if(!validCpf)
+    {
+        Swal.fire({
+            icon: 'info',
+            title: 'Este CPF já foi cadastrado',
+            html:  "<a href='/acesso'>clique aqui para acessar o sistema</a> ",
+            timerProgressBar: true,     
+            background: '#f1f1f1 ',                  
+            backdrop: "rgba(0, 0, 0, 0)" ,                     
+            showConfirmButton: false,  
+            })
+    }
     else
     {
         e.currentTarget.submit();   
@@ -42,12 +54,12 @@ registerForm.addEventListener("submit", e => {
 function verifyCPF(){
     let cpfValide = document.querySelector('#cpf').value.replace(/[^a-zA-Z0-9 ]/g,'')
     
-    if(testaCPF(cpfValide))
+    if(testaCPF(cpfValid))
     {        //verificando se o cpf está valido e se já foi cadastrado
-        axios.get(`/register/candidate?cpf=${cpfValide}`)
+        axios.get(`/register/candidate?cpf=${cpfValid}`)
         .then(function (response) {
             console.log(response);
-            cpfValide = response.data;
+            cpfValid = response.data;
 
             Swal.fire({
                 icon: 'info',
@@ -58,10 +70,12 @@ function verifyCPF(){
                 backdrop: "rgba(0, 0, 0, 0)" ,                     
                 showConfirmButton: false,  
                 })
+
         })
         .catch(function (error) {
             console.error(`error: ${error}`);
         })
+        return false
     }
     else
     {
@@ -72,6 +86,7 @@ function verifyCPF(){
             background: '#f1f1f1 ',                  
             backdrop: "rgba(0, 0, 0, 0)" ,
             })
+    
     }
 
     

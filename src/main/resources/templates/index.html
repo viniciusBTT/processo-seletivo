@@ -20,9 +20,11 @@
                         <div class="carousel-stage">
                             <div class="carousel-page" th:each="process,status: ${processList}"
                                 th:active="${status.index == 0 ? 'active' : ''}">
-                                <div class="carousel-content bg-blue-10">
+                                <div class="carousel-content "
+                                    th:style="'background-image: url('+${process.imageUrl}+')!important;background: no-repeat;
+                                    background-position: center; background-size: cover; height: inherit;'">
                                     <div class="mt-auto  py-2 px-3 d-block "
-                                        style="background-color: rgba(0, 0, 0, 0.65);  width: 100%;margin-bottom: 45px;">
+                                        style="background-color: rgba(0, 0, 0, 0.25);  width: 100%;margin-bottom: 45px;">
                                             <div
                                                 class="d-flex flex-column flex-md-row justify-content-md-between justify-content-start mb-3">
                                                 <h4 class="h4 text-pure-0 m-0" th:text="${process.title}"></h4>

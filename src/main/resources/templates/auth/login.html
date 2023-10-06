@@ -5,36 +5,60 @@
     <body style="background-color: #f1f1f1; height: 100vh">
         <div class="template-base" >   
             <main class="container-lg d-flex align-content-center justify-content-center " >                  
-                <div class="br-card  col-lg-4 col-md-8 col-sm-11 mt-6">
+                <div class="br-card  col-lg-5 col-md-8 col-sm-11 mt-6" >
+                    <div class="br-message success" role="alert" th:if="${message}">
+                        <div class="icon">
+                            <i class="fas fa-check-circle fa-lg" aria-hidden="true"></i>
+                        </div>
+                        <div class="content">
+                            <span class="message-body" th:text="${message}"></span>
+                        </div>
+                        <div class="close">
+                            <button class="br-button circle small" type="button" aria-label="Fechar">
+                                <i class="fas fa-times"aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
                     <div class="card-content p-">
-                        <form class="" method="POST" th:action="@{/auth}">
-                            <div class="br-input">
-                                <label for="input-default">Nome de usuário</label>
-                                <input id="input-default" type="text" name="username" placeholder="Digite o seu nome de usuario"/>
+                        <form  method="POST" th:action="@{/auth}">
+                            <div class="br-input mb-2">
+                                <label for="input-default">CPF ou Nome de Usuário</label>
+                                <input id="input-default" type="text" name="username" />
                             </div>
                             <div class="br-input input-button">
                                 <label for="input-password">Senha</label>
-                                <input id="input-password" type="password" name="password" placeholder="Digite a sua senha"/>
-                                <button class="br-button" type="button" aria-label="Mostrar senha"><i class="fas fa-eye" aria-hidden="true"></i>
+                                <input id="input-password" type="password" name="password" />
+                                <button class="br-button" type="button" aria-label="Mostrar senha">
+                                    <i class="fas fa-eye" aria-hidden="true"></i>
                                 </button>
                             </div>
                             <button class="br-button block primary btn-login mt-2" type="submit">
                                 <span class="material-symbols-outlined">Entrar</span>
                             </button>
-                            <span class="text-danger" th:if="${param.error}">
-                                Nome de usuário ou senha incorreto
+                            <span class="text-danger text-center" th:if="${param.error}">
+                                Cpf ou senha incorreto
                             </span>
                         </form>
                         <div class="text-center mt-2">
-                            <span class="br-divider md my-3"></span>                           
-                            
+                            <!-- <a href="" >Esqueceu a Senha?</a> -->
+                            <span class="br-divider md my-3"></span>                            
+                            <a class="br-button  secondary " type="button" href="/register">
+                               Criar Nova Conta
+                            </a>  
                             <p class="text-center  text-weight-regular text-base mt-2">Diretoria de Tecnologia Interna ©2023</p>
                         </div>
                     </div>
                 </div>
+               
             </main>            
         </div>
         <script src="/assets/vendors/govBR/dist/core-init.js"></script>
+        <script src="/assets/vendors/sweetAlert2/js/sweetalert2.all.js"></script>        
+        <script>
+            let success = "[[${success}]]"
+            let error = "[[${error}]]"  
+        </script>
+        <script src="/assets/js/AlertTrigger.js"></script>
 
         
     </body>

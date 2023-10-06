@@ -13,7 +13,9 @@
                     <div class="br-carousel" data-stage="in" data-mobile-nav="1">
                         <div class="carousel-stage">
                             <div class="carousel-page" active>
-                                <div class="carousel-content bg-blue-10">
+                                <div class="carousel-content "
+                                th:style="'background-image: url('+${subscription.process.imageUrl}+')!important;background: no-repeat;
+                                    background-position: center; background-size: cover; height: inherit;'">
 
                                 </div>
                             </div>
@@ -24,12 +26,7 @@
             <div>
                 <h1>[[${subscription.process.title}]]</h1>
                 <span>[[${subscription.process.description}]]</span>
-
-                <span class="br-divider md my-6"></span>
-                
-                
-
-
+                <span class="br-divider md my-6"></span>                
                 <p class="h4 m-0 my-2">Confirme os seu dados</p>
                 <div class="border-solid-sm p-3">
                     <div class="form-horizontal">
