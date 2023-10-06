@@ -69,7 +69,7 @@ public class ModalityController
      * @param id
      * @return 
      */
-    @DeleteMapping("/{processId}")
+    @DeleteMapping("/{processId}/{modalityId}")
     public ResponseEntity<?> delete(@PathVariable Integer processId, @PathVariable Integer modalityId)
     {
         try 
