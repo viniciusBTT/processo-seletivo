@@ -61,16 +61,16 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="br-input mb-3 col-12 ">
+                            <label for="imageUrl">URL da imagem de exposição</label>
+                            <input name="imageUrl" id="imageUrl" type="text" required="true" th:field="*{imageUrl}" />
+                        </div>
                         <div class="br-textarea mb-3 col-12">
                             <label for="description">Descrição</label>
                             <textarea name="description" id="description" type="text" required="true"
                                 th:field="*{description}" /> </textarea>
                         </div>
-                        <div class="mb-3">
-                            <label for="imagem" class="form-label">Imagem de exposição</label>
-                            <input class="form-control" type="file" id="imagem">
-                          </div> 
-  
+                        
                         <div class="d-flex justify-content-end">
                             <button class="br-button primary dark-mode mr-3 " type="submit" 
                             th:text="${selectiveProcess.id} ? 'Atualizar' : 'Cadastrar'"></button>
@@ -96,11 +96,14 @@
                         <input type="text" hidden name="processId" id="processId" th:value="${selectiveProcess.id}">
                         
                         <div id="modalitiesList" class="d-flex justify-content-start gap-3 flex-wrap">
-                            <span class="br-tag interaction medium bg-green-cool-vivid-50" th:id="${modaliti.id}"  th:each="modaliti : ${selectiveProcess.modalities}">
+
+                            <span class="br-tag interaction medium bg-green-cool-vivid-50" th:id="${modality.id}" 
+                            th:each="modality : ${selectiveProcess.modalities}">
                                 <i class="fa-solid fa-file bg-green-cool-vivid-50"></i>
-                                <span class="ml-2" th:text="${modaliti.name}"></span>
+                                <span class="ml-2" th:text="${modality.name}"></span>
                                 <button class="br-button bg-green-cool-vivid-50" type="button" aria-label="Fechar" 
-                                data-dismiss="interaction01" th:id="${modaliti.id}" onclick="deleteModality(this.id)">
+                                data-dismiss="interaction01" th:id="${modality.id}" th:data-process="${selectiveProcess.id}"
+                                    onclick="deleteModality(this.id, this.getAttribute('data-process'))">
                                     <i class="fas fa-times" aria-hidden="true"></i>
                                 </button>
                             </span>

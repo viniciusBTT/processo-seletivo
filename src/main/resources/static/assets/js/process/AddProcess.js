@@ -11,28 +11,41 @@ function setInputDate(){
 
 //Capturando o evento de submite do formulario, salvando a nova modalidade do processo seletivo
 const modalityForm = document.querySelector("#modalityForm");
+
 modalityForm.addEventListener("submit", (e) =>{
     e.preventDefault();
     let form = new FormData(modalityForm);
     let name = form.get("name");
     let processId = form.get("processId")
 
+    //persistindo a nova modalidade no banco de dados
     axios.post('/process/modality', {
         name,processId       
       })
-      .then(function (response) {
-       
-        document.querySelector("#modalitiesList").innerHTML += ` <span class="br-tag bg-green-cool-vivid-50 medium mb-2"
-                                                                    <i class="fa-solid fa-file "></i>
-                                                                    <span class="ml-2">${response.data.modalities[response.data.modalities.length - 1 ].name}</span>
-                                                                </span>`
+      .then(function (response) 
+      {
+        let modalitiesElement = "";
+        response.data.modalities.forEach(item =>
+        {
+            modalitiesElement +=  ` <span class="br-tag interaction medium bg-green-cool-vivid-50" id="${item.id}"            ">
+                                        <i class="fa-solid fa-file bg-green-cool-vivid-50"></i>
+                                        <span class="ml-2">${item.name}</span>
+                                        <button class="br-button bg-green-cool-vivid-50" type="button" aria-label="Fechar" 
+                                        data-dismiss="interaction01" id="${item.id}" data-process="${response.data.id}"
+                                            onclick="deleteModality(this.id, this.getAttribute('data-process'))">
+                                            <i class="fas fa-times" aria-hidden="true"></i>
+                                        </button>
+                                    </span>`
+        })
+        //limpando o input de modalidades                                                        
         document.querySelector("#modalitieName").value =  "";
+        //colocando a nova lista de itens no html
+        document.getElementById("modalitiesList").innerHTML = modalitiesElement;
       })
       .catch(function (error) {
         console.error(error);
       });
 })
-
 
 //alterando entre as telas
 let cardProcess = document.querySelector(".process");
@@ -43,9 +56,8 @@ function openDados()
 {     
     if(cardProcess.classList.contains("d-none"))
     {
-        cardProcess.classList.toggle("d-none")
-        cardModalities.classList.toggle("d-none")
-        
+        cardProcess.classList.toggle("d-none");
+        cardModalities.classList.toggle("d-none");  
     }
 }
 
@@ -54,9 +66,9 @@ function openModalities()
 {
     if(cardModalities.classList.contains("d-none"))
     {
-        cardProcess.classList.toggle("d-none")
-        cardModalities.classList.toggle("d-none")
-        brStep.attributes[1].value = 2
+        cardProcess.classList.toggle("d-none");
+        cardModalities.classList.toggle("d-none");
+        brStep.attributes[1].value = 2;
     }
 }
 
@@ -65,13 +77,14 @@ if(success)
     openModalities()
 
 
-
-function deleteModality(id){
-    let modalitiesList =  document.querySelector(".interaction")
-    axios.delete(`/modality/${id}`)
+function deleteModality( idModality,processId){
+    
+    axios.delete(`/modality/${processId}/${idModality}`)
       .then(function (response) {
+        let modalitiesList =  document.querySelectorAll(".interaction")
         modalitiesList.forEach(item =>{
-            console.log(item.id)
+            if(item.id === idModality)
+                item.remove();       
         })
         console.log(response);
       })

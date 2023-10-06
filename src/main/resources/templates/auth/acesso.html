@@ -23,23 +23,23 @@
                         <form  method="POST" th:action="@{/acesso}">
                             <div class="br-input mb-2">
                                 <label for="input-default">CPF</label>
-                                <input id="input-default" type="text" name="username"/>
+                                <input id="input-default" type="text" name="username" placeholder="000.000.000.00"/>
                             </div>
                             <div class="br-input input-button">
                                 <label for="input-password">Senha</label>
-                                <input id="input-password" type="password" name="password"/>
+                                <input id="input-password" type="password" name="password" placeholder="Digite a sua senha"/>
                                 <button class="br-button" type="button" aria-label="Mostrar senha"><i class="fas fa-eye" aria-hidden="true"></i>
                                 </button>
                             </div>
                             <button class="br-button block primary btn-login mt-2" type="submit">
                                 <span class="material-symbols-outlined">Entrar</span>
                             </button>
-                            <span class="text-danger" th:if="${param.error}">
+                            <span class="text-danger text-center" th:if="${param.error}">
                                 Cpf ou senha incorreto
                             </span>
                         </form>
                         <div class="text-center mt-2">
-                            <a href="" >Esqueceu a Senha?</a>
+                            <!-- <a href="" >Esqueceu a Senha?</a> -->
                             <span class="br-divider md my-3"></span>                            
                             <a class="br-button  secondary " type="button" href="/register">
                                Criar Nova Conta
