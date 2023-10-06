@@ -3,7 +3,9 @@ package br.gov.sp.franciscomorato.educacao.processoseletivo.controller;
 
 import br.gov.sp.franciscomorato.educacao.processoseletivo.dto.ModalityDTO;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.Modality;
+import br.gov.sp.franciscomorato.educacao.processoseletivo.model.SelectiveProcess;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.service.ModalityService;
+import br.gov.sp.franciscomorato.educacao.processoseletivo.service.SelectiveProcessService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +30,9 @@ public class ModalityController
     @Autowired
     private ModalityService modalityService;
     
+    @Autowired
+    private SelectiveProcessService processService;
+    
     /**
      * 
      * @return 
@@ -45,25 +50,41 @@ public class ModalityController
         return ResponseEntity.ok(modalities);
     }
     
+    /**
+     * 
+     * @param id
+     * @param modality
+     * @return 
+     */
     @PutMapping("/{id}")
     public ResponseEntity<Modality> putModality(@PathVariable Integer id, @RequestBody ModalityDTO modality)
     {
         return ResponseEntity.notFound().build();
     }
     
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable Integer id)
+    /**
+     * 
+     * @param processId
+     * @param modalityId
+     * @param id
+     * @return 
+     */
+    @DeleteMapping("/{processId}")
+    public ResponseEntity<?> delete(@PathVariable Integer processId, @PathVariable Integer modalityId)
     {
         try 
         {
-            Modality modality = modalityService.findById(id);
+            SelectiveProcess process = processService.findById(processId);
+            Modality modality = modalityService.findById(modalityId);
             
-            if(modality == null)
+            if(modality == null || process == null)
             {
                 return ResponseEntity.notFound().build();
             }
             
-            modalityService.delete(id);
+            process.removeModality(modality);
+            
+            processService.save(process);
             
             return ResponseEntity.ok("Modalidade removida.");
             
