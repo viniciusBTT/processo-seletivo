@@ -25,6 +25,8 @@ public class SelectiveProcess {
     private Integer id;
 
     private String title;
+    
+    private String imageUrl;
 
     @Lob
     @Column(name = "description", columnDefinition = "LONGTEXT")
