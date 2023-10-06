@@ -55,7 +55,7 @@ public class SelectiveProcess {
 
     public boolean removeModality(Modality modality)
     {
-        return this.removeModality(modality);
+        return this.modalities.remove(modality);
     }
 
     
