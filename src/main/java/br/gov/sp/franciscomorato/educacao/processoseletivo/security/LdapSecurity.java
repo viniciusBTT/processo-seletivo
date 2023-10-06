@@ -36,10 +36,12 @@ public class LdapSecurity
 
     @Value("${ldap.user.search.filter}")
     private String userSearchFilter;
+    
 
     @Autowired
     protected void configure(AuthenticationManagerBuilder builder) throws Exception
     {
+        
         builder
             .ldapAuthentication()
             .userSearchFilter(this.userSearchFilter)

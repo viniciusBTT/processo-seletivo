@@ -30,21 +30,7 @@ public class AuthController
      */
     @GetMapping
     public String auth(HttpServletRequest request)
-    {
-//        System.out.println(requestgetRequestURL());
-        System.out.println(request.getParameter("error") != null);
-        
-        if(request.getServletPath().equals("/acesso")) 
-        {   
-              return "auth/acesso";
-        }
-        
-        //se o error partir do público
-        if(request.getRequestURI().equals("/acesso") && request.getParameter("error") != null)
-        {
-            return "auth/acesso";
-        }
-        
+    { 
         return "auth/login";
     }
 

@@ -28,9 +28,6 @@ public class HomeController
     private SelectiveProcessService processService;
 
     @Autowired
-    private CandidateService candidateService;
-    
-    @Autowired
     private SubscriptionService subscriptionService;
     
     /*** VIEWS */

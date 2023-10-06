@@ -12,7 +12,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.Role;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.User;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.repository.RoleRepository;
-import br.gov.sp.franciscomorato.educacao.processoseletivo.repository.SubscriptionRepository;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -37,13 +36,12 @@ public class ProcessoSeletivoApplication
         @Value("${spring.datasource.password}")
         private String password; 
 
-
 	@Autowired
 	private UserRepository userService;
         
         @Autowired
         private RoleRepository RoleRepository;
-
+        
 	@PostConstruct
 	public void createDefaultUser()
 	{

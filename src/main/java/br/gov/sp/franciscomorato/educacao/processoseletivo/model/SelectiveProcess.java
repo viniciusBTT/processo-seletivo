@@ -1,6 +1,5 @@
 package br.gov.sp.franciscomorato.educacao.processoseletivo.model;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -8,6 +7,9 @@ import java.util.List;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,20 +26,26 @@ public class SelectiveProcess {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotNull
+    @NotBlank
+    @NotEmpty
     private String title;
     
     private String imageUrl;
 
     @Lob
     @Column(name = "description", columnDefinition = "LONGTEXT")
+    @NotNull
     private String description;
 
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/mm/yyyy HH:mm")
+    @NotNull
     private Date startDate;
 
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/mm/yyyy HH:mm")
+    @NotNull
     private Date endDate;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -45,6 +53,7 @@ public class SelectiveProcess {
     private Date createdAt;
     
     @OneToMany(cascade = CascadeType.ALL)
+    @NotNull
     private List<Modality> modalities = new ArrayList<>();
 
     private String createdBy;

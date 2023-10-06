@@ -32,12 +32,11 @@ public class GlobalSecurity
                 .requestMatchers("/register/**").permitAll()
                 .requestMatchers("/auth", "/acesso").permitAll()
                 .requestMatchers("/assets/**").permitAll()
-                    .anyRequest().authenticated()
+                .anyRequest().authenticated()
         )
         .formLogin((formLogin) ->
                 formLogin
                     .loginPage("/auth")
-                    .loginPage("/acesso")
                     .defaultSuccessUrl("/auth/check")
         )
         .logout((logout) -> logout.logoutUrl("/logout")
@@ -48,7 +47,7 @@ public class GlobalSecurity
 
         return http.build();
     }
-
+    
     @Bean
     public PasswordEncoder passwordEncoder()
     {

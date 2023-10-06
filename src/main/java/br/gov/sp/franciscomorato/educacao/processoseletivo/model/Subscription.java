@@ -13,6 +13,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Entity
@@ -27,12 +28,15 @@ public class Subscription
     private Date createAt;
 
     @ManyToOne
+    @NotNull
     private SelectiveProcess process;
 
     @ManyToOne
+    @NotNull
     private Candidate candidate;
 
     @ManyToMany(fetch = FetchType.EAGER)
+    @NotNull
     private List<Modality> modalities = new ArrayList<>();
 
     public Subscription () {}

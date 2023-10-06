@@ -7,7 +7,6 @@ br/gov/sp/franciscomorato/educacao/processoseletivo/repository/UserRepository.cl
 br/gov/sp/franciscomorato/educacao/processoseletivo/model/User.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/model/Modality.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/controller/IndexController.class
-br/gov/sp/franciscomorato/educacao/processoseletivo/controller/ExceptionHandlerController.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/controller/RegisterController.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/controller/SelectiveProcessController.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/repository/SelectiveProcessRepository.class

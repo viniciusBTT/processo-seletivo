@@ -15,8 +15,8 @@ import br.gov.sp.franciscomorato.educacao.processoseletivo.service.CandidateServ
 import br.gov.sp.franciscomorato.educacao.processoseletivo.service.EmailService;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.service.SelectiveProcessService;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.service.SubscriptionService;
+import jakarta.validation.Valid;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -80,7 +80,7 @@ public class SubscriptionController
     
     
     @PostMapping
-    public String postSubscription(Subscription subscription, 
+    public String postSubscription(@Valid Subscription subscription, 
             RedirectAttributes ra,
             @RequestParam Integer[] modalities) 
     {
@@ -97,6 +97,7 @@ public class SubscriptionController
             }
             else {
                 
+                //envia inscrição por e-mail
                 if(subscription.getCandidate().getEmail() != null) {
                     
                     System.out.println("Enviando e-mail....");
@@ -105,7 +106,6 @@ public class SubscriptionController
                     {
                         modalitiesText += modality.getName() + " | ";
                     }
-
 
                     ra.addFlashAttribute("success", "A sua inscrição foi realizada com sucesso!");
                     String text = "Prezado(a) " + subscription.getCandidate().getName() + ",\n\n"

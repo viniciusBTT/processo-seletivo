@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.Candidate;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.service.CandidateService;
+import jakarta.validation.Valid;
 
 /**
  * controladora de cadastro de candidato
@@ -46,7 +47,7 @@ public class RegisterController
      * @return
      */
     @PostMapping
-    public String save(Candidate candidate, RedirectAttributes ra)
+    public String save(@Valid Candidate candidate, RedirectAttributes ra)
     {
         try 
         {
