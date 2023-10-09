@@ -22,11 +22,11 @@ else if(error)
 }
 
 //gatilho para tela de loading
-function loadingAlert()
+function loadingAlert(msg)
 {
   Swal.fire({
     title: 'Só um momento',
-    html: 'estamos finalizando a sua inscrição',
+    html: msg,
     timer: 25000,    
     didOpen: () => {
         //exibir loadin

@@ -15,21 +15,25 @@
                         <form class="form-horizontal" id="formRegister" 
                          method="POST" th:action="@{/register}">
                             <div class="row">
+                                <!-- Nome Completo -->
                                 <div class="br-input mb-3 col-md-4 col-sm-12 ">
                                     <label for="name">Nome completo*</label>
                                     <input name="name" id="name" type="text" required="true" />
                                 </div>
+                                <!-- CPF -->
                                 <div class="br-input mb-3 col-md-4 col-sm-12 ">
                                     <label for="cpf">CPF*</label>
                                     <input name="cpf" id="cpf" type="text" required="true" onblur="verifyCPF()"/>
                                     <input name="user.username" id="username" type="hidden" required="true" />
                                 </div>
+                                <!-- RG -->
                                 <div class="br-input mb-3 col-md-4 col-sm-12 ">
                                     <label for="rg">RG*</label>
                                     <input name="rg" id="rg" type="text" required="true" />
                                 </div>
                             </div>
                             <div class="row">
+                                <!-- Data de nascimento -->
                                 <div class="mb-3 col-md-4 col-sm-12 ">
                                     <div class="br-datetimepicker" data-mode="single" data-type="text">
                                         <div class="br-input has-icon">
@@ -43,18 +47,20 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- Telefone -->
                                 <div class="br-input mb-3 col-md-4 col-sm-12 ">
                                     <label for="phone">Telefone*</label>
                                     <input name="phone" id="phone" type="tel" required="true" />
                                 </div>
+                                <!-- E-mail -->
                                 <div class="br-input mb-3 col-md-4 col-sm-12 ">
                                     <label for="input-title">Email*</label>
                                     <input name="email" id="email" type="email" required="true" />
                                 </div>
                             </div>
-                            <div class="row">                 
-                                <div class="br-select mb-3 col-md-4 col-sm-12 "  style="max-width: 100%!important;">
-                                   
+                            <div class="row">                                                 
+                                <div class="br-select mb-3 col-md-4 col-sm-12 "  style="max-width: 100%!important;">   
+                                    <!-- Genero -->
                                     <div class="br-input ">
                                         <label for="gender">Gênero*</label>
                                         <input id="gender" name="gender" type="text" placeholder="Selecione o item" required/>
@@ -85,19 +91,69 @@
                                     </div> 
                                 </div>
                                 <div class=" mb-3 col-md-4 col-sm-12 d-flex ">
+                                    <!-- check -->
                                     <div class="br-checkbox align-self-end mb-2" >
                                       <input id="h-checkbox-1" name="checkSpecialCondition" type="checkbox" onChange="showSpecialCondition()"/>
                                       <label for="h-checkbox-1" id="checkSpecialCondition" >Possui alguma condição especial?</label>
                                     </div>
                                   </div>
                                 <div class="br-input mb-3 col-md-4 col-sm-12 " >
+                                    <!-- Condição especial -->
                                     <label for="diseaseInducedDeficiency ">Especifique a condição*</label>
                                     <input  type="text" disabled name="diseaseInducedDeficiency"   id="diseaseInducedDeficiency"/>
                                 </div>
                              
                             </div>
+                            <span class="br-divider md my-3"></span>
+                            <h3 class="mt-2 h3">Endereço </h3>
                             <div class="row">
-                              
+                                <!-- CEP -->
+                                
+                                <div class="col-sm-5 col-lg-3 mb-3">
+                                    <div class="br-input  input-button">
+                                      <label for="cep">Buscar</label>
+                                      <input id="cep" type="cep" placeholder="Digite o seu CEP" onblur="verifyCEP()"/>
+                                      <button class="br-button" type="button" aria-label="Buscar" onclick="verifyCEP()">
+                                        <i class="fas fa-search" aria-hidden="true"></i>
+                                      </button>
+                                    </div>
+                                  </div>
+                                <!-- Logradoura -->
+                                <div class="br-input mb-3 col-md-6 col-sm-12 ">
+                                    <label for="logradouro">Endereço*</label>
+                                    <input name="logradouro" id="logradouro" type="text" required="true" readonly/>
+                                </div>
+                                <!-- numero -->
+                                <div class="br-input mb-3 col-md-3 col-sm-12 ">
+                                    <label for="addressNumber">Numero*</label>
+                                    <input name="addressNumber" id="addressNumber" type="text" required="true" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <!-- Bairro -->
+                                <div class="br-input mb-3 col-md-5 col-sm-12 ">
+                                    <label for="districtName">Bairro*</label>
+                                    <input name="district.name" id="districtName" type="text" required="true" readonly/>
+                                    <input type="text" name="district.id" id="districtId" placeholder="bairro id">
+                                </div>
+                                <!-- cidade -->
+                                <div class="br-input mb-3 col-md-5 col-sm-12 ">
+                                    <label for="city">Cidade*</label>
+                                    <input name="district.city.name" id="city" type="text" required="true" readonly/>
+                                    <input type="text" name="district.city.id" id="cityID" placeholder="cidade id">
+                                </div>
+                                <!-- EStado -->
+                                <div class="br-input mb-3 col-md-2 col-sm-12 ">
+                                    <label for="districtName">Estado*</label>
+                                    <input type="text" name="district.city.state.uf" id="stateID" placeholder="estado" readonly >
+                                </div>
+                                
+                                  
+                            </div>
+                            <span class="br-divider md my-3"></span>
+                            <div class="row">
+                                <h3 class="mt-2 h3">Senha </h3>
+                                <!-- Senha -->
                                 <div class="mb-3 col-md-6 col-sm-12">
                                     <div class="br-input input-button">
                                         <label for="password">Senha*</label>
@@ -108,6 +164,7 @@
                                         </button>
                                       </div>
                                 </div>
+                                <!-- Confirmação de senha -->
                                 <div class="mb-3 col-md-6 col-sm-12">
                                     <div class="br-input input-button">
                                         <label for="confirmPassword">Confirme a senha*</label>  
@@ -132,7 +189,7 @@
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="/assets/vendors/govBR/dist/core-init.js"></script>
         <script src="/assets/vendors/sweetAlert2/js/sweetalert2.all.js"></script>
-        <script src="/assets/js/auth/register.js"></script>        
+        <script src="/assets/js/auth/Register.js"></script>        
         <script>
             let success = "[[${success}]]"
             let error = "[[${error}]]"  

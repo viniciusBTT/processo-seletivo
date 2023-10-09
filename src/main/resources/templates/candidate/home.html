@@ -13,8 +13,7 @@
                 <div class="col-12">
                     <div class="br-carousel" data-stage="in" data-mobile-nav="1">
                         <div class="carousel-button">
-                            <button class="br-button carousel-btn-prev terciary circle" type="button"
-                                aria-label="Anterior">
+                            <button class="br-button carousel-btn-prev terciary circle" type="button" aria-label="Anterior">
                                 <i class="fas fa-chevron-left" aria-hidden="true"></i>
                             </button>
                         </div>
@@ -25,22 +24,19 @@
                                     th:style="'background-image: url('+${process.imageUrl}+')!important;background: no-repeat;
                                     background-position: center; background-size: cover; height: inherit;'">
                                     <div class="mt-auto  py-2 px-3 d-block "
-                                        style="background-color: rgba(0, 0, 0, 0.25);  width: 100%;margin-bottom: 45px;">
+                                        style="background-color: rgba(0, 0, 0, 0.45);  width: 100%;margin-bottom: 45px;">
                                         <a th:href="'/subscription/' + ${process.id}">
                                             <div class="d-flex flex-column flex-md-row justify-content-md-between justify-content-start">
                                                 <h4 class="h6 text-pure-0 m-0 mb-2" th:text="${process.title}"></h4>
                                                 <span class="text-pure-0 m-0 h6 mb-2">Encerramento:
                                                     [[${#dates.format(process.endDate, 'dd/MM/yyyy HH:mm')}]]</span>
-
                                             </div>
-                                            <div class="d-flex flex-column flex-md-row justify-content-md-between justify-content-start ">
-                                               
-                                                
-                                                    <span class="text-pure-0 mb-2 m-0" th:text="${process.description}"></span>
-                                                <button class="br-button primary mb-2" th:href="'/subscription/' + ${process.id}" type="button">Clique para ver mais
+                                            <div class="d-flex flex-column ">
+                                                <span class="text-pure-0 mb-2 m-0" th:text="${process.description}" ></span>
+                                                <button class="br-button primary mb-2 mt-auto align-self-end" th:href="'/subscription/' + ${process.id}" type="button">
+                                                    Clique para ver mais
                                                 </button>
-                                            </div>
-                                            
+                                            </div>                                            
                                         </a>
                                     </div>
                                 </div>
@@ -68,16 +64,33 @@
             </div>
             <h1 class="h2 m-0 mt-6 mb-2">Suas Inscrições: </h1>
             <div class="row mx-0 " >                
-                <div class="br-card  col-12 mr-3 shadow-lg" th:each="subscription : ${subscriptions}" th:if="${subscriptions.size > 0}">
+                <div class="br-card  col-12  shadow-lg" th:each="subscription : ${subscriptions}" th:if="${subscriptions.size > 0}">
                     <div class="card-content">
-                        <h3 class="h4 mb-2 mt-0" th:text="${subscription.process.title}"></h3>
-                        <p>Data de encerramento das inscrições:  [[${#dates.format(subscription.process.endDate, 'dd/MM/yyyy HH:mm')}]]</p>
-                        <h3 class="h6">Modalidades inscritas</h3>
-                        <div class="d-flex justify-content-start gap-3 flex-wrap">
-                            <span class="br-tag bg-primary mb-2" th:each="modality: ${subscription.modalities}" 
-                            th:text="${modality.name}"></span>
-
+                        <a th:href="'/subscription/' + ${subscription.process.id}">
+                            <h4 class="h4 mb-2 mt-0 nativo-hover" th:text="${subscription.process.title}"></h4>
+                        </a>                        
+                        <div class="d-flex  flex-column flex-md-row justify-content-md-between justify-content-start">
+                            <p><span class="legend">Data de encerramento das inscrições: </span> 
+                                [[${#dates.format(subscription.process.endDate, 'dd/MM/yyyy HH:mm')}]]</p>
+                            <p><span class="legend">Numero da inscrição:</span> 
+                                [[${subscription.id}]]</p>
+                                
                         </div>
+                        <h3 class="h6 m-0 mb-2 mt-3">Modalidades inscritas</h3>
+                        <div class="row mx-0">
+                            <div class="d-flex justify-content-start gap-3 flex-wrap">
+                                <span class="br-tag bg-primary mb-2" th:each="modality: ${subscription.modalities}" 
+                                th:text="${modality.name}"></span>    
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end mt-2">
+                            <a class="br-button primary dark-mode " type="button" 
+                             th:href="'/print/subscription' + ${subscription.id}">
+                                Imprimir inscrição
+                        </a>
+                           
+                        </div>
+                        
                     </div>
                 </div>
                 <div class="br-card  col-12" th:if="${subscriptions.size == 0}">
