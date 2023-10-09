@@ -1,4 +1,4 @@
-package br.gov.sp.franciscomorato.educacao.processoseletivo.security;
+package br.gov.sp.franciscomorato.educacao.processoseletivo.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 
 @Configuration
 @EnableWebSecurity
@@ -32,6 +31,7 @@ public class GlobalSecurity
             requests
                 .requestMatchers("/").permitAll()
                 .requestMatchers("/register/**").permitAll()
+                .requestMatchers("/address/**").permitAll()
                 .requestMatchers("/auth", "/acesso").permitAll()
                 .requestMatchers("/assets/**").permitAll()
                 .anyRequest().authenticated()
@@ -64,5 +64,5 @@ public class GlobalSecurity
     {
         return authenticationConfiguration.getAuthenticationManager();
     }
-
+           
 }

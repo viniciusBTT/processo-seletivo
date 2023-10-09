@@ -1,8 +1,10 @@
 package br.gov.sp.franciscomorato.educacao.processoseletivo.model;
 
+import br.gov.sp.franciscomorato.educacao.processoseletivo.model.address.Street;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 
 import jakarta.validation.constraints.NotNull;
@@ -39,5 +41,10 @@ public class Candidate
 
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private Street street;
+
+    private String addressNumber;
    
 }

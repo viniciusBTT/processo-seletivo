@@ -1,4 +1,4 @@
-package br.gov.sp.franciscomorato.educacao.processoseletivo.security;
+package br.gov.sp.franciscomorato.educacao.processoseletivo.config;
 
 import br.gov.sp.franciscomorato.educacao.processoseletivo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

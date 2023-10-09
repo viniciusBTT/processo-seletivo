@@ -2,7 +2,6 @@ br/gov/sp/franciscomorato/educacao/processoseletivo/service/ModalityService.clas
 br/gov/sp/franciscomorato/educacao/processoseletivo/service/UserService.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/service/SubscriptionService.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/controller/SubscriptionController.class
-br/gov/sp/franciscomorato/educacao/processoseletivo/security/PublicSecurity.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/repository/UserRepository.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/model/User.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/model/Modality.class
@@ -17,7 +16,6 @@ br/gov/sp/franciscomorato/educacao/processoseletivo/model/Candidate.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/service/SelectiveProcessService.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/service/CandidateService.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/model/SelectiveProcess.class
-br/gov/sp/franciscomorato/educacao/processoseletivo/security/GlobalSecurity.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/ProcessoSeletivoApplication.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/controller/CandidateController.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/repository/ModalityRepository.class
@@ -27,7 +25,6 @@ br/gov/sp/franciscomorato/educacao/processoseletivo/controller/HomeController.cl
 br/gov/sp/franciscomorato/educacao/processoseletivo/dto/ModalityResponseDTO.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/repository/SubscriptionRepository.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/model/AllowedUser.class
-br/gov/sp/franciscomorato/educacao/processoseletivo/security/LdapSecurity.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/repository/RoleRepository.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/repository/CandidateRepository.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/repository/AllowedUserRepository.class

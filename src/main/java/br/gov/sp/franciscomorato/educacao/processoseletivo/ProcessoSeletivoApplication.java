@@ -3,11 +3,15 @@ package br.gov.sp.franciscomorato.educacao.processoseletivo;
 import jakarta.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.web.client.RestTemplate;
 
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.Role;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.User;
@@ -21,8 +25,9 @@ import org.springframework.beans.factory.annotation.Value;
 		"br.gov.sp.franciscomorato.educacao.processoseletivo.security",
 		"br.gov.sp.franciscomorato.educacao.processoseletivo.controller",
 		"br.gov.sp.franciscomorato.educacao.processoseletivo.model",
+                "br.gov.sp.franciscomorato.educacao.processoseletivo.model.address",
 		"br.gov.sp.franciscomorato.educacao.processoseletivo.repository",
-		"br.gov.sp.franciscomorato.educacao.processoseletivo.security",
+		"br.gov.sp.franciscomorato.educacao.processoseletivo.config",
 		"br.gov.sp.franciscomorato.educacao.processoseletivo.service",
 })
 
@@ -55,8 +60,15 @@ public class ProcessoSeletivoApplication
             
             userService.save(new User("admin", password, new Role("ROLE_ADMIN")));
 	}
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
 		SpringApplication.run(ProcessoSeletivoApplication.class, args);
+	}
+
+	@Bean
+	public RestTemplate restTemplate(RestTemplateBuilder builder)
+	{
+		return builder.build();
 	}
 
 }
