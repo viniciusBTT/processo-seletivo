@@ -1,5 +1,6 @@
 package br.gov.sp.franciscomorato.educacao.processoseletivo.service;
 
+import br.gov.sp.franciscomorato.educacao.processoseletivo.model.Modality;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.SelectiveProcess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,6 +24,14 @@ public class SelectiveProcessService
      */
     public SelectiveProcess save(SelectiveProcess process)
     {
+        if(process.getId() != null) {
+
+            SelectiveProcess oldProcess = processRepository.findById(process.getId()).orElse(null);
+
+            if(oldProcess != null)
+                process.setModalities(oldProcess.getModalities());
+        }
+
         //salva data atual do servidor
         process.setCreatedAt(new Date());
 

@@ -46,7 +46,6 @@ public class AuthController
     @GetMapping("/check")
     public String checkAuthentication()
     {
-        System.out.println("ernrou");
         boolean isTheAuthenticationValid = userService.isTheAuthenticationValid();
 
         if(!isTheAuthenticationValid) 
