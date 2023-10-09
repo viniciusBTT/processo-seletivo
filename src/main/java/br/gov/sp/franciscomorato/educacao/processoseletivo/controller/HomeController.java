@@ -1,5 +1,7 @@
 package br.gov.sp.franciscomorato.educacao.processoseletivo.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -48,14 +50,26 @@ public class HomeController
             return "redirect:/process";
         }
 
-        model.addAttribute(
-                "subscriptions", 
-                subscriptionService
-                                .findSubscriptionByCandidateInProgress(
-                                        Long.valueOf(authentication.getName())));
-        model.addAttribute("processList", processService.findInProgress());
+        try 
+        {
+           
+            model.addAttribute(
+                    "subscriptions", 
+                    subscriptionService
+                                    .findSubscriptionByCandidateInProgress(
+                                            Long.valueOf(authentication.getName())));
+            model.addAttribute("processList", processService.findInProgress());
+            return "candidate/home";
+        } 
+        catch (NumberFormatException e)
+        {
+            model.addAttribute("subscriptions", new ArrayList<>());
+            model.addAttribute("processList", processService.findInProgress());
+            return "candidate/home";
+        }
 
-        return "candidate/home";
+
+
     }
 
 }

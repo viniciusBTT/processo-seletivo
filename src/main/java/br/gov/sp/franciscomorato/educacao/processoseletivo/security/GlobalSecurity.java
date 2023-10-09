@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 
 @Configuration
 @EnableWebSecurity
@@ -26,6 +27,7 @@ public class GlobalSecurity
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception
     {
+
         http.authorizeHttpRequests((requests) ->
             requests
                 .requestMatchers("/").permitAll()
@@ -35,13 +37,15 @@ public class GlobalSecurity
                 .anyRequest().authenticated()
         )
         .formLogin((formLogin) ->
-                formLogin
-                    .loginPage("/auth")
-                    .defaultSuccessUrl("/auth/check")
+            formLogin
+                .loginPage("/auth")
+                .defaultSuccessUrl("/auth/check", true)
         )
-        .logout((logout) -> logout.logoutUrl("/logout")
-                            .logoutSuccessUrl("/")
+        .logout((logout) -> 
+            logout.logoutUrl("/logout")
+            .logoutSuccessUrl("/")
         );
+        
 
         http.csrf((csrf) -> csrf.disable());
 
