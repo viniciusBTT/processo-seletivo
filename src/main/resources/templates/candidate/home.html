@@ -17,24 +17,27 @@
                                 <i class="fas fa-chevron-left" aria-hidden="true"></i>
                             </button>
                         </div>
-                        <div class="carousel-stage">
+                        <div class="carousel-stage ">
                             <div class="carousel-page" th:each="process,status: ${processList}"
                                 th:active="${status.index == 0 ? 'active' : ''}">
-                                <div class="carousel-content" 
+                                <div class="carousel-content " 
                                     th:style="'background-image: url('+${process.imageUrl}+')!important;background: no-repeat;
                                     background-position: center; background-size: cover; height: inherit;'">
-                                    <div class="mt-auto  py-2 px-3 d-block "
-                                        style="background-color: rgba(0, 0, 0, 0.45);  width: 100%;">
+                                    <div class="mt-auto  py-2 px-3 d-block mb-6 "
+                                        style="background-color: rgba(0, 0, 0, 0.60);  width: 100%;">
                                         <div class="d-flex flex-column flex-md-row justify-content-md-between justify-content-start">
-                                            <h4 class="h6 text-pure-0 m-0 mb-2" th:text="${process.title}"></h4>
-                                            <span class="text-pure-0 m-0 h6 mb-2">Encerramento:
-                                                [[${#dates.format(process.endDate, 'dd/MM/yyyy HH:mm')}]]</span>
+                                            <h4 class="h4 text-pure-0 m-0 mb-2" th:text="${process.title}"></h4>
+                                            <span class="text-pure-0 m-0 h6 mb-2 text-right">
+                                                Encerramento:
+                                                <span class="text-nowrap">[[${#dates.format(process.endDate, 'dd/MM/yyyy HH:mm')}]]</span>
+                                            </span>
                                         </div>
-                                        <div class="d-flex flex-column ">
-                                            <span class="text-pure-0 mb-2 m-0" th:text="${process.description}" ></span>
-                                            <a class="br-button primary mb-2 mt-auto align-self-end" th:href="'/subscription/' + ${process.id}" >
-                                                <span>Clique para ver mais</span>
-                                            </a>
+                                        <div class="d-flex flex-column " >
+                                            <span class="text-pure-0 mb-2 m-0 legend" th:text="${process.description}" ></span>
+                                            <a class="br-button primary mb-2 mt-auto align-self-end" 
+                                            th:href="'/subscription/' + ${process.id}" >
+                                                Clique para ver mais
+                                        </a>
                                         </div>                                            
                                        
                                     </div>
@@ -84,7 +87,7 @@
                         </div>
                         <div class="d-flex justify-content-end mt-2">
                             <a class="br-button primary dark-mode " type="button" 
-                             th:href="'/print/subscription' + ${subscription.id}">
+                            th:href="'/report?s=' + ${subscription.id}" target="_blank">
                                 Imprimir inscrição
                         </a>
                            

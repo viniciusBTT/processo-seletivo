@@ -11,6 +11,7 @@ br/gov/sp/franciscomorato/educacao/processoseletivo/config/GlobalSecurity.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/repository/StreetRepository.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/config/LdapSecurity.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/controller/RegisterController.class
+br/gov/sp/franciscomorato/educacao/processoseletivo/util/PDFGenerator.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/model/address/State.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/controller/SelectiveProcessController.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/repository/SelectiveProcessRepository.class
@@ -23,6 +24,7 @@ br/gov/sp/franciscomorato/educacao/processoseletivo/service/SelectiveProcessServ
 br/gov/sp/franciscomorato/educacao/processoseletivo/service/AddressService.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/service/CandidateService.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/model/SelectiveProcess.class
+br/gov/sp/franciscomorato/educacao/processoseletivo/controller/ReportController.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/ProcessoSeletivoApplication.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/controller/CandidateController.class
 br/gov/sp/franciscomorato/educacao/processoseletivo/repository/ModalityRepository.class

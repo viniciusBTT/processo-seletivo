@@ -78,11 +78,13 @@ function verifyCPF(){
 }
 
 //valida se o numero do cpf é valido ou nao
-function testaCPF(strCPF) {
+function testaCPF(strCPF)
+{
     var Soma;
     var Resto;
     Soma = 0;
-  if (strCPF == "00000000000") return false;
+    //verifica se os caracteres do cpf são iguais    
+    if (allCharecterEquals(strCPF) ) return false;
 
   for (i=1; i<=9; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i);
   Resto = (Soma * 10) % 11;
@@ -99,11 +101,34 @@ function testaCPF(strCPF) {
     return true;
 }
 
-//cep
-function verifyCEP(){
+
+
+//verificando se todos os caracteres são iguais
+function allCharecterEquals(str) 
+{
+    // Verifica se a string está vazia ou tem apenas um caractere
+    if (str.length <= 1) {
+        return true;
+    }
+    // Compara cada caractere com o primeiro
+    const primeiroCaractere = str[0];
+    for (let i = 1; i < str.length; i++) {
+        if (str[i] !== primeiroCaractere) {
+            return false;
+        }
+    }
+    // Se nenhum caractere diferente for encontrado, todos são iguais
+    return true;
+}
+
+
+//verificando o cep
+function verifyCEP()
+{
     //captura o valor do input do cep
     let cep = document.querySelector("#cep").value
-    //verifica no end-point /adress?cep=*** que retorna os valores do enredeço
+
+    //verifica no end-point /adress?cep=*** o endereço correspondente ao cep;
     axios.get(`/address?cep=${cep}`)
     .then(function (response)
     {
@@ -111,14 +136,10 @@ function verifyCEP(){
         //verificando se o cep informado é valido
         if(response.data.cep)
         {
-            //colocando o valor retornado nos inputs
-            document.querySelector("#logradouro").value = address.logradouro;
-            document.querySelector("#districtName").value = address.district.name;
-            document.querySelector("#city").value = address.district.city.name;
-            document.querySelector("#cityID").value = address.district.city.id;
-            document.querySelector("#districtId").value = address.district.id;
-            document.querySelector("#stateID").value = address.district.city.state.uf;
-        } 
+            setInputAdressValues(address.logradouro,address.district.name,
+                            address.district.city.name,address.district.city.id,
+                            address.district.id,address.district.city.state.uf);
+        }    
         else
         {
             //mensagem de erro
@@ -128,17 +149,23 @@ function verifyCEP(){
                 timerProgressBar: true,     
                 background: '#f1f1f1 ',                  
                 backdrop: "rgba(0, 0, 0, 0)" ,
-                })
-                //limpando os inputs 
-            document.querySelector("#logradouro").value = ""
-            document.querySelector("#districtName").value = ""
-            document.querySelector("#city").value = ""
-            document.querySelector("#cityID").value = ""
-            document.querySelector("#districtId").value = ""
-            document.querySelector("#stateID").value = ""
+            })
+            //limpando os inputs 
+            setInputAdressValues("","","","","","")
         }      
     })
     .catch(function (error) {
        console.log(error)
     })
+}
+
+//Setando os valoes nos inputs do endereços 
+function setInputAdressValues(logradouro,districtName, cityName,cityId,districId,stateUF)
+{
+    document.querySelector("#logradouro").value = logradouro;
+    document.querySelector("#districtName").value = districtName;
+    document.querySelector("#city").value = cityName;
+    document.querySelector("#cityID").value = cityId;
+    document.querySelector("#districtId").value = districId;
+    document.querySelector("#stateID").value = stateUF;
 }

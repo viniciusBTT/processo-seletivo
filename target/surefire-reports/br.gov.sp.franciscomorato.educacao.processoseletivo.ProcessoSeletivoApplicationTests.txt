@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: br.gov.sp.franciscomorato.educacao.processoseletivo.ProcessoSeletivoApplicationTests
 -------------------------------------------------------------------------------
-<<<<<<< HEAD
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.035 s - in br.gov.sp.franciscomorato.educacao.processoseletivo.ProcessoSeletivoApplicationTests
-=======
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.629 s - in br.gov.sp.franciscomorato.educacao.processoseletivo.ProcessoSeletivoApplicationTests
->>>>>>> 6ba57860f350c538e6d8ecab669e917d2b7be7cb
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.588 s - in br.gov.sp.franciscomorato.educacao.processoseletivo.ProcessoSeletivoApplicationTests

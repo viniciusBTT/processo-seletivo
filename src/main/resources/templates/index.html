@@ -8,7 +8,24 @@
 
         <head th:replace="~{fragments/out/header}"></head>
         <main class="container-fluid" id="main">
-            <div class="row">
+            <div th:if="${#lists.size(processList) == 0 }">
+                <div class="my-3">
+                    <div class="d-flex flex-column flex-md-row justify-content-md-between justify-content-start ">
+                       
+                        <div class="my-auto text-center">
+                            <p class="h2 mb-2">Nenhum processo seletivo em andamento</p>
+                        </div>
+                         
+                        <div class="">
+                            <div class="">
+                                <img src="/assets/images/ilustracaotempo.png" alt="" max-height="550px">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row" th:unless="${#lists.size(processList) == 0 }">
                 <div class="col-12">
                     <div class="br-carousel" data-stage="in" data-mobile-nav="1">
                         <div class="carousel-button">
@@ -20,21 +37,20 @@
                         <div class="carousel-stage">
                             <div class="carousel-page" th:each="process,status: ${processList}"
                                 th:active="${status.index == 0 ? 'active' : ''}">
-                                <div class="carousel-content "
-                                    th:style="'background-image: url('+${process.imageUrl}+')!important;background: no-repeat;
+                                <div class="carousel-content " th:style="'background-image: url('+${process.imageUrl}+')!important;background: no-repeat;
                                     background-position: center; background-size: cover; height: inherit;'">
                                     <div class="mt-auto  py-2 px-3 d-block "
                                         style="background-color: rgba(0, 0, 0, 0.45);  width: 100%;">
-                                            <div
-                                                class="d-flex flex-column flex-md-row justify-content-md-between justify-content-start mb-3">
-                                                <h4 class="h4 text-pure-0 m-0" th:text="${process.title}"></h4>
+                                        <div
+                                            class="d-flex flex-column flex-md-row justify-content-md-between justify-content-start mb-3">
+                                            <h4 class="h4 text-pure-0 m-0" th:text="${process.title}"></h4>
 
-                                            </div>
-                                            <div class="d-flex flex-column flex-md-row justify-content-md-between justify-content-start ">
-                                                <span class="text-pure-0 mb-2 m-0"
-                                                    th:text="${process.description}"></span>
-                                               
-                                            </div>
+                                        </div>
+                                        <div
+                                            class="d-flex flex-column flex-md-row justify-content-md-between justify-content-start ">
+                                            <span class="text-pure-0 mb-2 m-0" th:text="${process.description}"></span>
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -58,23 +74,20 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="my-5">                
-                <div class="br-card">
-                    <div class="card-content">
-                        <div class="d-flex  justify-content-center align-items-center  flex-column">
-                            <!-- <div class="mb-3">                                    
-                                <button class="br-button block primary " type="button">
-                                    <i class="fas fa-user" aria-hidden="true"></i>Acesse o sistema
-                                </button>
-                            </div> -->
-                            <div class="">
-                                <p class="text-weight-semi-bold text-up-02">Acesse o sistema para se candidatar nos processos seletivos ou para consultar as incrições já realizadas.</p>
-                            </div>                                
+                <div class="my-5">
+                    <div class="br-card">
+                        <div class="card-content">
+                            <div class="d-flex  justify-content-center align-items-center  flex-column">
+                                <div class="">
+                                    <p class="text-weight-semi-bold text-up-02">Acesse o sistema para se candidatar nos
+                                        processos seletivos ou para consultar as incrições já realizadas.</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>  
+                    </div>
                 </div>
             </div>
+
         </main>
         <footer th:replace="~{fragments/out/footer}"></footer>
 

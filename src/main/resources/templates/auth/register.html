@@ -23,13 +23,13 @@
                                 <!-- CPF -->
                                 <div class="br-input mb-3 col-md-4 col-sm-12 ">
                                     <label for="cpf">CPF*</label>
-                                    <input name="cpf" id="cpf" type="text" required="true" onblur="verifyCPF()"/>
+                                    <input name="cpf" id="cpf" type="text" required="true" onblur="verifyCPF()" placeholder="000.000.000-00"/>
                                     <input name="user.username" id="username" type="hidden" required="true" />
                                 </div>
                                 <!-- RG -->
                                 <div class="br-input mb-3 col-md-4 col-sm-12 ">
                                     <label for="rg">RG*</label>
-                                    <input name="rg" id="rg" type="text" required="true" />
+                                    <input name="rg" id="rg" type="text" required="true" placeholder="00.000.000-0"/>
                                 </div>
                             </div>
                             <div class="row">
@@ -50,12 +50,13 @@
                                 <!-- Telefone -->
                                 <div class="br-input mb-3 col-md-4 col-sm-12 ">
                                     <label for="phone">Telefone*</label>
-                                    <input name="phone" id="phone" type="tel" required="true" />
+                                    <input name="phone" id="phone" type="tel" required="true"
+                                     placeholder="(00) 00000-0000" />
                                 </div>
                                 <!-- E-mail -->
                                 <div class="br-input mb-3 col-md-4 col-sm-12 ">
                                     <label for="input-title">Email*</label>
-                                    <input name="email" id="email" type="email" required="true" />
+                                    <input name="email" id="email" type="email" required="true" placeholder="email@email.com" />
                                 </div>
                             </div>
                             <div class="row">                                                 
@@ -63,7 +64,7 @@
                                     <!-- Genero -->
                                     <div class="br-input ">
                                         <label for="gender">Gênero*</label>
-                                        <input id="gender" name="gender" type="text" placeholder="Selecione o item" required/>
+                                        <input id="gender" name="gender" type="text" placeholder="Selecione uma opção" required/>
                                         <button class="br-button" type="button" aria-label="Exibir lista" tabindex="-1"
                                             data-trigger="data-trigger">
                                             <i class="fas fa-angle-down" aria-hidden="true"></i>
@@ -144,7 +145,7 @@
                                 <!-- EStado -->
                                 <div class="br-input mb-3 col-md-2 col-sm-12 ">
                                     <label for="districtName">Estado*</label>
-                                    <input type="text" name="street.district.city.state.uf" id="stateID" placeholder="estado" >
+                                    <input type="text" name="street.district.city.state.uf" id="stateID" >
                                 </div>
                                 
                                   
@@ -167,7 +168,7 @@
                                 <div class="mb-3 col-md-6 col-sm-12">
                                     <div class="br-input input-button">
                                         <label for="confirmPassword">Confirme a senha*</label>  
-                                        <input id="confirmPassword" type="password" placeholder="Digite a senha novamente" name="confirmPassword" required/>
+                                        <input id="confirmPassword" type="password" placeholder="Confirme a sua senha" name="confirmPassword" required/>
                                         <button class="br-button" type="button"   aria-label="Mostrar senha">
                                             <i class="fas fa-eye" aria-hidden="true"></i>
                                         </button>
@@ -194,6 +195,11 @@
             let error = "[[${error}]]"  
         </script>
         <script src="/assets/js/AlertTrigger.js"></script>
+        <script src="/assets/vendors/vanillaMasker/vanilla-masker.min.js"></script>
+        <script src="/assets/js/auth/Masker.js"></script>        
+
+
+
 
         
     </body>
