@@ -9,16 +9,19 @@ function setInputDate(){
 }
 
 
-//Capturando o evento de submite do formulario, salvando a nova modalidade do processo seletivo
 const modalityForm = document.querySelector("#modalityForm");
-
+//Capturando o evento de submite do formulario, salvando a nova modalidade do processo seletivo
 modalityForm.addEventListener("submit", (e) =>{
     e.preventDefault();
     let form = new FormData(modalityForm);
     let name = form.get("name");
     let processId = form.get("processId")
 
-    //persistindo a nova modalidade no banco de dados
+    
+    /**
+     * persistindo a nova modalidade no banco de dados
+     * parametros: name(nome da modalidade), processId(id do processo que foi adiocionada a modalidade) 
+     */   
     axios.post('/process/modality', {
         name,processId       
       })
@@ -27,6 +30,7 @@ modalityForm.addEventListener("submit", (e) =>{
         let modalitiesElement = "";
         response.data.modalities.forEach(item =>
         {
+            //inserindo uma nova tag no html com os dados da nova modalidade
             modalitiesElement +=  ` <span class="br-tag interaction medium bg-green-cool-vivid-50" id="${item.id}"            ">
                                         <i class="fa-solid fa-file bg-green-cool-vivid-50"></i>
                                         <span class="ml-2">${item.name}</span>
@@ -48,6 +52,8 @@ modalityForm.addEventListener("submit", (e) =>{
 })
 
 //alterando entre as telas
+
+//capturando cada card com o conteudo
 let cardProcess = document.querySelector(".process");
 let cardModalities = document.querySelector(".modaliti");
 let brStep = document.querySelector(".br-step");
@@ -72,27 +78,41 @@ function openModalities()
     }
 }
 
-
+/**
+ * quando a variavel success for prenchida abre o card de modalidades
+ * essa variavel é preenchida quando um processo é salvo ou editado com sucesso
+ * 
+ */
 if(success)
     openModalities()
 
 
-function deleteModality( idModality,processId){
-    
+/**
+ * função para deletar uma modalidade
+ * @param {*} idModality 
+ * @param {*} processId 
+ */
+function deleteModality( idModality,processId)
+{    
     axios.delete(`/modality/${processId}/${idModality}`)
-      .then(function (response) {
+      .then( (response) =>
+      {
         let modalitiesList =  document.querySelectorAll(".interaction")
         modalitiesList.forEach(item =>{
             if(item.id === idModality)
                 item.remove();       
         })
-        console.log(response);
-      })
-      .catch(function (error) {
+        Swal.fire({
+            icon: 'success',
+            html: response.data,
+            timer: 1200,
+            timerProgressBar: true,     
+            background: '#f1f1f1',        
+            showConfirmButton: false,        
+          })
+      }).catch(function (error) {
         console.error(error);
-      });
-    
-   
+      });  
 
 }
 

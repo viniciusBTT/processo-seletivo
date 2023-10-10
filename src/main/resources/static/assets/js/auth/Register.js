@@ -31,36 +31,22 @@ registerForm.addEventListener("submit", e => {
             background: '#f1f1f1 ',                  
             backdrop: "rgba(0, 0, 0, 0)" ,
             })
-    }    
-    else if(!validCpf)
-    {
-        Swal.fire({
-            icon: 'info',
-            title: 'Este CPF já foi cadastrado',
-            html:  "<a href='/acesso'>clique aqui para acessar o sistema</a> ",
-            timerProgressBar: true,     
-            background: '#f1f1f1 ',                  
-            backdrop: "rgba(0, 0, 0, 0)" ,                     
-            showConfirmButton: false,  
-            })
-    }
+    }       
     else
     {
         e.currentTarget.submit();   
     }
 })
 
-
+//verificar se o valor do cpf é valido e se já existe no banco de dados
 function verifyCPF(){
     let cpfValide = document.querySelector('#cpf').value.replace(/[^a-zA-Z0-9 ]/g,'')
     
-    if(testaCPF(cpfValid))
+    if(testaCPF(cpfValide))
     {        //verificando se o cpf está valido e se já foi cadastrado
-        axios.get(`/register/candidate?cpf=${cpfValid}`)
+        axios.get(`/register/candidate?cpf=${cpfValide}`)
         .then(function (response) {
-            console.log(response);
-            cpfValid = response.data;
-
+          console.log(response.data)
             Swal.fire({
                 icon: 'info',
                 title: 'Este CPF já foi cadastrado',
@@ -73,9 +59,8 @@ function verifyCPF(){
 
         })
         .catch(function (error) {
-            console.error(`error: ${error}`);
+            console.log(`CPF valido e nunca salvo`);
         })
-        return false
     }
     else
     {
@@ -92,6 +77,7 @@ function verifyCPF(){
     
 }
 
+//valida se o numero do cpf é valido ou nao
 function testaCPF(strCPF) {
     var Soma;
     var Resto;
@@ -111,4 +97,48 @@ function testaCPF(strCPF) {
     if ((Resto == 10) || (Resto == 11))  Resto = 0;
     if (Resto != parseInt(strCPF.substring(10, 11) ) ) return false;
     return true;
+}
+
+//cep
+function verifyCEP(){
+    //captura o valor do input do cep
+    let cep = document.querySelector("#cep").value
+    //verifica no end-point /adress?cep=*** que retorna os valores do enredeço
+    axios.get(`/address?cep=${cep}`)
+    .then(function (response)
+    {
+        let address = response.data
+        //verificando se o cep informado é valido
+        if(response.data.cep)
+        {
+            //colocando o valor retornado nos inputs
+            document.querySelector("#logradouro").value = address.logradouro;
+            document.querySelector("#districtName").value = address.district.name;
+            document.querySelector("#city").value = address.district.city.name;
+            document.querySelector("#cityID").value = address.district.city.id;
+            document.querySelector("#districtId").value = address.district.id;
+            document.querySelector("#stateID").value = address.district.city.state.uf;
+        } 
+        else
+        {
+            //mensagem de erro
+            Swal.fire({
+                icon: 'error',
+                html: 'valor do CEP invalido',
+                timerProgressBar: true,     
+                background: '#f1f1f1 ',                  
+                backdrop: "rgba(0, 0, 0, 0)" ,
+                })
+                //limpando os inputs 
+            document.querySelector("#logradouro").value = ""
+            document.querySelector("#districtName").value = ""
+            document.querySelector("#city").value = ""
+            document.querySelector("#cityID").value = ""
+            document.querySelector("#districtId").value = ""
+            document.querySelector("#stateID").value = ""
+        }      
+    })
+    .catch(function (error) {
+       console.log(error)
+    })
 }

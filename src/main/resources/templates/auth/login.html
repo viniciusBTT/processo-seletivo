@@ -35,9 +35,12 @@
                             <button class="br-button block primary btn-login mt-2" type="submit">
                                 <span class="material-symbols-outlined">Entrar</span>
                             </button>
-                            <span class="text-danger text-center" th:if="${param.error}">
-                                Cpf ou senha incorreto
-                            </span>
+                            <div th:if="${param.error}" class="text-center mt-2">
+                                <span class="text-danger text-center">
+                                    Não foi possível autenticar, verifique suas credenciais de acesso
+                                </span>
+                            </div>
+                            
                         </form>
                         <div class="text-center mt-2">
                             <!-- <a href="" >Esqueceu a Senha?</a> -->
