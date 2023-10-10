@@ -24,10 +24,10 @@
                 </div>
             </div>
             <div>
-                <h1>[[${subscription.process.title}]]</h1>
-                <span>[[${subscription.process.description}]]</span>
+                <h1 class="h2">[[${subscription.process.title}]]</h1>
+                <span class="legend">[[${subscription.process.description}]]</span>
                 <span class="br-divider md my-6"></span>                
-                <p class="h4 m-0 my-2">Confirme os seu dados</p>
+                <p class="h3 m-0 my-2">Confirme os seu dados</p>
                 <div class="border-solid-sm p-3">
                     <h3 class="mt-2 h3">Dados pessoai </h3>
                     <div class="form-horizontal">
@@ -35,17 +35,17 @@
                             <div class="br-input mb-3 col-md-4 col-sm-12 ">
                                 <label for="name">Nome completo*</label>
                                 <input name="name" id="name" type="text" readonly
-                                    th:field="${subscription.candidate.name}" />
+                                    th:value="${subscription.candidate.name}" />
                             </div>
                             <div class="br-input mb-3 col-md-4 col-sm-12 ">
                                 <label for="cpf">CPF*</label>
                                 <input name="cpf" id="cpf" type="text" readonly
-                                    th:field="${subscription.candidate.cpf}" />
+                                    th:value="${subscription.candidate.cpf}" />
 
                             </div>
                             <div class="br-input mb-3 col-md-4 col-sm-12 ">
                                 <label for="rg">RG*</label>
-                                <input name="rg" id="rg" type="text" readonly th:field="${subscription.candidate.rg}" />
+                                <input name="rg" id="rg" type="text" readonly th:value="${subscription.candidate.rg}" />
                             </div>
                         </div>
                         <div class="row">
@@ -61,12 +61,12 @@
                             <div class="br-input mb-3 col-md-4 col-sm-12 ">
                                 <label for="phone">Telefone*</label>
                                 <input name="phone" id="phone" type="tel" readonly
-                                    th:field="${subscription.candidate.phone}" />
+                                    th:value="${subscription.candidate.phone}" />
                             </div>
                             <div class="br-input mb-3 col-md-4 col-sm-12 ">
                                 <label for="input-title">Email*</label>
                                 <input name="email" id="email" type="email" readonly
-                                    th:field="${subscription.candidate.email}" />
+                                    th:value="${subscription.candidate.email}" />
                             </div>
                         </div>
                         <div class="row">
@@ -74,7 +74,7 @@
                                 <div class="br-input ">
                                     <label for="gender">Gênero*</label>
                                     <input name="email" id="email" type="email" readonly
-                                    th:field="${subscription.candidate.gender}" />
+                                    th:value="${subscription.candidate.gender}" />
                                 </div>
                                 <div class="br-list" tabindex="0">
                                     <div class="br-item" tabindex="-1">
@@ -102,47 +102,53 @@
                                     <input id="h-checkbox-1" name="checkSpecialCondition" type="checkbox" 
                                         onChange="showSpecialCondition()" th:checked="${subscription.candidate.diseaseInducedDeficiency}"  disabled/>
                                    
-                                    <label for="h-checkbox-1" id="checkSpecialCondition" >Possui alguma condição
-                                        especial?</label>
+                                    <label for="h-checkbox-1" id="checkSpecialCondition" >Possui alguma condição especial?</label>
                                 </div>
                             </div>
                             <div class="br-input mb-3 col-md-4 col-sm-12 ">
                                 <label for="specialCondition ">Especifique a condição*</label>
-                                <input name="specialCondition" type="text" id="specialCondition"
-                                    th:field="${subscription.candidate.diseaseInducedDeficiency}" readonly />
+                                <input name="specialCondition" type="text" id="specialCondition" th:value="${subscription.candidate.diseaseInducedDeficiency} ?: 'Não informado'" readonly />
                             </div>                            
                         </div>
                         <span class="br-divider md my-3"></span>
                         <h3 class="mt-2 h3">Endereço </h3>
                         <div class="row">
-                            <!-- CEP -->
-                            <div class="br-input mb-3 col-md-3 col-sm-12 ">
-                                <label for="cep">CEP*</label>
-                                <input name="cep" id="cep" type="cep" required="true" readonly/>
-                            </div>
+                            <!-- CEP -->                                
+                            <div class="col-md-3 col-sm-12  mb-3">
+                                <div class="br-input  input-button">
+                                  <label for="cep">Buscar</label>
+                                  <input type="text" th:value="${subscription.candidate.street.cep}" readonly/>
+                                </div>
+                              </div>
                             <!-- Logradoura -->
-                            <div class="br-input mb-3 col-md-6 col-sm-12 ">
+                            <div class="br-input mb-3 col-md-7 col-sm-12 ">
                                 <label for="logradouro">Endereço*</label>
-                                <input name="logradouro" id="logradouro" type="text" required="true" readonly/>
+                                <input th:value="${subscription.candidate.street.logradouro}" type="text"  readonly/>
                             </div>
                             <!-- numero -->
-                            <div class="br-input mb-3 col-md-3 col-sm-12 ">
-                                <label for="number">Numero*</label>
-                                <input name="number" id="number" type="text" required="true" readonly/>
+                            <div class="br-input mb-3 col-md-2 col-sm-12 ">
+                                <label for="addressNumber">Numero*</label>
+                                <input  th:value="${subscription.candidate.addressNumber}" type="text" required="true" />
                             </div>
                         </div>
                         <div class="row">
                             <!-- Bairro -->
-                            <div class="br-input mb-3 col-md-6 col-sm-12 ">
-                                <label for="cep">Bairro*</label>
-                                <input name="cep" id="cep" type="cep" required="true" readonly/>
+                            <div class="br-input mb-3 col-md-5 col-sm-12 ">
+                                <label for="districtName">Bairro*</label>
+                                <input th:value="${subscription.candidate.street.district.name}"  type="text" readonly/>
                             </div>
-                            <!-- Estado -->
-                            <div class="br-input mb-3 col-md-6 col-sm-12 ">
-                                <label for="logradouro">Estado*</label>
-                                <input name="logradouro" id="logradouro" type="text" required="true" readonly/>
+                            <!-- cidade -->
+                            <div class="br-input mb-3 col-md-5 col-sm-12 ">
+                                <label for="city">Cidade*</label>
+                                <input type="text" th:value="${subscription.candidate.street.district.city.name}" readonly>
                             </div>
-                        
+                            <!-- EStado -->
+                            <div class="br-input mb-3 col-md-2 col-sm-12 ">
+                                <label for="districtName">Estado*</label>
+                                <input type="text" th:value="${subscription.candidate.street.district.city.state.uf}" id="stateID" placeholder="estado" >
+                            </div>
+                            
+                              
                         </div>
                         <div class="d-flex justify-content-end mt-2">
                             <span class="legend" >Existe alguma divergência nos seus dados pessoais? <a th:href="''">Clique aqui para corrigir.</a> 
@@ -156,8 +162,7 @@
                 <p class="h4">Escolha as modalidades do processo que deseja participar</p>
                 <div class="mx-1 mb-6">
                     <form action="/subscription" method="post" id="formSubscription">
-                        <input type="text" th:field="${subscription.process}" hidden>
-                        <input type="text" th:field="${subscription.candidate}" hidden>
+                        <input type="text" th:field="${subscription.process.id}" hidden>
                         <input type="text" th:field="${subscription.candidate.cpf}" hidden>
 
                         <div class="br-message info" role="alert" th:if="${hasSubscription}">
@@ -182,7 +187,6 @@
 
                           </div>
                         <div class=" d-flex justify-content-start align-intems-center gap-5 flex-wrap">
-                     
                             <div class="br-checkbox ml-2 mt-0 p-3" th:each="modality, state : ${subscription.process.modalities}">
                                 <input th:id="${modality.id}" th:value="${modality.id}" type="checkbox"             
                                 th:name="modalities" th:data-child="check-01" th:checked="${#arrays.contains(subscription.modalities, modality)}" th:disabled="${hasSubscription}" />

@@ -101,26 +101,44 @@ function testaCPF(strCPF) {
 
 //cep
 function verifyCEP(){
+    //captura o valor do input do cep
     let cep = document.querySelector("#cep").value
+    //verifica no end-point /adress?cep=*** que retorna os valores do enredeço
     axios.get(`/address?cep=${cep}`)
     .then(function (response)
     {
         let address = response.data
-        console.log(address)
-        document.querySelector("#logradouro").value = address.logradouro;
-        document.querySelector("#districtName").value = address.district.name;
-        document.querySelector("#city").value = address.district.city.name ;
-        document.querySelector("#cityID").value = address.district.city.id + 'a';
-        document.querySelector("#districtId").value = address.district.id + 'a';
-        document.querySelector("#stateID").value = address.district.city.state.uf;
+        //verificando se o cep informado é valido
+        if(response.data.cep)
+        {
+            //colocando o valor retornado nos inputs
+            document.querySelector("#logradouro").value = address.logradouro;
+            document.querySelector("#districtName").value = address.district.name;
+            document.querySelector("#city").value = address.district.city.name;
+            document.querySelector("#cityID").value = address.district.city.id;
+            document.querySelector("#districtId").value = address.district.id;
+            document.querySelector("#stateID").value = address.district.city.state.uf;
+        } 
+        else
+        {
+            //mensagem de erro
+            Swal.fire({
+                icon: 'error',
+                html: 'valor do CEP invalido',
+                timerProgressBar: true,     
+                background: '#f1f1f1 ',                  
+                backdrop: "rgba(0, 0, 0, 0)" ,
+                })
+                //limpando os inputs 
+            document.querySelector("#logradouro").value = ""
+            document.querySelector("#districtName").value = ""
+            document.querySelector("#city").value = ""
+            document.querySelector("#cityID").value = ""
+            document.querySelector("#districtId").value = ""
+            document.querySelector("#stateID").value = ""
+        }      
     })
     .catch(function (error) {
-        Swal.fire({
-            icon: 'error',
-            html: 'erro no CEP',
-            timerProgressBar: true,     
-            background: '#f1f1f1 ',                  
-            backdrop: "rgba(0, 0, 0, 0)" ,
-            })
+       console.log(error)
     })
 }

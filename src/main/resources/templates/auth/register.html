@@ -107,24 +107,23 @@
                             <span class="br-divider md my-3"></span>
                             <h3 class="mt-2 h3">Endereço </h3>
                             <div class="row">
-                                <!-- CEP -->
-                                
-                                <div class="col-sm-5 col-lg-3 mb-3">
+                                <!-- CEP -->                                
+                                <div class="col-md-3 col-sm-12  mb-3">
                                     <div class="br-input  input-button">
                                       <label for="cep">Buscar</label>
-                                      <input id="cep" type="cep" placeholder="Digite o seu CEP" onblur="verifyCEP()"/>
+                                      <input id="cep" type="cep" name="street.cep" placeholder="Digite o seu CEP" onblur="verifyCEP()"/>
                                       <button class="br-button" type="button" aria-label="Buscar" onclick="verifyCEP()">
                                         <i class="fas fa-search" aria-hidden="true"></i>
                                       </button>
                                     </div>
                                   </div>
                                 <!-- Logradoura -->
-                                <div class="br-input mb-3 col-md-6 col-sm-12 ">
+                                <div class="br-input mb-3 col-md-7 col-sm-12 ">
                                     <label for="logradouro">Endereço*</label>
-                                    <input name="logradouro" id="logradouro" type="text" required="true" readonly/>
+                                    <input name="street.logradouro" id="logradouro" type="text" required="true" readonly/>
                                 </div>
                                 <!-- numero -->
-                                <div class="br-input mb-3 col-md-3 col-sm-12 ">
+                                <div class="br-input mb-3 col-md-2 col-sm-12 ">
                                     <label for="addressNumber">Numero*</label>
                                     <input name="addressNumber" id="addressNumber" type="text" required="true" />
                                 </div>
@@ -133,19 +132,19 @@
                                 <!-- Bairro -->
                                 <div class="br-input mb-3 col-md-5 col-sm-12 ">
                                     <label for="districtName">Bairro*</label>
-                                    <input name="district.name" id="districtName" type="text" required="true" readonly/>
-                                    <input type="text" name="district.id" id="districtId" placeholder="bairro id">
+                                    <input name="street.district.name" id="districtName" type="text" required="true" readonly/>
+                                    <input type="text" name="street.district.id" id="districtId" placeholder="bairro id" hidden readonly>
                                 </div>
                                 <!-- cidade -->
                                 <div class="br-input mb-3 col-md-5 col-sm-12 ">
                                     <label for="city">Cidade*</label>
-                                    <input name="district.city.name" id="city" type="text" required="true" readonly/>
-                                    <input type="text" name="district.city.id" id="cityID" placeholder="cidade id">
+                                    <input name="street.district.city.name" id="city" type="text" required="true" readonly/>
+                                    <input type="text" name="street.district.city.id" id="cityID" placeholder="cidade id" hidden readonly>
                                 </div>
                                 <!-- EStado -->
                                 <div class="br-input mb-3 col-md-2 col-sm-12 ">
                                     <label for="districtName">Estado*</label>
-                                    <input type="text" name="district.city.state.uf" id="stateID" placeholder="estado" readonly >
+                                    <input type="text" name="street.district.city.state.uf" id="stateID" placeholder="estado" >
                                 </div>
                                 
                                   
