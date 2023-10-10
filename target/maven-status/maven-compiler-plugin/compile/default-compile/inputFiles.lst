@@ -1,3 +1,5 @@
+/home/thiago/Projects/Java/processo-seletivo/src/main/java/br/gov/sp/franciscomorato/educacao/processoseletivo/dto/AddressDTO.java
+/home/thiago/Projects/Java/processo-seletivo/src/main/java/br/gov/sp/franciscomorato/educacao/processoseletivo/controller/ReportController.java
 /home/thiago/Projects/Java/processo-seletivo/src/main/java/br/gov/sp/franciscomorato/educacao/processoseletivo/model/Candidate.java
 /home/thiago/Projects/Java/processo-seletivo/src/main/java/br/gov/sp/franciscomorato/educacao/processoseletivo/repository/UserRepository.java
 /home/thiago/Projects/Java/processo-seletivo/src/main/java/br/gov/sp/franciscomorato/educacao/processoseletivo/service/EmailService.java
@@ -28,6 +30,7 @@
 /home/thiago/Projects/Java/processo-seletivo/src/main/java/br/gov/sp/franciscomorato/educacao/processoseletivo/service/RoleService.java
 /home/thiago/Projects/Java/processo-seletivo/src/main/java/br/gov/sp/franciscomorato/educacao/processoseletivo/model/address/City.java
 /home/thiago/Projects/Java/processo-seletivo/src/main/java/br/gov/sp/franciscomorato/educacao/processoseletivo/controller/IndexController.java
+/home/thiago/Projects/Java/processo-seletivo/src/main/java/br/gov/sp/franciscomorato/educacao/processoseletivo/util/PDFGenerator.java
 /home/thiago/Projects/Java/processo-seletivo/src/main/java/br/gov/sp/franciscomorato/educacao/processoseletivo/repository/AllowedUserRepository.java
 /home/thiago/Projects/Java/processo-seletivo/src/main/java/br/gov/sp/franciscomorato/educacao/processoseletivo/controller/AddressController.java
 /home/thiago/Projects/Java/processo-seletivo/src/main/java/br/gov/sp/franciscomorato/educacao/processoseletivo/model/address/State.java

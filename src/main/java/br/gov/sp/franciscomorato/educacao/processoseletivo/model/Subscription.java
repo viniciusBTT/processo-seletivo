@@ -57,6 +57,22 @@ public class Subscription
         return this.modalities.addAll(modalities);
     }
 
-    
+    public String modalitiesToString()
+    {
+        String textReturn = "";
+        
+        int i = 0;
+        
+        while(i < this.modalities.size())
+        {
+            textReturn += modalities.get(i).getName();
+            i++;
+            
+            if(i < this.modalities.size())
+                textReturn += " |";
+        }
+        
+        return textReturn;
+    }
     
 }

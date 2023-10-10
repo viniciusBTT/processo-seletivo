@@ -17,6 +17,7 @@ import br.gov.sp.franciscomorato.educacao.processoseletivo.model.Role;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.User;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.repository.RoleRepository;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.repository.UserRepository;
+import br.gov.sp.franciscomorato.educacao.processoseletivo.util.PDFGenerator;
 import org.springframework.beans.factory.annotation.Value;
 
 @SpringBootApplication
@@ -29,6 +30,7 @@ import org.springframework.beans.factory.annotation.Value;
 		"br.gov.sp.franciscomorato.educacao.processoseletivo.repository",
 		"br.gov.sp.franciscomorato.educacao.processoseletivo.config",
 		"br.gov.sp.franciscomorato.educacao.processoseletivo.service",
+		"br.gov.sp.franciscomorato.educacao.processoseletivo.util"
 })
 
 @EntityScan(basePackages = {"br.gov.sp.franciscomorato.educacao.processoseletivo.model"})
@@ -50,6 +52,7 @@ public class ProcessoSeletivoApplication
 	@PostConstruct
 	public void createDefaultUser()
 	{
+            
             Role roleComum = new Role("ROLE_COMUM");
             Role roleAdmin = new Role("ROLE_ADMIN");
             Role roleRoot = new Role("ROLE_ROOT");
@@ -70,5 +73,7 @@ public class ProcessoSeletivoApplication
 	{
 		return builder.build();
 	}
+        
+        
 
 }

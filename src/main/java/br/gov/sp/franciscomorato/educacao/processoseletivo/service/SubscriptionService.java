@@ -101,4 +101,13 @@ public class SubscriptionService
         return subscriptionRepository.hasSubscription(cpf, processId);
     }
     
+    /**
+     * 
+     * @param id
+     * @return 
+     */
+    public Subscription findById(Long id)
+    {
+        return subscriptionRepository.findById(id).orElse(null);
+    }
 }
