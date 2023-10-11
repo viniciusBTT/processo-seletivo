@@ -5,6 +5,10 @@ import org.springframework.stereotype.Repository;
 
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.Modality;
 
+/**
+ * @author
+ * @see Modality
+ */
 @Repository
 public interface ModalityRepository extends JpaRepository<Modality, Integer>
 {

@@ -25,6 +25,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  * controladora de inscrição
  * @author thiago
  * @see SelectiveProcessService
+ * @see CandidateService
+ * @see SubscriptionService
+ * @see EmailService
+ * @see SelectiveProcess
  */
 @Controller
 @RequestMapping("/subscription")
@@ -108,6 +112,7 @@ public class SubscriptionController
                     }
 
                     ra.addFlashAttribute("success", "A sua inscrição foi realizada com sucesso!");
+                    
                     String text = "Prezado(a) " + subscription.getCandidate().getName() + ",\n\n"
                     + "Confirmamos a sua inscrição no "+ subscription.getProcess().getTitle() +".\n\n"
                     + "Aqui estão os detalhes importantes sobre a sua inscrição:\n\n"

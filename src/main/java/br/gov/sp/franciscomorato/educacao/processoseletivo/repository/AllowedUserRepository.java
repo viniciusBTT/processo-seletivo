@@ -5,7 +5,12 @@ import org.springframework.stereotype.Repository;
 
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.AllowedUser;
 
+/**
+ * @author thiago
+ * @see AllowedUser
+ */
 @Repository
-public interface AllowedUserRepository extends JpaRepository<AllowedUser, String> {
+public interface AllowedUserRepository extends JpaRepository<AllowedUser, String> 
+{
     
 }

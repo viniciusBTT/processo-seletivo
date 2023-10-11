@@ -8,6 +8,12 @@ import br.gov.sp.franciscomorato.educacao.processoseletivo.model.Role;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.User;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.repository.CandidateRepository;
 
+/**
+ * @author thiago
+ * @see CandidateRepository
+ * @see UserService
+ * @see Candidate
+ */
 @Service
 public class CandidateService 
 {

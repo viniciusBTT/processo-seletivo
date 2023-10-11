@@ -11,7 +11,11 @@ import br.gov.sp.franciscomorato.educacao.processoseletivo.dto.AddressDTO;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.address.Street;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.service.AddressService;
 
-
+/**
+ * @author thiago
+ * @see AddressService
+ * @see Street
+ */
 @RestController
 @RequestMapping("/address")
 public class AddressController 
@@ -45,7 +49,5 @@ public class AddressController
             System.out.println("Erro ao consultar: " + e.getMessage());
         }
         return ResponseEntity.ok().build();
-    }
-    
-    
+    } 
 }

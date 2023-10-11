@@ -12,6 +12,7 @@ import lombok.Data;
 /**
  *
  * @author thiago
+ * @see State
  */
 @Entity
 @Data

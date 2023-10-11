@@ -5,6 +5,9 @@ import jakarta.persistence.Id;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 
+/**
+ * @author thiago
+ */
 @Entity
 @Data
 public class Role implements GrantedAuthority

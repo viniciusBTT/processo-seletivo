@@ -1,7 +1,6 @@
 
 package br.gov.sp.franciscomorato.educacao.processoseletivo.util;
 
-import br.gov.sp.franciscomorato.educacao.processoseletivo.model.Modality;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.Subscription;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
@@ -22,9 +21,6 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -147,7 +143,7 @@ public class PDFGenerator
             cb.setTextMatrix(30, 318); // coordenadas (x, y)
             cb.showText("3) Está ciente de que a inexatidão ou irregularidade destas afirmativas, ainda que verificadas posteriormente, ");
             cb.setTextMatrix(30, 308); // coordenadas (x, y)
-            cb.showText(" acarretará sua eliminação do processo seletivo, com a anulação de todos os atos praticados, sem prejuízo dos das");
+            cb.showText(" acarretará sua eliminação do processo seletivo, com a anulação de todos os atos praticados, sem prejuízo das");
             cb.setTextMatrix(30, 298); // coordenadas (x, y)
             cb.showText(" demais medidas de ordem administrativa, civil ou criminal.");
             

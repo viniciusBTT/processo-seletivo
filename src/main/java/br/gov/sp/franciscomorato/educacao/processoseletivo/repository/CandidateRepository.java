@@ -5,6 +5,10 @@ import org.springframework.stereotype.Repository;
 
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.Candidate;
 
+/**
+ * @author
+ * @see Candidate
+ */
 @Repository
 public interface CandidateRepository extends JpaRepository<Candidate, Long>
 {

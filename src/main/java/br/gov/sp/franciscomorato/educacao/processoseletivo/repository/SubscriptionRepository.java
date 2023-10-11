@@ -8,6 +8,10 @@ import org.springframework.stereotype.Repository;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.Subscription;
 import java.util.List;
 
+/**
+ * @author thiago
+ * @see Subscription
+ */
 @Repository
 public interface SubscriptionRepository extends JpaRepository<Subscription, Long>
 {

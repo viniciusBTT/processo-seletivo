@@ -10,6 +10,8 @@ import java.util.List;
 /**
  * 
  * @author thiago
+ * @see ModalityRepository
+ * @see Modality
  */
 @Service
 public class ModalityService 

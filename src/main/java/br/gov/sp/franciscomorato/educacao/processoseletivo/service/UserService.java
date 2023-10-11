@@ -23,6 +23,9 @@ import org.springframework.stereotype.Service;
  * regras de negócio de usuário
  * @author thiago
  * @see User
+ * @see UserRepository
+ * @see AllowedUserRepository
+ * @see AllowedUser
  */
 @Service
 public class UserService implements UserDetailsService

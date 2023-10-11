@@ -20,6 +20,7 @@ import br.gov.sp.franciscomorato.educacao.processoseletivo.service.SubscriptionS
  * @author thiago
  * @see SelectiveProcessService
  * @see CandidateService
+ * @see SubscriptionService
  */
 @Controller
 @RequestMapping("/home")
@@ -67,9 +68,5 @@ public class HomeController
             model.addAttribute("processList", processService.findInProgress());
             return "candidate/home";
         }
-
-
-
     }
-
 }

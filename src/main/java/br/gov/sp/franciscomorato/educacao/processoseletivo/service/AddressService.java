@@ -4,10 +4,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import br.gov.sp.franciscomorato.educacao.processoseletivo.ProcessoSeletivoApplication;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.dto.AddressDTO;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.address.Street;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.repository.StreetRepository;
 
+/**
+ * @author thiago
+ * @see https://viacep.com.br/
+ * @see StreetRepository
+ * @see Street
+ * @see ProcessoSeletivoApplication
+ * @see AddressDTO
+ */
 @Service
 public class AddressService 
 {

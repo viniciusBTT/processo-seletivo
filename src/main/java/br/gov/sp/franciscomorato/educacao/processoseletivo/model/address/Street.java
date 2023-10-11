@@ -11,6 +11,7 @@ import lombok.Data;
 /**
  *
  * @author thiago
+ * @see District
  */
 @Entity
 @Data

@@ -5,8 +5,6 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,6 +13,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * @author thiago
+ * @see Role
+ */
 @Entity
 @Data
 public class User implements UserDetails
@@ -35,15 +37,12 @@ public class User implements UserDetails
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles = new ArrayList<>();
 
-    public User () {
-
-    }
+    public User () {}
 
     public User (String username)
     {
         this.username = username;
     }
-
 
     //cria usuario
     public User (String username, String password, Role role) {

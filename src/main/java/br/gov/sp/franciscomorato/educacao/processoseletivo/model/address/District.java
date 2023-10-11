@@ -10,8 +10,8 @@ import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
 /**
- *
  * @author thiago
+ * @see City
  */
 @Entity
 @Data

@@ -1,6 +1,5 @@
 package br.gov.sp.franciscomorato.educacao.processoseletivo.service;
 
-import br.gov.sp.franciscomorato.educacao.processoseletivo.model.Modality;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.SelectiveProcess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,6 +10,11 @@ import br.gov.sp.franciscomorato.educacao.processoseletivo.repository.SelectiveP
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author thiago
+ * @see SelectiveProcessRepository
+ * @see SelectiveProcess
+ */
 @Service
 public class SelectiveProcessService
 {

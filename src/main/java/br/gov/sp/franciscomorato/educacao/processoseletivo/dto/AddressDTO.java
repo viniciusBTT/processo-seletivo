@@ -1,5 +1,6 @@
 package br.gov.sp.franciscomorato.educacao.processoseletivo.dto;
 
+/*** espelho da api */
 public record AddressDTO (
     String cep,
     String logradouro,
@@ -11,7 +12,4 @@ public record AddressDTO (
     String gia,
     String ddd,
     String siafi
-)
-{
-    
-}
+){}

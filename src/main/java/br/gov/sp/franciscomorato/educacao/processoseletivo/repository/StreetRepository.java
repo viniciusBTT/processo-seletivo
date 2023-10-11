@@ -5,6 +5,10 @@ import org.springframework.stereotype.Repository;
 
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.address.Street;
 
+/**
+ * @author thiago
+ * @see Street
+ */
 @Repository
 public interface StreetRepository extends JpaRepository<Street, String> 
 {

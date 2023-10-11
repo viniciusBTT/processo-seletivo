@@ -15,6 +15,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * @author thiago
+ * @see Modality
+ */
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -68,6 +72,4 @@ public class SelectiveProcess {
     {
         return this.modalities.remove(modality);
     }
-
-    
 }

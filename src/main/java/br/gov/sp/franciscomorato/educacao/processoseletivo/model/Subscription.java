@@ -16,6 +16,12 @@ import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
+/**
+ * @author thiago
+ * @see SelectiveProcess
+ * @see Candidate
+ * @see Modality
+ */
 @Entity
 @Data
 public class Subscription

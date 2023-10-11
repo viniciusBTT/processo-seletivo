@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  *
  * @author thiago
+ * @see ModalityService
+ * @see SelectiveProcessService
  */
 @RestController
 @RequestMapping("/modality")

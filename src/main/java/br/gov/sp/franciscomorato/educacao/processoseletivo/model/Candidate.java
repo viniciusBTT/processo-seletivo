@@ -12,6 +12,11 @@ import jakarta.validation.constraints.Email;
 
 import lombok.Data;
 
+/**
+ * @author thiago
+ * @see User
+ * @see Street
+ */
 @Entity
 @Data
 public class Candidate

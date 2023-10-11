@@ -38,7 +38,9 @@ public class RegisterController
         return "auth/register";
     }
 
-    /** VIEWS */
+
+
+    /** API */
 
     /**
      * 
@@ -59,8 +61,6 @@ public class RegisterController
                 return register(candidate);
             }
             
-            
-
             ra.addFlashAttribute("success", "Sua candidatura foi salva com sucesso!");
             ra.addFlashAttribute("message", "Acesse o sistema para verificar sua inscrição.");
             return "redirect:/acesso";

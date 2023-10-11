@@ -8,10 +8,13 @@ import br.gov.sp.franciscomorato.educacao.processoseletivo.model.SelectiveProces
 
 import java.util.List;
 
+/**
+ * @author thiago
+ * @see SelectiveProcess
+ */
 @Repository
 public interface SelectiveProcessRepository extends JpaRepository<SelectiveProcess, Integer>
 {
     @Query(value = "SELECT * FROM selective_process where end_date < now()", nativeQuery = true)
     List<SelectiveProcess> findInProgress();
-
 }

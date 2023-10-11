@@ -12,6 +12,7 @@ import lombok.Data;
 
 /**
  * author thiago
+ * @see Role
  */
 @Entity
 @Data
