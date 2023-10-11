@@ -7,15 +7,13 @@
     <div class="template-base">
 
         <head th:replace="~{fragments/out/header}"></head>
-        <main class="container-fluid" id="main">
+        <main class="container-fluid" id="main" >
             <div th:if="${#lists.size(processList) == 0 }">
-                <div class="my-3">
-                    <div class="d-flex flex-column flex-md-row justify-content-md-between justify-content-start ">
-                       
+                <div class="">
+                    <div class="d-flex flex-column flex-md-row justify-content-md-between justify-content-start ">                       
                         <div class="my-auto text-center">
                             <p class="h2 mb-2">Nenhum processo seletivo em andamento</p>
-                        </div>
-                         
+                        </div>                         
                         <div class="">
                             <div class="">
                                 <img src="/assets/images/ilustracaotempo.png" alt="" max-height="550px">
@@ -73,17 +71,13 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="my-5">
-                    <div class="br-card">
-                        <div class="card-content">
-                            <div class="d-flex  justify-content-center align-items-center  flex-column">
-                                <div class="">
-                                    <p class="text-weight-semi-bold text-up-02">Acesse o sistema para se candidatar nos
-                                        processos seletivos ou para consultar as incrições já realizadas.</p>
-                                </div>
-                            </div>
-                        </div>
+                </div>                
+            </div>
+            <div class="my-5 mx-auto">
+                <div class="br-card ">
+                    <div class="card-content">
+                        <p class="text-weight-semi-bold text-up-02 text-center">Acesse o sistema para se candidatar nos
+                            processos seletivos ou para consultar as incrições já realizadas.</p>
                     </div>
                 </div>
             </div>
@@ -93,7 +87,13 @@
 
     </div>
     <script src="/assets/vendors/govBR/dist/core.min.js"></script>
+    <script src="/assets/vendors/sweetAlert2/js/sweetalert2.all.js"></script>        
     <script src="/assets/js/ThemeJS.js"></script>
+    <script>
+        let success = "[[${success}]]"
+        let error = "[[${error}]]"  
+    </script>
+    <script src="/assets/js/AlertTrigger.js"></script>
 
 </body>
 

@@ -5,7 +5,7 @@
     <body style="background-color: #f1f1f1; height: 100vh">
         <div class="template-base" >   
             <main class="container-lg d-flex align-content-center justify-content-center " >                  
-                <div class="br-card  col-lg-5 col-md-8 col-sm-11 mt-6" >
+                <div class="br-card  col-lg-4 col-md-8 col-sm-11 mt-6" >
                     <div class="br-message success" role="alert" th:if="${message}">
                         <div class="icon">
                             <i class="fas fa-check-circle fa-lg" aria-hidden="true"></i>
@@ -20,10 +20,10 @@
                         </div>
                     </div>
                     <div class="card-content p-">
-                        <form  method="POST" th:action="@{/auth}">
+                        <form  method="POST" th:action="@{/auth}" id="formLogin">
                             <div class="br-input mb-2">
-                                <label for="input-default">CPF ou Nome de Usuário</label>
-                                <input id="input-default" type="text" name="username" />
+                                <label for="username"  id="lblUsername">CPF ou Nome de Usuário </label>
+                                <input id="username" type="text" name="username" onkeyup="isLetter(this.value)"/>
                             </div>
                             <div class="br-input input-button">
                                 <label for="input-password">Senha</label>
@@ -56,11 +56,13 @@
             </main>            
         </div>
         <script src="/assets/vendors/govBR/dist/core-init.js"></script>
-        <script src="/assets/vendors/sweetAlert2/js/sweetalert2.all.js"></script>        
+        <script src="/assets/vendors/sweetAlert2/js/sweetalert2.all.js"></script>   
+        <script src="/assets/vendors/vanillaMasker/vanilla-masker.min.js"></script>
         <script>
             let success = "[[${success}]]"
-            let error = "[[${error}]]"  
+            let error = "[[${error}]]"             
         </script>
+        <script src="/assets/js/auth/Login.js"></script>
         <script src="/assets/js/AlertTrigger.js"></script>
 
         

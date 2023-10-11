@@ -27,7 +27,7 @@ function loadingAlert(msg)
   Swal.fire({
     title: 'Só um momento',
     html: msg,
-    timer: 25000,    
+    timer: 50000,    
     didOpen: () => {
         //exibir loadin
         Swal.showLoading();
