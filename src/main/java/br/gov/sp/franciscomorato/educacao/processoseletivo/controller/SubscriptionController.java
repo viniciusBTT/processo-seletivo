@@ -31,7 +31,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  * @see SelectiveProcess
  */
 @Controller
-@RequestMapping("/subscription")
+@RequestMapping({"/subscription", "/inscricao"})
 public class SubscriptionController 
 {
     
@@ -86,52 +86,53 @@ public class SubscriptionController
     @PostMapping
     public String postSubscription(@Valid Subscription subscription, 
             RedirectAttributes ra,
-            @RequestParam Integer[] modalities) 
+            @RequestParam(required = false) Integer[] modalities) 
     {
         try 
         {
+
+            if(modalities == null)
+            {
+                ra.addFlashAttribute("error", "Selecione uma ou mais modalidades.");
+                return "redirect:/inscricao/" + subscription.getProcess().getId();
+            }
+
             subscription = subscriptionService.save(subscription, modalities);
-            
+
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
             
-            String modalitiesText = "";
-            
             if(subscription == null) {
-                ra.addFlashAttribute("error", "Esse processo inválido.");
+                ra.addFlashAttribute("error", "Processo Seletivo inválido.");
             }
-            else {
-                
+            else 
+            {
+                //adiciona candidato
+                subscription.setCandidate(candidateService.findByCpf(subscription.getCandidate().getCpf()));
+                subscription.setProcess(processService.findById(subscription.getProcess().getId()));
+
                 //envia inscrição por e-mail
-                if(subscription.getCandidate().getEmail() != null) {
-                    
-                    System.out.println("Enviando e-mail....");
-                    
-                    for(Modality modality : subscription.getModalities())
-                    {
-                        modalitiesText += modality.getName() + " | ";
-                    }
+                System.out.println("Enviando e-mail....");
 
-                    ra.addFlashAttribute("success", "A sua inscrição foi realizada com sucesso!");
-                    
-                    String text = "Prezado(a) " + subscription.getCandidate().getName() + ",\n\n"
-                    + "Confirmamos a sua inscrição no "+ subscription.getProcess().getTitle() +".\n\n"
-                    + "Aqui estão os detalhes importantes sobre a sua inscrição:\n\n"
-                    + "Número da Inscrição: " + subscription.getId() + "\n"
-                    + "Nome do Candidato: " + subscription.getCandidate().getName() + "\n"
-                    + "Data da Inscrição: " + sdf.format(subscription.getCreateAt())  +"\n\n"
-                    + "Modalidades: " + modalitiesText + "\n\n\n"
-                    + "Atenciosamente,\n\n"
-                    + "Diretoria de Tecnologia Interna\n"
-                    + "Secretaria Municipal de Educação\n"
-                    + "Prefeitura de Francisco Morato\n"
-                    + "(11) 4489-8900";
+                ra.addFlashAttribute("success", "A sua inscrição foi realizada com sucesso!");
+                
+                String text = "Prezado(a) " + subscription.getCandidate().getName() + ",\n\n"
+                + "Confirmamos a sua inscrição no "+ subscription.getProcess().getTitle() +".\n\n"
+                + "Aqui estão os detalhes importantes sobre a sua inscrição:\n\n"
+                + "Número da Inscrição: " + subscription.getId() + "\n"
+                + "Nome do Candidato: " + subscription.getCandidate().getName() + "\n"
+                + "Data da Inscrição: " + sdf.format(subscription.getCreateAt())  +"\n\n"
+                + "Modalidades: " + subscription.modalitiesToString() + "\n\n\n"
+                + "Atenciosamente,\n\n"
+                + "Diretoria de Tecnologia Interna\n"
+                + "Secretaria Municipal de Educação\n"
+                + "Prefeitura de Francisco Morato\n"
+                + "(11) 4489-8900";
 
-                    emailService.sendmail(
-                        subscription.getCandidate().getEmail(),
-                        "Confirmação de Inscrição no Processo Seletivo",
-                        text
-                    );
-                }
+                emailService.sendmail(
+                    subscription.getCandidate().getEmail(),
+                    "Confirmação de Inscrição no Processo Seletivo",
+                    text
+                );
             }
         } 
         catch (Exception e)

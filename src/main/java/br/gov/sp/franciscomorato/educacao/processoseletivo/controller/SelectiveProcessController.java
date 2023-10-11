@@ -51,6 +51,7 @@ public class SelectiveProcessController
      * @return 
      */
     @GetMapping("/{id}")
+    @PostAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ROOT')")
     public String process(Model model, @PathVariable Integer id, ModalityDTO modalityDTO)
     {
         model.addAttribute("selectiveProcess", processService.findById(id));
@@ -63,6 +64,7 @@ public class SelectiveProcessController
      * @return 
      */
     @GetMapping("/add")
+    @PostAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ROOT')")
     public String add(SelectiveProcess selectiveProcess)
     {
         return "process/process";
@@ -79,6 +81,7 @@ public class SelectiveProcessController
      * @return
      */
     @PostMapping
+    @PostAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ROOT')")
     public String persist(@Valid SelectiveProcess selectiveProcess, RedirectAttributes ra)
     {
         try
@@ -111,6 +114,7 @@ public class SelectiveProcessController
     @PostMapping("/modality")
     @ResponseBody
     @Transactional
+    @PostAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ROOT')")
     public ResponseEntity<?> addModality(@RequestBody ModalityDTO modalityDTO)
     {
         try

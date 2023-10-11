@@ -9,6 +9,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -24,6 +26,7 @@ public class User implements UserDetails
     @Id
     private String username;
 
+    @JsonIgnore
     private String password;
 
     private boolean accountNonExpired;
@@ -35,6 +38,7 @@ public class User implements UserDetails
     private boolean enabled;
 
     @ManyToMany(fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<Role> roles = new ArrayList<>();
 
     public User () {}
@@ -71,6 +75,7 @@ public class User implements UserDetails
     }
 
     @Override
+    @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.roles;
     }
