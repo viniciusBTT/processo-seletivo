@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -43,17 +44,17 @@ public class SelectiveProcess {
     private String description;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(pattern = "dd/mm/yyyy HH:mm")
+    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm", iso = ISO.DATE_TIME)
     @NotNull
     private Date startDate;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(pattern = "dd/mm/yyyy HH:mm")
+    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm", iso = ISO.DATE_TIME)
     @NotNull
     private Date endDate;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(pattern = "dd/mm/yyyy HH:mm")
+    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm", iso = ISO.DATE_TIME)
     private Date createdAt;
     
     @OneToMany(cascade = CascadeType.ALL)
