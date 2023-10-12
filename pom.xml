@@ -11,7 +11,7 @@
     </parent>
     <groupId>br.gov.sp.franciscomorato.educacao</groupId>
     <artifactId>processo-seletivo</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0</version>
     <name>processo-seletivo</name>
     <description>Processo Seletivo da Educação</description>
     <properties>

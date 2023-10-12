@@ -104,7 +104,7 @@ public class PDFGenerator
             cb.setTextMatrix(40, 540); // coordenadas (x, y)
             cb.showText("CEP: " + subscription.getCandidate().getRg());
             cb.setTextMatrix(250, 540); // coordenadas (x, y)
-            cb.showText("Logradouro: " + subscription.getCandidate().getRg() + ", n.º " +7854);
+            cb.showText("Logradouro: " + subscription.getCandidate().getStreet().getLogradouro() + ", n.º " + subscription.getCandidate().getAddressNumber());
             cb.setTextMatrix(40, 520); // coordenadas (x, y)
             cb.showText("Bairro: " + "Recanto Feliz");
             cb.setTextMatrix(300, 520); // coordenadas (x, y)
