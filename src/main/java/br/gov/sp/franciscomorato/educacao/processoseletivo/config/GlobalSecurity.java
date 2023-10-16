@@ -36,6 +36,7 @@ public class GlobalSecurity
             requests
                 .requestMatchers("/").permitAll()
                 .requestMatchers("/register/**").permitAll()
+                .requestMatchers("/forgot/**").permitAll()
                 .requestMatchers("/address/**").permitAll()
                 .requestMatchers("/auth", "/acesso").permitAll()
                 .requestMatchers("/assets/**").permitAll()

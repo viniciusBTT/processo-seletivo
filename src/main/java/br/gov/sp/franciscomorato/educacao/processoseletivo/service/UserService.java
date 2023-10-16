@@ -1,12 +1,15 @@
 package br.gov.sp.franciscomorato.educacao.processoseletivo.service;
 
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.AllowedUser;
+import br.gov.sp.franciscomorato.educacao.processoseletivo.model.PasswordResetToken;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.Role;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.User;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.repository.AllowedUserRepository;
+import br.gov.sp.franciscomorato.educacao.processoseletivo.repository.PasswordResetTokenRepository;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.repository.UserRepository;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +38,9 @@ public class UserService implements UserDetailsService
 
     @Autowired
     private AllowedUserRepository allowedUserRepository;
+    
+    @Autowired
+    private PasswordResetTokenRepository resetRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
@@ -113,6 +119,37 @@ public class UserService implements UserDetailsService
     {
         return this.allowedUserRepository.findById(username).orElse(null);
     }
+    
+    public void createPasswordResetTokenForUser(User user, String token)
+    {
+        PasswordResetToken prt = new PasswordResetToken(token, user);
+        resetRepository.save(prt);
+    }
+    
+    public PasswordResetToken validatePasswordResetToken(String token)
+    {
+        final PasswordResetToken passwordResetToken = resetRepository.findByToken(token);
+        
+        return !isTokenFound(passwordResetToken) ? null
+                : isTokenExpired(passwordResetToken) ? null
+                : passwordResetToken;
+        
+    }
+    
+    public void deleteToken(String token)
+    {
+        resetRepository.deleteByToken(token);
+    }
+    
+    private boolean isTokenFound(PasswordResetToken passToken) {
+        return passToken != null;
+    }
+
+    private boolean isTokenExpired(PasswordResetToken passToken) {
+        final Calendar cal = Calendar.getInstance();
+        return passToken.getExpiryDate().before(cal.getTime());
+    }
+    
 
 
 }
