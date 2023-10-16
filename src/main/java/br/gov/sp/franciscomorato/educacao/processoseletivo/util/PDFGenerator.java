@@ -102,11 +102,11 @@ public class PDFGenerator
             cb.stroke();
             
             cb.setTextMatrix(40, 540); // coordenadas (x, y)
-            cb.showText("CEP: " + subscription.getCandidate().getRg());
+            cb.showText("CEP: " + subscription.getCandidate().getStreet().getCep());
             cb.setTextMatrix(250, 540); // coordenadas (x, y)
             cb.showText("Logradouro: " + subscription.getCandidate().getStreet().getLogradouro() + ", n.º " + subscription.getCandidate().getAddressNumber());
             cb.setTextMatrix(40, 520); // coordenadas (x, y)
-            cb.showText("Bairro: " + "Recanto Feliz");
+            cb.showText("Bairro: " + subscription.getCandidate().getStreet().getDistrict().getName());
             cb.setTextMatrix(300, 520); // coordenadas (x, y)
             cb.showText("Cidade: " + "Francisco Morato");
             

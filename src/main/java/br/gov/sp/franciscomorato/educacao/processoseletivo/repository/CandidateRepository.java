@@ -10,7 +10,7 @@ import br.gov.sp.franciscomorato.educacao.processoseletivo.model.Candidate;
  * @see Candidate
  */
 @Repository
-public interface CandidateRepository extends JpaRepository<Candidate, Long>
+public interface CandidateRepository extends JpaRepository<Candidate, String>
 {
         
 }

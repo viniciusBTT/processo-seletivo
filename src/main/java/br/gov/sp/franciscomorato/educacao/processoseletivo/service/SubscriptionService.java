@@ -74,7 +74,7 @@ public class SubscriptionService
      * @param processId
      * @return
      */
-    public boolean hasSubscription(Long cpf, Integer processId) 
+    public boolean hasSubscription(String cpf, Integer processId) 
     {
         //caso nao tenha autenticacao
         return subscriptionRepository.hasSubscription(cpf, processId) != null;
@@ -85,7 +85,7 @@ public class SubscriptionService
      * @param cpf
      * @return 
      */
-    public List<Subscription> findSubscriptionByCandidateInProgress(Long cpf)
+    public List<Subscription> findSubscriptionByCandidateInProgress(String cpf)
     {
         return subscriptionRepository.findSubscriptionByCandidateInProgress(cpf);
     }
@@ -96,7 +96,7 @@ public class SubscriptionService
      * @param processId
      * @return 
      */
-    public Subscription findSubscription(Long cpf, Integer processId)
+    public Subscription findSubscription(String cpf, Integer processId)
     {
         return subscriptionRepository.hasSubscription(cpf, processId);
     }

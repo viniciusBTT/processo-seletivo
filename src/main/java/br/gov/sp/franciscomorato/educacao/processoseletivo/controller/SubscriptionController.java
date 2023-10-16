@@ -55,14 +55,12 @@ public class SubscriptionController
 
         if(process != null) 
         {
-            var cpf = Long.valueOf(auth.getName());
-            
-            boolean hasSubscription = subscriptionService.hasSubscription(cpf, processId);
+            boolean hasSubscription = subscriptionService.hasSubscription(auth.getName(), processId);
             
             if(hasSubscription) 
             {
                 model.addAttribute("hasSubscription", hasSubscription);
-                model.addAttribute( "subscription", subscriptionService.findSubscription(cpf, processId));    
+                model.addAttribute( "subscription", subscriptionService.findSubscription(auth.getName(), processId));    
             }
             else
             {
@@ -70,7 +68,7 @@ public class SubscriptionController
                         "subscription", 
                         new Subscription(
                                 process,
-                                candidateService.findByCpf(Long.valueOf(auth.getName()))));
+                                candidateService.findByCpf(auth.getName())));
             }
             
         } 

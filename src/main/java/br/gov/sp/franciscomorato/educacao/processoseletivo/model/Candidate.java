@@ -11,6 +11,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Email;
 
 import lombok.Data;
+import org.hibernate.validator.constraints.br.CPF;
 
 /**
  * @author thiago
@@ -22,7 +23,8 @@ import lombok.Data;
 public class Candidate
 {
     @Id
-    private Long cpf;
+    @CPF(message = "CPF inválido")
+    private String cpf;
     
     @NotNull
     private String name;

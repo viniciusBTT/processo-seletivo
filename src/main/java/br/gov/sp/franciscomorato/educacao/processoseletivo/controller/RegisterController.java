@@ -53,6 +53,15 @@ public class RegisterController
     {
         try 
         {
+            Candidate candidateAux = candidateService.findByCpf(candidate.getCpf());
+            
+            
+            if(candidateAux != null)
+            {
+                ra.addFlashAttribute("error", "Você já possui cadastro.");
+                return "redirect:/acesso";
+            }
+            
             candidate = candidateService.save(candidate);    
 
             if(candidate == null)
@@ -79,7 +88,7 @@ public class RegisterController
      */
     @GetMapping("/candidate")
     @ResponseBody
-    public ResponseEntity<?> findCandidate(@RequestParam Long cpf)
+    public ResponseEntity<?> findCandidate(@RequestParam String cpf)
     {
         try 
         {

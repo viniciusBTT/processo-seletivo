@@ -63,7 +63,7 @@ public class CandidateService
      * @param cpf
      * @return
      */
-    public Candidate findByCpf(Long cpf)
+    public Candidate findByCpf(String cpf)
     {
         return candidateRepository.findById(cpf).orElse(null);
     }

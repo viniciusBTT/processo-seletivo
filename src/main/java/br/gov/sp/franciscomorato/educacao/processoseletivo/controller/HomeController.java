@@ -58,7 +58,7 @@ public class HomeController
                     "subscriptions", 
                     subscriptionService
                                     .findSubscriptionByCandidateInProgress(
-                                            Long.valueOf(authentication.getName())));
+                                           authentication.getName()));
             model.addAttribute("processList", processService.findInProgress());
             return "candidate/home";
         } 

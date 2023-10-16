@@ -31,6 +31,7 @@ public class CandidateController
     /**
      * método que pesquisa candidato por cpf
      * @param cpf
+     * @param auth
      * @return ResponseEntity pronto para requisições JSON
      */
     @GetMapping
@@ -52,7 +53,7 @@ public class CandidateController
                 return ResponseEntity.notFound().build();
             }
 
-            Candidate candidate = candidateService.findByCpf(Long.valueOf(cpf));
+            Candidate candidate = candidateService.findByCpf(cpf);
             
             if(candidate == null) 
             {
