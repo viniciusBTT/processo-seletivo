@@ -8,19 +8,9 @@
 
         <head th:replace="~{fragments/internal/header}"></head>
         <main class="container-fluid" id="main">
-            <div class="row">
-                <div class="col-12">
-                    <div class="br-carousel" data-stage="in" data-mobile-nav="1">
-                        <div class="carousel-stage">
-                            <div class="carousel-page" active>
-                                <div class="carousel-content " th:style="'background-image: url('+${subscription.process.imageUrl}+')!important;background: no-repeat;
-                                    background-position: center; background-size: cover; height: inherit;'">
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            
+            <div class="d-flex justify-content-center">
+                <img th:src="${subscription.process.imageUrl}" alt="">
             </div>
             <div>
                 <h1 class="h2">[[${subscription.process.title}]]</h1>

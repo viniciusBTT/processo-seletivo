@@ -39,7 +39,7 @@
                             <div class="carousel-page" th:each="process,status: ${processList}"
                                 th:active="${status.index == 0 ? 'active' : ''}">
                                 <div class="carousel-content " th:style="'background-image: url('+${process.imageUrl}+')!important;background: no-repeat;
-                                    background-position: center; background-size: cover; height: inherit;'">
+                                    background-size: cover; height: inherit;'">
                                     <div class="mt-auto  py-2 px-3 d-block mb-6 "
                                         style="background-color: rgba(0, 0, 0, 0.60);  width: 100%;">
                                         <div
@@ -52,8 +52,9 @@
                                             </span>
                                         </div>
                                         <div class="d-flex flex-column ">
-                                            <span class="text-pure-0 mb-2 m-0 legend"
-                                                th:text="${process.description}"></span>
+                                            <span class="text-pure-0 text-base mb-2 m-0 "
+                                                th:text="${process.description}" style="max-width: 400ch;overflow: hidden;text-overflow: ellipsis;
+                                               "></span>
                                             <a class="br-button primary mb-2 mt-auto align-self-end"
                                                 th:href="'/subscription/' + ${process.id}">
                                                 Clique para ver mais

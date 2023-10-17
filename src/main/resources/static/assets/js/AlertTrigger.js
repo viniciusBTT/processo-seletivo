@@ -36,3 +36,18 @@ function loadingAlert(msg)
     },
   })
 }
+
+//Confirmação de logout
+function confirmLogout()
+{
+  Swal.fire({
+    title: 'Tem certeza que deseja sair?',
+    showCancelButton: true,
+    cancelButtonText: 'Cancelar',
+    confirmButtonText: 'Sim',
+  }).then((result) => {    
+    if (result.isConfirmed) {
+      window.location.href = "/logout";
+    } 
+  })
+}

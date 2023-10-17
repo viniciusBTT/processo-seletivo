@@ -36,7 +36,7 @@
                             <div class="carousel-page" th:each="process,status: ${processList}"
                                 th:active="${status.index == 0 ? 'active' : ''}">
                                 <div class="carousel-content " th:style="'background-image: url('+${process.imageUrl}+')!important;background: no-repeat;
-                                    background-position: center; background-size: cover; height: inherit;'">
+                                    background-size: cover; height: inherit;'">
                                     <div class="mt-auto  py-2 px-3 d-block "
                                         style="background-color: rgba(0, 0, 0, 0.45);  width: 100%;">
                                         <div
@@ -90,10 +90,13 @@
     <script src="/assets/vendors/sweetAlert2/js/sweetalert2.all.js"></script>        
     <script src="/assets/js/ThemeJS.js"></script>
     <script>
-        let success = "[[${success}]]"
-        let error = "[[${error}]]"  
+        let success = "[[${success}]]";
+        let error = "[[${error}]]";
+        let message = "[[${message}]]";
     </script>
     <script src="/assets/js/AlertTrigger.js"></script>
+    <script src="/assets/js/index/Index.js"></script>
+
 
 </body>
 
