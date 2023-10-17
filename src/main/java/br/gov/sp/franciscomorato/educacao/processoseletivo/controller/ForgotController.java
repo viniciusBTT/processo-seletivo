@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -105,7 +106,7 @@ public class ForgotController
             
             User user = userService.findByUsername(username);
             
-            user.setPassword(password);
+            user.setPassword(new BCryptPasswordEncoder().encode(password));
             
             userService.save(user);
             
