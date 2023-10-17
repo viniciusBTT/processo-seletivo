@@ -1,5 +1,8 @@
+//caturando o input de usarname/cpf e a sua label
 let username = document.getElementById("username")
 let lblLogin = document.getElementById('lblUsername');
+
+//verificando o 1 caracter do input para aplicar 
 username.addEventListener('input', e => {
 
     if (e.target.value.length === 0) {
@@ -19,10 +22,8 @@ username.addEventListener('input', e => {
 })
 document.getElementById('formLogin').addEventListener('submit', e => {
     e.preventDefault();
-    console.log(document.getElementById("username").value)
     if (!isNaN(username.value[0]))
         document.getElementById("username").value = document.getElementById("username").value.replaceAll(".", "").replaceAll("-", "");
-    console.log(document.getElementById("username").value)
     e.currentTarget.submit();
 })
 
@@ -64,25 +65,34 @@ function forgetPassword() {
 function confirmEmail(candidate) {
     Swal.fire({
         title: `Candidato ${candidate.candidate}`,
-        text: `Email : ${candidate.email}`,
+        text: `Este é o seu e-mail : ${candidate.email} ?`,
         showDenyButton: true,
         showCancelButton: false,
         confirmButtonText: 'Sim',
         denyButtonText: `Não`,
     }).then((result) => {
         /* verificando a responsa da modal*/
-        if (result.isConfirmed) {
-            Swal.fire('Encaminhamos ao seu e-mail o link para realizar a alteração da senha', '', 'success')
-            axios.post('/forgot/reset', {
-                ForgotDTO: {
-                    candidate: candidate.candidate,
-                    email: candidate.email
-                }
+        Swal.fire({
+            title: 'Só um momento',
+            timer: 50000,    
+            didOpen: () => {
+                //exibir loadin
+                Swal.showLoading();
+                //desabilita o botao de submit
+                document.querySelector("#submitButton").disabled = true;
+            },
+          })
+        if (result.isConfirmed) {            
+            axios.post('/forgot/reset', {     
+                candidate: candidate.candidate,
+                email: candidate.email            
               })
               .then(function (response) {
+                Swal.fire('Encaminhamos ao seu e-mail o link para realizar a alteração da senha', '', 'success')
                 console.log(response);
               })
               .catch(function (error) {
+                Swal.fire('Falha ao enviar o seu e-mail, contate um administrador', '', 'error')
                 console.error(error);
               });
         }

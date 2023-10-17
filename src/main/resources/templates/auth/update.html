@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head th:replace="~{fragments/out/head}"></head>
+
+<body style="background-color: #f1f1f1; height: 100vh">
+    [[${user}]]
+
+    <div class="template-base">
+        <main class="container-lg ">
+            <h1 class="text-center h3">Cadidato [[${user.username}]],<br> Altere a sua senha</h1>
+            <div class="d-flex align-content-center justify-content-center ">
+                <card class="br-card  col-lg-4 col-md-8 col-sm-11 mt-6">
+                    <div class="card-content p-">
+                        <form method="POST" th:action="@{/forgot/changePassword}" id="formUpdate">
+                            <input type="text" name="token" id="token" >
+                            <input type="text"  th:field="*{user.username}">
+                            <div class="br-input input-button">
+                                <label for="password">Digite a nova senha</label>
+                                <input id="password" type="password" name="password" />
+                                <button class="br-button" type="button" aria-label="Mostrar senha">
+                                    <i class="fas fa-eye" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                            <div class="br-input input-button">
+                                <label for="confirmPassword">Confirme a nova senha</label>
+                                <input id="confirmPassword" type="password" name="confirmPassword" />
+                                <button class="br-button" type="button" aria-label="Mostrar senha">
+                                    <i class="fas fa-eye" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                            <button class="br-button block primary btn-login mt-2" type="submit">
+                                <span class="material-symbols-outlined">Atualizar</span>
+                            </button>
+                            
+                        </form>
+                        <span class="br-divider md my-3"></span>
+                        <div class="text-center mt-2">                          
+                            <p class="text-center  text-weight-regular text-base mt-2">Diretoria de Tecnologia Interna
+                                ©2023</p>
+                        </div>
+                    </div>
+                </card>
+            </div>
+        </main>
+    </div>
+    <script src="/assets/vendors/govBR/dist/core-init.js"></script>
+    <script src="/assets/vendors/sweetAlert2/js/sweetalert2.all.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        let success = "[[${success}]]"
+        let error = "[[${error}]]"             
+    </script>
+    <script src="/assets/js/auth/Update.js"></script>
+    <script src="/assets/js/AlertTrigger.js"></script>
+
+
+</body>
+
+</html>
