@@ -58,7 +58,7 @@ public class ForgotController
             
             String token = UUID.randomUUID().toString();
             userService.createPasswordResetTokenForUser(candidate.getUser(), token);
-            emailService.sendmail(candidate.getEmail(), "Redefinição de senha", "https://processoseletivo.com.br/forgot/validate/" + token);
+            emailService.sendmail(candidate.getEmail(), "Redefinição de senha", "https://processoseletivo.franciscomorato.sp.gov.br/forgot/validate/" + token);
             return ResponseEntity.ok("Um link de redefinição foi enviado ao seu e-mail.");
         } 
         catch (Exception e) 
@@ -67,7 +67,7 @@ public class ForgotController
         }
     }
     
-    @PostMapping("/validate/{token}")
+    @GetMapping("/validate/{token}")
     public String validateToken(@PathVariable String token, Model model)
     {
         try 
