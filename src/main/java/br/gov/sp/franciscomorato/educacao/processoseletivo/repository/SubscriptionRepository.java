@@ -15,11 +15,12 @@ import java.util.List;
 @Repository
 public interface SubscriptionRepository extends JpaRepository<Subscription, Long>
 {
-
     @Query(value = "SELECT * FROM subscription WHERE candidate_cpf = :cpf AND process_id = :process", nativeQuery = true)
     Subscription hasSubscription(@Param("cpf") String cpf, @Param("process") Integer process);
     
     @Query(value = "SELECT s FROM Subscription s WHERE s.candidate.cpf = :cpf")
     List<Subscription> findSubscriptionByCandidateInProgress(@Param("cpf") String cpf);
-    
+
+    @Query(value = "SELECT s FROM Subscription s WHERE now() BETWEEN s.process.startDate AND s.process.endDate")
+    List<Subscription> findSubscriptionInProgress();
 }

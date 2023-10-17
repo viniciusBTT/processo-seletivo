@@ -71,4 +71,19 @@ public class SelectiveProcessService
     {
         return this.processRepository.findInProgress();
     }
+
+    /**
+     * 
+     * @return
+     */
+    public Long countAll()
+    {
+        return this.processRepository.count();
+    }
+
+    public Long countInProgress()
+    {
+        return this.processRepository.countInProgress();
+    }
+
 }

@@ -15,6 +15,9 @@ import java.util.List;
 @Repository
 public interface SelectiveProcessRepository extends JpaRepository<SelectiveProcess, Integer>
 {
-    @Query(value = "SELECT * FROM selective_process where now() BETWEEN start_date and end_date", nativeQuery = true)
+    @Query(value = "SELECT * FROM selective_process WHERE now() BETWEEN start_date and end_date", nativeQuery = true)
     List<SelectiveProcess> findInProgress();
+
+    @Query(value = "SELECT count(*) FROM selective_process WHERE now() BETWEEN start_date and end_date", nativeQuery = true)
+    Long countInProgress();
 }

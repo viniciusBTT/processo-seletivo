@@ -110,4 +110,18 @@ public class SubscriptionService
     {
         return subscriptionRepository.findById(id).orElse(null);
     }
+
+    /**
+     * 
+     * @return
+     */
+    public Long countAll()
+    {
+        return subscriptionRepository.count();
+    }
+
+    public List<Subscription> findInProgress()
+    {
+        return subscriptionRepository.findSubscriptionInProgress();
+    }
 }
