@@ -8,6 +8,8 @@ import br.gov.sp.franciscomorato.educacao.processoseletivo.service.CandidateServ
 import br.gov.sp.franciscomorato.educacao.processoseletivo.service.EmailService;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.transaction.Transactional;
+
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -90,6 +92,7 @@ public class ForgotController
     }
     
     @PostMapping("/changePassword")
+    @Transactional
     public String change(@RequestParam String username,
             @RequestParam String password,
             @RequestParam String token,
@@ -106,7 +109,7 @@ public class ForgotController
             
             User user = userService.findByUsername(username);
             
-            user.setPassword(new BCryptPasswordEncoder().encode(password));
+            user.setPassword(user.encrypt(password));
             
             userService.save(user);
             

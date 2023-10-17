@@ -59,6 +59,12 @@ public class User implements UserDetails
         this.roles.add(role);
     }
 
+    public String encrypt(String password) 
+    {
+        this.password = new BCryptPasswordEncoder().encode(password);
+        return this.password;
+    }
+
     public boolean addRole(Role role)
     {
         return this.roles.add(role);   
