@@ -24,7 +24,7 @@ public class SelectiveProcessService
     /**
      *
      * @param process
-     * @return
+     * @return SelectiveProcess
      */
     public SelectiveProcess save(SelectiveProcess process)
     {
@@ -45,9 +45,8 @@ public class SelectiveProcessService
     }
 
     /**
-     *
      * @param processId
-     * @return
+     * @return SelectiveProcess
      */
     public SelectiveProcess findById(Integer processId)
     {
@@ -56,7 +55,7 @@ public class SelectiveProcessService
 
     /**
      *
-     * @return
+     * @return List<SelectiveProcess>
      */
     public List<SelectiveProcess> findAll()
     {
@@ -65,7 +64,7 @@ public class SelectiveProcessService
 
     /**
      *
-     * @return
+     * @return List<SelectiveProcess>
      */
     public List<SelectiveProcess> findInProgress()
     {
@@ -74,13 +73,17 @@ public class SelectiveProcessService
 
     /**
      * 
-     * @return
+     * @return Long
      */
     public Long countAll()
     {
         return this.processRepository.count();
     }
 
+    /**
+     *
+     * @return Long
+     */
     public Long countInProgress()
     {
         return this.processRepository.countInProgress();
