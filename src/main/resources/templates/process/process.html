@@ -2,8 +2,8 @@
 <html lang="pt-BR" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
-    
-  
+
+
     <div th:replace="~{fragments/internal/head}"></div>
 </head>
 
@@ -11,10 +11,9 @@
     <div class="template-base">
 
         <head th:replace="~{fragments/internal/header}"></head>
-        <main class="d-flex flex-fill mb-5" id="main" >
+        <main class="d-flex flex-fill mb-5" id="main">
             <div class="container-lg">
-                <h1>Cadastro do Processo Seletivo </h1>             
-
+                <h1>Cadastro do Processo Seletivo </h1>
                 <div class="br-card p-5 process ">
                     <h3 class="m-0 mb-2 mb-3">Dados do Processo</h3>
                     <form class="form-horizontal" th:action="@{/process}" method="POST" th:object="${selectiveProcess}">
@@ -25,7 +24,7 @@
                                 <input name="title" id="title" type="text" required="true" th:field="*{title}" />
                             </div>
                         </div>
-                       
+
                         <div class="row">
                             <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
                                 <div class="br-datetimepicker" data-mode="single" data-type="datetime-local"
@@ -33,8 +32,7 @@
                                     <div class="br-input has-icon">
                                         <label for="startDate">Inicio das incrições</label>
                                         <input name="startDate" id="startDate" type="datetime-local"
-                                            placeholder="dd/mm/aaaa hh:mm"
-                                            data-input="data-input"
+                                            placeholder="dd/mm/aaaa hh:mm" data-input="data-input"
                                             th:value="${#dates.format(selectiveProcess.startDate, 'yyyy-MM-dd HH:mm')}" />
                                         <button class="br-button circle small" type="button"
                                             aria-label="Abrir Timepicker" data-toggle="data-toggle"
@@ -70,12 +68,12 @@
                             <textarea name="description" id="description" type="text" required="true"
                                 th:field="*{description}" /> </textarea>
                         </div>
-                        
+
                         <div class="d-flex justify-content-end">
-                            <button class="br-button primary dark-mode mr-3 " type="submit" 
-                            th:text="${selectiveProcess.id} ? 'Atualizar' : 'Cadastrar'"></button>
+                            <button class="br-button primary dark-mode mr-3 " type="submit"
+                                th:text="${selectiveProcess.id} ? 'Atualizar' : 'Cadastrar'"></button>
                         </div>
-                        
+
 
                     </form>
                 </div>
@@ -85,24 +83,25 @@
                     <form id="modalityForm" class="form-horizontal" method="POST">
                         <div class="d-flex justify-content-between mb-3">
                             <h3 class="m-0 mb-2">Modalidades do Processo</h3>
-                            <button class="br-button primary dark-mode mr-3 " type="submit" >cadastrar
+                            <button class="br-button primary dark-mode mr-3 " type="submit">cadastrar
                             </button>
 
                         </div>
                         <div class="br-input mb-3 col-12">
                             <label for="modalitieName">Nome da modalidade</label>
-                            <input name="name" type="text" required="true"  id="modalitieName"/>
+                            <input name="name" type="text" required="true" id="modalitieName" />
                         </div>
                         <input type="text" hidden name="processId" id="processId" th:value="${selectiveProcess.id}">
-                        
+
                         <div id="modalitiesList" class="d-flex justify-content-start gap-3 flex-wrap">
 
-                            <span class="br-tag interaction medium bg-green-cool-vivid-50" th:id="${modality.id}" 
-                            th:each="modality : ${selectiveProcess.modalities}">
+                            <span class="br-tag interaction medium bg-green-cool-vivid-50" th:id="${modality.id}"
+                                th:each="modality : ${selectiveProcess.modalities}">
                                 <i class="fa-solid fa-file bg-green-cool-vivid-50"></i>
                                 <span class="ml-2" th:text="${modality.name}"></span>
-                                <button class="br-button bg-green-cool-vivid-50" type="button" aria-label="Fechar" 
-                                data-dismiss="interaction01" th:id="${modality.id}" th:data-process="${selectiveProcess.id}"
+                                <button class="br-button bg-green-cool-vivid-50" type="button" aria-label="Fechar"
+                                    data-dismiss="interaction01" th:id="${modality.id}"
+                                    th:data-process="${selectiveProcess.id}"
                                     onclick="deleteModality(this.id, this.getAttribute('data-process'))">
                                     <i class="fas fa-times" aria-hidden="true"></i>
                                 </button>
@@ -125,23 +124,23 @@
 
                     </div>
                 </div>
-               
+
             </div>
         </main>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="/assets/vendors/govBR/dist/core.min.js"></script> 
-    <!-- <script src="/assets/vendors/govBR/dist/core-init.js"></script> -->
+    <script src="/assets/vendors/govBR/dist/core.min.js"></script>
     <script type="module" src="/assets/js/ThemeJS.js"></script>
     <script src="/assets/vendors/sweetAlert2/js/sweetalert2.all.js"></script>
     <script>
         let success = "[[${success}]]";
-        let error = "[[${error}]]" ;
+        let error = "[[${error}]]";        
     </script>
-    <script src="/assets/js/process/Process.js"></script> 
+    <script src="/assets/js/process/Process.js"></script>
     <script src="/assets/js/AlertTrigger.js"></script>
+    <script>
+        window.onload = () =>  setInputDate();
+    </script>
 </body>
 
 </html>
-
-

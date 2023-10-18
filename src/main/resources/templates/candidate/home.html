@@ -13,7 +13,8 @@
         <main class="container-fluid" id="main">
             <div th:if="${#lists.size(processList) == 0 }">
                 <div class="">
-                    <div class="d-flex flex-column flex-md-row justify-content-md-between justify-content-start col-md-8 col-sm-12 mx-auto">
+                    <div
+                        class="d-flex flex-column flex-md-row justify-content-md-between justify-content-start col-md-8 col-sm-12 mx-auto">
                         <div class="my-auto text-center">
                             <p class="h2 mb-2">Nenhum processo seletivo em andamento</p>
                         </div>
@@ -38,8 +39,10 @@
                         <div class="carousel-stage ">
                             <div class="carousel-page" th:each="process,status: ${processList}"
                                 th:active="${status.index == 0 ? 'active' : ''}">
-                                <div class="carousel-content " th:style="'background-image: url('+${process.imageUrl}+')!important;background: no-repeat;
-                                    background-size: cover; height: inherit;'">
+                                <a class="carousel-content"
+                                    th:style="'background-image: url('+${process.imageUrl}+')!important;background: no-repeat; background-size: cover; height: inherit;'"
+                                    th:href="'/subscription/' + ${process.id}">
+
                                     <div class="mt-auto  py-2 px-3 d-block mb-6 "
                                         style="background-color: rgba(0, 0, 0, 0.60);  width: 100%;">
                                         <div
@@ -47,22 +50,21 @@
                                             <h4 class="h4 text-pure-0 m-0 mb-2" th:text="${process.title}"></h4>
                                             <span class="text-pure-0 m-0 h6 mb-2 text-right">
                                                 Encerramento:
-                                                <span class="text-nowrap">[[${#dates.format(process.endDate, 'dd/MM/yyyy
-                                                    HH:mm')}]]</span>
+                                                <span class="text-nowrap">
+                                                    [[${#dates.format(process.endDate, 'dd/MM/yyyy HH:mm')}]]
+                                                </span>
                                             </span>
                                         </div>
                                         <div class="d-flex flex-column ">
                                             <span class="text-pure-0 text-base mb-2 m-0 "
-                                                th:text="${process.description}" style="max-width: 400ch;overflow: hidden;text-overflow: ellipsis;
-                                               "></span>
-                                            <a class="br-button primary mb-2 mt-auto align-self-end"
-                                                th:href="'/subscription/' + ${process.id}">
-                                                Clique para ver mais
-                                            </a>
+                                                th:text="${process.description}"
+                                                style="max-width: 400ch;overflow: hidden;text-overflow: ellipsis;"></span>
+                                            <button class="br-button primary mb-2 mt-auto align-self-end" title="Clique para visualizar">
+                                                Inscreva-se
+                                            </button>
                                         </div>
-
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         </div>
                         <div class="carousel-button">

@@ -11,13 +11,15 @@ username.addEventListener('input', e => {
         lblLogin.innerText = 'CPF ou Nome de Usuário';
         return;
     }
-
-    if (!isNaN(e.target.value)) {
-        VMasker(username).maskPattern("999.999.999-99");
-        lblLogin.innerText = 'CPF';
-    }
-    else {
-        lblLogin.innerText = 'Nome de Usuário';
+    else if(e.target.value.length === 1)
+    {    
+        if (!isNaN(e.target.value)) {
+            VMasker(username).maskPattern("999.999.999-99");
+            lblLogin.innerText = 'CPF';
+        }
+        else {
+            lblLogin.innerText = 'Nome de Usuário';
+        }
     }
 })
 document.getElementById('formLogin').addEventListener('submit', e => {
@@ -31,6 +33,7 @@ function forgetPassword() {
     Swal.fire({
         title: 'Informe seu CPF para prosseguir com a troca de senha:',
         input: 'text',
+        inputPlaceholder: 'Digite o seu CPF aqui',
         inputAttributes: {
             autocapitalize: 'off'
         },
@@ -57,15 +60,15 @@ function forgetPassword() {
         if (result.value)
             confirmEmail(result.value)
         else
-            Swal.fire('CPF invalido', '', 'info')
+            Swal.fire('CPF inválido.', '', 'info')
     })
 }
 
 
 function confirmEmail(candidate) {
     Swal.fire({
-        title: `Candidato ${candidate.candidate}`,
-        text: `Este é o seu e-mail : ${candidate.email} ?`,
+        title: `Candidato ${candidate.candidate}.`,
+        text: `Este é o seu e-mail: ${candidate.email}?`,
         showDenyButton: true,
         showCancelButton: false,
         confirmButtonText: 'Sim',
@@ -88,16 +91,22 @@ function confirmEmail(candidate) {
                 email: candidate.email            
               })
               .then(function (response) {
-                Swal.fire('Encaminhamos ao seu e-mail o link para realizar a alteração da senha', '', 'success')
+                Swal.fire('Um link de redefinição foi enviado ao seu e-mail.', '', 'success')
                 console.log(response);
               })
               .catch(function (error) {
-                Swal.fire('Falha ao enviar o seu e-mail, contate um administrador', '', 'error')
+                Swal.fire('Falha ao enviar o seu e-mail, contate um administrador.', '', 'error')
                 console.error(error);
               });
         }
         else if (result.isDenied)
-            Swal.fire('Tente alterar a senha novamente', '', 'info')
+        Swal.fire({
+            title: `Tente novamente.`,
+            didOpen: () => {
+                Swal.hideLoading();
+            },            
+           
+        })
 
     })
 }

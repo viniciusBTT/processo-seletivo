@@ -95,6 +95,7 @@ for (const brDateTimePicker of window.document.querySelectorAll('.br-datetimepic
     new core.BRDateTimePicker('br-datetimepicker', brDateTimePicker))
 }
 
+
 //tags 
 const tagList = []
 for (const brTag of window.document.querySelectorAll('.br-tag')) {

@@ -3,9 +3,7 @@
 
 <head th:replace="~{fragments/out/head}"></head>
 
-<body style="background-color: #f1f1f1; height: 100vh">
-    [[${user}]]
-
+<body style="background-color: #f1f1f1; height: 100vh">   
     <div class="template-base">
         <main class="container-lg ">
             <h1 class="text-center h3">Cadidato [[${user.username}]],<br> Altere a sua senha</h1>
@@ -13,8 +11,8 @@
                 <card class="br-card  col-lg-4 col-md-8 col-sm-11 mt-6">
                     <div class="card-content p-">
                         <form method="POST" th:action="@{/forgot/changePassword}" id="formUpdate">
-                            <input type="text" name="token" id="token" >
-                            <input type="text"  th:field="*{user.username}">
+                            <input type="text" name="token" id="token" hidden>
+                            <input type="text"  th:field="*{user.username}" hidden>
                             <div class="br-input input-button">
                                 <label for="password">Digite a nova senha</label>
                                 <input id="password" type="password" name="password" />
