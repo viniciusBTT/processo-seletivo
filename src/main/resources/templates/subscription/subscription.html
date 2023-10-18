@@ -149,7 +149,7 @@
                         </div>
                         <!-- <div class="d-flex justify-content-end mt-2">
                             <span class="legend">Existe alguma divergência nos seus dados pessoais? <a
-                                    th:href="''">Clique aqui para corrigir.</a>
+                                    th:href="'/cadidate' + ${subscription.candidate.cpf}">Clique aqui para corrigir.</a>
                             </span>
                         </div> -->
                     </div>
@@ -171,7 +171,6 @@
                                 <span class="message-body">neste processo seletivo.</span>
                                 <span class="message-title">O numero da sua inscrição é: [[${subscription.process.id}]]
                                 </span>
-
                             </div>
                         </div>
                         <div class="br-message warning" role="alert" th:unless="${hasSubscription}">
@@ -200,7 +199,7 @@
                             <div class="d-flex justify-content-end mt-2" th:if="${hasSubscription}">
                                 <a class="br-button primary dark-mode " id="button"
                                     th:href="'/report?s=' + ${subscription.id}" target="_blank">
-                                    Imprimir inscrição
+                                    Imprimir Inscrição
                             </a>
                             </div>
                             <div class="d-flex justify-content-end" th:unless="${hasSubscription}">

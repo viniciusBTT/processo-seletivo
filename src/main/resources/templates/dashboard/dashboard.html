@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head th:replace="~{fragments/internal/head}"></head>
+
+<body>
+    <div class="template-base">
+
+        <head th:replace="~{fragments/internal/header}"></head>
+        <main class="container-lg" id="main">
+            <h1>Dashboard</h1>
+            <div class="row gap-5 justify-content-between ">
+                <div class="br-card hover col-md-3 col-sm-5 ">
+                    <div class="card-content p-2 text-center">
+                        <h2 class="h4 p-0 m-0 ">Processos<br>Seletivos</h2>
+                        <span th:text="${processQtt}" class="  text-up-03 "></span>
+                    </div>
+                </div>
+                <div class="br-card hover col-md-3 col-sm-5 ">
+                    <div class="card-content p-2 text-center">
+                        <h2 class="h4 p-0 m-0 ">Inscrições em<br>Andamento</h2>
+                        <span th:text="${processInProgressQtt}" class="text-up-03 "></span>
+                    </div>
+                </div>
+                <div class="br-card hover col-md-3 col-sm-12 ">
+                    <div class="card-content p-2 text-center">
+                        <h2 class="h4 p-0 m-0 ">Todas as<br>Incrições</h2>
+                        <span th:text="${countAllSubs}" class="text-up-03 "></span>
+                    </div>
+                </div>            
+                <div class="col-sm-12 col-md-6">
+                    <h1>Processos Seletivos </h1>
+                    <div class="br-card p-5">
+                        <table id="tableProcessSeletive">
+                            <thead class="border-solid-sm">
+                                <tr class="">
+                                    <th class="col-4">Título</th>
+                                    <th class="col-3">Data de fechamento</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="process: ${processList}">
+                                    <td class="border-right border-left" th:text="${process.title}"></td>
+                                    <td class="border-right" th:text="${#dates.format(process.endDate, 'dd/MM/yyyy HH:mm')}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-5">
+                    <h1>Inscrições em Aberto </h1>
+                    <div class="br-card p-5">
+                        <table id="tableOpenSubs">
+                            <thead class="border-solid-sm">
+                                <tr class="border-top">
+                                    <th class="col-1">Nome</th>
+                                    <th class="col-4">Título</th>
+                                    <th class="col-3">Data de fechamento</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="currentsub: ${currentSubscriptions}">
+                                    <td class="border-right border-left" th:text="${currentsub.candidate.name}"></td>
+
+                                    [[${currentSub}]]
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="/assets/vendors/govBR/dist/core-init.js"></script>
+    <script src="/assets/js/ThemeJS.js"></script>
+    <script src="/assets/vendors/dataTable/js/datatables.min.js"></script>
+    <script src="/assets/vendors/dataTable/js/jquery-3.6.0.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let table = new DataTable('#tableProcessSeletive', {
+                language: {
+                    decimal: ',',
+                    thousands: '.',
+                    emptyTable: "Nenhum registro localizado",
+                    search: "Pesquisar",
+                    loadingRecords: "Carregando",
+                    zeroRecords: "Nenhum registro localizado",
+                    lengthMenu: "Mostrar _MENU_ registros",
+                    info: "Mostrando de _START_ a _END_ de _TOTAL_ resultados",
+                    infoEmpty: "Mostrando 0 a 0 de 0 registros",
+                    infoFiltered: "Filtrado de _MAX_ entradas totais",
+                    paginate: {
+                        firts: "Primeiro",
+                        last: "Ultimo",
+                        next: "Proximo",
+                        previous: "Anterior"
+                    }
+                },
+                responsive: true
+            });
+
+            let tableSubs = new DataTable('#tableOpenSubs', {
+                language: {
+                    decimal: ',',
+                    thousands: '.',
+                    emptyTable: "Nenhum registro localizado",
+                    search: "Pesquisar",
+                    loadingRecords: "Carregando",
+                    zeroRecords: "Nenhum registro localizado",
+                    lengthMenu: "Mostrar _MENU_ registros",
+                    info: "Mostrando de _START_ a _END_ de _TOTAL_ resultados",
+                    infoEmpty: "Mostrando 0 a 0 de 0 registros",
+                    infoFiltered: "Filtrado de _MAX_ entradas totais",
+                    paginate: {
+                        firts: "Primeiro",
+                        last: "Ultimo",
+                        next: "Proximo",
+                        previous: "Anterior"
+                    }
+                },
+                responsive: true
+            });
+        });
+    </script>
+    <script src="/assets/vendors/sweetAlert2/js/sweetalert2.all.js"></script>
+    <script>
+        let success = "[[${success}]]"
+        let error = "[[${error}]]"  
+    </script>
+    <script src="/assets/js/AlertTrigger.js"></script>
+</body>
+
+</html>
