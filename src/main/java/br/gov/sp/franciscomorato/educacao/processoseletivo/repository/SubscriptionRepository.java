@@ -23,4 +23,7 @@ public interface SubscriptionRepository extends JpaRepository<Subscription, Long
 
     @Query(value = "SELECT s FROM Subscription s WHERE now() BETWEEN s.process.startDate AND s.process.endDate")
     List<Subscription> findSubscriptionInProgress();
+
+    @Query(value = "SELECT s FROM Subscription  s WHERE s.process.id = :processId")
+    List<Subscription> findSubscriptionByProcessId(@Param("processId") Integer processId) ;
 }

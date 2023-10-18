@@ -120,8 +120,22 @@ public class SubscriptionService
         return subscriptionRepository.count();
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Subscription> findInProgress()
     {
         return subscriptionRepository.findSubscriptionInProgress();
+    }
+
+    /**
+     *
+     * @param processId
+     * @return
+     */
+    public List<Subscription> findByProcess(Integer processId)
+    {
+        return subscriptionRepository.findSubscriptionByProcessId(processId);
     }
 }

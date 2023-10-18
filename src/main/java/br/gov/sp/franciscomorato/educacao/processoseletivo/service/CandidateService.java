@@ -31,6 +31,14 @@ public class CandidateService
      */
     public Candidate save (Candidate candidate)
     {
+
+        Candidate hasCandidate = candidateRepository.findById(candidate.getCpf()).orElse(null);
+
+        if(hasCandidate != null)
+        {
+            candidate.setUser(hasCandidate.getUser());
+        }
+
         //verificar se há usuário
         if(candidate.getUser() != null)
         {
