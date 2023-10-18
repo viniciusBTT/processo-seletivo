@@ -78,9 +78,18 @@ public class CandidateController
      * @return
      */
     @GetMapping(value="/{id}")
-    public String getCandidate(@PathVariable String id, Model model) 
+    public String getCandidate(@PathVariable String id, Model model, Authentication auth)
     {
-        model.addAttribute("candidate", candidateService.findByCpf(id));
+        if (auth.getName().equals(id)) {
+            model.addAttribute("candidate", candidateService.findByCpf(id));
+        }
+        else if (auth.getAuthorities().contains(new Role("ROLE_ROOT")) &&
+                auth.getAuthorities().contains(new Role("ROLE_ADMIN"))) {
+            model.addAttribute("candidate", candidateService.findByCpf(id));
+        }
+        else {
+            model.addAttribute("candidate", candidateService.findByCpf(auth.getName()));
+        }
         return "candidate/candidate";
     }
 
