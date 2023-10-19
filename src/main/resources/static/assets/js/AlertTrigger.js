@@ -21,6 +21,7 @@ else if(error)
         })
 }
 
+
 //gatilho para tela de loading
 function loadingAlert(msg)
 {

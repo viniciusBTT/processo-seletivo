@@ -8,12 +8,12 @@
 
 <body>
     <div class="template-base">
-
         <head th:replace="~{fragments/internal/header}"></head>
         <main class="container-fluid" id="main">
             <div class="card-content p-3">
                 <h3 class="mt-2 h3">Informações Pessoais </h3>
-                <form class="form-horizontal" id="formUpdate" th:object="${candidate}" method="POST" th:action="@{/candidate}">
+                <form class="form-horizontal"  th:object="${candidate}"
+                      method="POST" th:action="@{/candidate}" id="formRegister">
                     <div class="row">
                         <!-- Nome Completo -->
                         <div class="br-input mb-3 col-md-4 col-sm-12 ">
@@ -153,11 +153,8 @@
                             <label for="districtName">Estado*</label>
                             <input type="text" th:field="*{street.district.city.state.uf}" id="stateID">
                         </div>
-
-
                     </div>
-                    <span class="br-divider md my-3"></span>
-                  
+                    <span class="br-divider md my-3"></span>                  
                     <div class="d-flex justify-content-end">
                         <button class="br-button  primary btn-login mt-2" type="submit">
                             <span class="material-symbols-outlined">Atualizar</span>
@@ -171,7 +168,6 @@
 
         <footer th:replace="~{fragments/out/footer}"></footer>
     </div>
-    <script src="/assets/vendors/govBR/dist/core-init.js"></script>
     <script src="/assets/vendors/govBR/dist/core.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="/assets/vendors/sweetAlert2/js/sweetalert2.all.js"></script>
@@ -181,7 +177,11 @@
         let error = "[[${error}]]"  
     </script>
     <script src="/assets/js/AlertTrigger.js"></script>
-    <script src="/assets/js/auth/Register.js"></script>        
+    <script src="/assets/js/auth/Register.js"></script>   
+    <script src="/assets/vendors/vanillaMasker/vanilla-masker.min.js"></script>
+    <script src="/assets/js/auth/Masker.js"></script>        
+
+
     
 </body>
 

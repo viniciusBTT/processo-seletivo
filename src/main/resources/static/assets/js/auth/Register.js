@@ -17,26 +17,39 @@ let validCpf = null;
 
 //Captura o envento de submit para fazer as devidas verificações
 let registerForm = document.querySelector("#formRegister")
-registerForm.addEventListener("submit", e => {
-    e.preventDefault();
 
-    document.querySelector('#cpf').value = document.querySelector('#cpf').value.replace(/[^a-zA-Z0-9 ]/g,'')   
-    //se a senha não confere retorna msg de rro
-    if(document.querySelector("#password").value !== document.querySelector("#confirmPassword").value)
-    {
-        Swal.fire({
-            icon: 'error',
-            html: 'As senhas digitadas nao conferem',
-            timerProgressBar: true,     
-            background: '#f1f1f1 ',                  
-            backdrop: "rgba(0, 0, 0, 0)" ,
-            })
-    }       
-    else
-    {
-        e.currentTarget.submit();   
-    }
-})
+    registerForm.addEventListener("submit", e => {
+        e.preventDefault();
+        
+        //Tirando a mascara do cpf antes de enviar
+        document.querySelector('#cpf').value = document.querySelector('#cpf').value.replace(/[^a-zA-Z0-9 ]/g,'')
+
+        let passwordInput = document.querySelector('#password')
+        //verificar se existe o campo senha, caso tem faz a verificação 
+        if( passwordInput)
+        {              
+            //se a senha não confere retorna msg de erro
+            if(document.querySelector("#password").value !== document.querySelector("#confirmPassword").value)
+            {
+                Swal.fire({
+                    icon: 'error',
+                    html: 'As senhas digitadas nao conferem',
+                    timerProgressBar: true,     
+                    background: '#f1f1f1 ',                  
+                    backdrop: "rgba(0, 0, 0, 0)" ,
+                    })
+            }       
+            else
+            {
+                e.currentTarget.submit();   
+            }
+        }
+        else
+        {
+            e.currentTarget.submit();   
+        }
+    })
+
 
 //verificar se o valor do cpf é valido e se já existe no banco de dados
 function verifyCPF(){

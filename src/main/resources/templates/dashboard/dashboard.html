@@ -27,7 +27,10 @@
                         <h2 class="h4 p-0 m-0 ">Todas as<br>Incrições</h2>
                         <span th:text="${countAllSubs}" class="text-up-03 "></span>
                     </div>
-                </div>            
+                </div>  
+                <span class="br-divider md my-2"></span>
+            </div>
+            <div class="row gap-0 justify-content-between ">
                 <div class="col-sm-12 col-md-6">
                     <h1>Processos Seletivos </h1>
                     <div class="br-card p-5">
@@ -40,15 +43,15 @@
                             </thead>
                             <tbody>
                                 <tr th:each="process: ${processList}">
-                                    <td class="border-right border-left" th:text="${process.title}"></td>
+                                    <td class="border-left border-right" th:text="${process.title}"></td>
                                     <td class="border-right" th:text="${#dates.format(process.endDate, 'dd/MM/yyyy HH:mm')}"></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-5">
-                    <h1>Inscrições em Aberto </h1>
+                <div class="col-sm-12 col-md-6">
+                    <h1>Inscrições</h1>
                     <div class="br-card p-5">
                         <table id="tableOpenSubs">
                             <thead class="border-solid-sm">
@@ -60,9 +63,9 @@
                             </thead>
                             <tbody>
                                 <tr th:each="currentsub: ${currentSubscriptions}">
-                                    <td class="border-right border-left" th:text="${currentsub.candidate.name}"></td>
-
-                                    [[${currentSub}]]
+                                    <td class="border-right border-left text-nowrap" th:text="${currentsub.candidate.name}"></td>
+                                    <td class="border-right border-left" th:text="${currentsub.candidate.email}"></td>
+                                    <td class="border-right border-left" th:text="${currentsub.process.title}"></td>        
                                 </tr>
                             </tbody>
                         </table>
