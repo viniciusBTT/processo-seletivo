@@ -75,7 +75,7 @@ public class Subscription
             i++;
             
             if(i < this.modalities.size())
-                textReturn += " |";
+                textReturn += " | \n";
         }
         
         return textReturn;

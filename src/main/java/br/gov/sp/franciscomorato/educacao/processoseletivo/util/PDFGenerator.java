@@ -1,6 +1,7 @@
 
 package br.gov.sp.franciscomorato.educacao.processoseletivo.util;
 
+import br.gov.sp.franciscomorato.educacao.processoseletivo.model.Modality;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.Subscription;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
@@ -108,7 +109,7 @@ public class PDFGenerator
             cb.setTextMatrix(40, 520); // coordenadas (x, y)
             cb.showText("Bairro: " + subscription.getCandidate().getStreet().getDistrict().getName());
             cb.setTextMatrix(300, 520); // coordenadas (x, y)
-            cb.showText("Cidade: " + "Francisco Morato");
+            cb.showText("Cidade: " + subscription.getCandidate().getStreet().getDistrict().getCity().getName());
             
             /*** CONTACT ***/
             cb.rectangle(20, 450, 565, 50); // coordenadas (x, y, largura, altura)
@@ -162,7 +163,7 @@ public class PDFGenerator
             subsContent.stroke();
             
             /*** SUBSCRIPTION ***/
-            cb.rectangle(20, 60, 565, 160); // coordenadas (x, y, largura, altura)
+            cb.rectangle(20, 20, 565, 200); // coordenadas (x, y, largura, altura)
             cb.stroke();
             
             
@@ -179,21 +180,31 @@ public class PDFGenerator
             cb.showText("Data de Nascimento: " + subscription.getCandidate().getBirthDate());
             
             cb.setTextMatrix(30, 150); // coordenadas (x, y)
-            cb.showText("Inscrito em: " + subscription.modalitiesToString());
-            
-            cb.setTextMatrix(30, 110); // coordenadas (x, y)
-            cb.showText("Condição especial para a realização da prova: " 
+//            cb.showText("Inscrito em: " + subscription.modalitiesToString());
+            cb.showText("Inscrito em: ");
+
+            float y = 150;
+            for(Modality modality : subscription.getModalities())
+            {
+                y -= 10;
+                cb.setTextMatrix(40, y); // coordenadas (x, y)
+                cb.showText("- " + modality.getName());
+            }
+
+
+            cb.setTextMatrix(30, y - 30); // coordenadas (x, y)
+            cb.showText("Condição especial para a realização da prova: "
                     + (subscription.getCandidate().getDiseaseInducedDeficiency() == null ?  "não" : subscription.getCandidate().getDiseaseInducedDeficiency()));
-            
-            
-            cb.setTextMatrix(30, 80); // coordenadas (x, y)
+
+
+            cb.setTextMatrix(30, y - 55); // coordenadas (x, y)
             cb.showText("___________________________________________________");
-            cb.setTextMatrix(100, 72); // coordenadas (x, y)
+            cb.setTextMatrix(100, y - 65); // coordenadas (x, y)
             cb.showText("Responsável pela inscrição");
             
-            cb.setTextMatrix(325, 80); // coordenadas (x, y)
+            cb.setTextMatrix(325, y - 55); // coordenadas (x, y)
             cb.showText("___________________________________________________");
-            cb.setTextMatrix(422, 72); // coordenadas (x, y)
+            cb.setTextMatrix(422, y - 65); // coordenadas (x, y)
             cb.showText("Candidato");
             
             document.close();

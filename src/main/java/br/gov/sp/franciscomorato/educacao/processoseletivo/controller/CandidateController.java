@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.Candidate;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.Role;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.service.CandidateService;
+import br.gov.sp.franciscomorato.educacao.processoseletivo.service.SelectiveProcessService;
 import jakarta.validation.Valid;
 
 /**
@@ -30,6 +31,9 @@ public class CandidateController
 {
     @Autowired
     private CandidateService candidateService;
+
+    @Autowired
+    private SelectiveProcessService processService;
 
     /*** METHODS */
 
@@ -90,9 +94,20 @@ public class CandidateController
         else {
             model.addAttribute("candidate", candidateService.findByCpf(auth.getName()));
         }
+
+        model.addAttribute("mayUpdate", processService.countInProgress() > 0);
         return "candidate/candidate";
     }
 
+    /**
+     * salva ou atualiza candidato
+     * mais utilizado para atualizar
+     * para salvar, utilize "/register"
+     * @param candidate
+     * @param authentication
+     * @param ra
+     * @return
+     */
     @PostMapping
     public String postCandidate(@Valid Candidate candidate, Authentication authentication, RedirectAttributes ra)
     {
@@ -106,7 +121,7 @@ public class CandidateController
 
             candidateService.save(candidate);
 
-            ra.addAttribute("success", "Dados atualizados com sucesso!");
+            ra.addFlashAttribute("success", "Dados atualizados com sucesso!");
             return "redirect:/candidate/"+authentication.getName();
 
 

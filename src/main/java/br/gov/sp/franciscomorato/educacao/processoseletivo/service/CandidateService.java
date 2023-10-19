@@ -37,6 +37,7 @@ public class CandidateService
         if(hasCandidate != null)
         {
             candidate.setUser(hasCandidate.getUser());
+            return candidateRepository.save(candidate);
         }
 
         //verificar se há usuário
