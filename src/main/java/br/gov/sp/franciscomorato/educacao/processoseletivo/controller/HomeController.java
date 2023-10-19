@@ -10,7 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.google.gson.Gson;
+
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.Role;
+import br.gov.sp.franciscomorato.educacao.processoseletivo.repository.AlertRepository;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.service.CandidateService;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.service.SelectiveProcessService;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.service.SubscriptionService;
@@ -32,6 +35,9 @@ public class HomeController
 
     @Autowired
     private SubscriptionService subscriptionService;
+
+    @Autowired
+    AlertRepository alertRepository;
     
     /*** VIEWS */
 
@@ -60,12 +66,14 @@ public class HomeController
                                     .findSubscriptionByCandidateInProgress(
                                            authentication.getName()));
             model.addAttribute("processList", processService.findInProgress());
+            model.addAttribute("message", new Gson().toJson(alertRepository.findLastAlert()));
             return "candidate/home";
         } 
         catch (NumberFormatException e)
         {
             model.addAttribute("subscriptions", new ArrayList<>());
             model.addAttribute("processList", processService.findInProgress());
+            model.addAttribute("message", new Gson().toJson(alertRepository.findLastAlert()));
             return "candidate/home";
         }
     }
