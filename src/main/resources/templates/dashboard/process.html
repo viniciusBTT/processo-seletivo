@@ -13,13 +13,14 @@
                 <table id="tableProcessSeletive">
                     <thead>
                         <tr class="">
-                            <th class="col-2">Título</th>
-                            <th class="col-2">Data de fechamento</th>
-                            <th class="col-8">Modalidaes</th>
+                            <th class="col-2">#</th>
+                            <th class="col-2">Data de Inscrição</th>
+                            <th class="col-2">Nome</th>
+                            <th class="col-2">E-mail</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="subscription: ${subscriptions}">
+                        <!-- <tr th:each="subscription: ${subscriptions}">
                             <td class="border-left border-right" th:text="${subscription.candidate.name}"></td>
                             <td class="border-right" th:text="${#dates.format(subscription.process.endDate, 'dd/MM/yyyy HH:mm')}"></td>
                             <td class="border-right">
@@ -29,7 +30,7 @@
                                     <span class="ml-2" th:text="${modality.name}"></span>                               
                                 </span>
                             </td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
             </div>
@@ -38,8 +39,19 @@
     <script src="/assets/vendors/govBR/dist/core-init.js"></script>
     <script src="/assets/js/ThemeJS.js"></script>
     <script src="/assets/vendors/dataTable/js/datatables.min.js"></script>
+
+    <!--export datablesnet-->
     <script src="/assets/vendors/dataTable/js/jquery-3.6.0.min.js"></script>
+
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+
     <script>
+
         document.addEventListener('DOMContentLoaded', function () {
             let table = new DataTable('#tableProcessSeletive', {
                 language: {
@@ -60,7 +72,56 @@
                         previous: "Anterior"
                     }
                 },
-                responsive: true
+                
+                responsive: true,
+                serverSide: true,
+                processing: true,
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
+                "lengthMenu": [ 1, 2, 10, 25, 50, 75, 100],
+                ajax: {
+                    type: "GET",
+                    url: '/dashboard/subscriptions?processId=' + "[[${processList.id}]]",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    //info da tabela
+                    // data: function (data) {
+                    //     console.log(data)
+                    //     return data;
+                    // },
+                    data: function( d ) {
+                        console.log(d)
+                        //a esquerda, parametro do servidor, a direita parametro datatable
+                        d.size = d.length;
+                        d.page = d.start;
+
+                    },
+                    dataSrc: 'content'
+                    // dataSrc: function (result, d) {
+                    //     console.log(result)
+                    //     return result.content
+                    //     // return {result.content, result.pageable, result.total};
+                    // }
+                },
+                columns: [
+                    { data: 'id' },
+                    {
+                        data: (data) => {
+                            return new Date(data.createAt).toLocaleString('pt-br')
+                        }
+                    },
+                    {
+                        data: (data) => {
+                            return data.candidate.name.toUpperCase();
+                        }
+                    },
+                    {
+                        data: "candidate.email"
+                    }
+                ]
+
+
             });
         });
     </script>

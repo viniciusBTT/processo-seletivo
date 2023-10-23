@@ -31,7 +31,7 @@
                 <span class="br-divider md mt-2 mb-4"></span>
             </div>
             <div class="row gap-0 justify-content-between ">
-                <div class="col-sm-12 col-md-6">
+                <div class="col-12">
                     <h1>Processos Seletivos </h1>
                     <div class="br-card p-2">
                         <table id="tableProcessSeletive">
@@ -57,36 +57,7 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <h1>Inscrições</h1>
-                    <div class="br-card p-2">
-                        <table id="tableOpenSubs">
-                            <thead>
-                                <tr class="border-top">
-                                    <th class="col-4">Nome</th>
-                                    <th class="col-4">Processo</th>
-                                    <th class="col-3">Data da inscrição</th>
-                                    <th class="col-1">Opções</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr th:each="currentsub: ${currentSubscriptions}">
-                                    <td class="border-right border-left text-nowrap" th:text="${currentsub.candidate.name}"></td>        
-                                    <td class="border-right " th:text="${currentsub.process.title}"></td>        
-                                    <td class="border-right" th:text="${#dates.format(currentsub.createAt, 'dd/MM/yyyy HH:mm')}"></td> 
-                                    <td class="border-right">
-                                        <div class="text-nowrap ">
-                                            <a style="color: blue; cursor: pointer">
-                                                <i class="fa-solid fa-pen-to-square" title="Editar"></i>
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>                   
-                </div>
+                </div>    
             </div>
         </main>
     </div>
@@ -118,27 +89,7 @@
                 responsive: true
             });
 
-            let tableSubs = new DataTable('#tableOpenSubs', {
-                language: {
-                    decimal: ',',
-                    thousands: '.',
-                    emptyTable: "Nenhum registro localizado",
-                    search: "Pesquisar",
-                    loadingRecords: "Carregando",
-                    zeroRecords: "Nenhum registro localizado",
-                    lengthMenu: "Mostrar _MENU_ registros",
-                    info: "Mostrando de _START_ a _END_ de _TOTAL_ resultados",
-                    infoEmpty: "Mostrando 0 a 0 de 0 registros",
-                    infoFiltered: "Filtrado de _MAX_ entradas totais",
-                    paginate: {
-                        firts: "Primeiro",
-                        last: "Ultimo",
-                        next: "Proximo",
-                        previous: "Anterior"
-                    }
-                },
-                responsive: true
-            });
+           
         });
     </script>
     <script src="/assets/vendors/sweetAlert2/js/sweetalert2.all.js"></script>
