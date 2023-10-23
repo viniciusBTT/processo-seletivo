@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.gov.sp.franciscomorato.educacao.processoseletivo.model.Modality;
@@ -137,5 +139,16 @@ public class SubscriptionService
     public List<Subscription> findByProcess(Integer processId)
     {
         return subscriptionRepository.findSubscriptionByProcessId(processId);
+    }
+
+    /**
+     *
+     * @param processId
+     * @param pageable
+     * @return
+     */
+    public Page<Subscription> findProcessPageable(Integer processId, Pageable pageable)
+    {
+        return subscriptionRepository.findSubscriptionByProcessPageable(processId, pageable);
     }
 }

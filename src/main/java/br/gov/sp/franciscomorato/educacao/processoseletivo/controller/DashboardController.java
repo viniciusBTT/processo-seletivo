@@ -2,15 +2,16 @@ package br.gov.sp.franciscomorato.educacao.processoseletivo.controller;
 
 import java.util.HashMap;
 
+import br.gov.sp.franciscomorato.educacao.processoseletivo.repository.SubscriptionRepository;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.service.SubscriptionService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import br.gov.sp.franciscomorato.educacao.processoseletivo.service.DashboardService;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.service.SelectiveProcessService;
@@ -36,7 +37,6 @@ public class DashboardController
         model.addAttribute("processQtt", dashboardService.processQtt());
         model.addAttribute("processInProgressQtt", dashboardService.processInProgressQtt());
         model.addAttribute("countAllSubs", dashboardService.countAllSubs());
-        model.addAttribute("currentSubscriptions", dashboardService.findCurrentSubscription());
         model.addAttribute("processList", processService.findAll());
 
         return "dashboard/dashboard";
@@ -48,6 +48,14 @@ public class DashboardController
         model.addAttribute("processList", processService.findById(processId));
         model.addAttribute("subscriptions", subscriptionService.findByProcess(processId));
         return "dashboard/process";
+    }
+
+
+    @GetMapping("/subscriptions")
+    @ResponseBody
+    public ResponseEntity<?> subscriptions(@RequestParam Integer processId, Pageable pageable)
+    {
+        return ResponseEntity.ok(subscriptionService.findProcessPageable(processId, pageable));
     }
 
 }
