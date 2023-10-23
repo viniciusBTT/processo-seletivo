@@ -10,13 +10,13 @@
         <main class="container-lg" id="main">
             <h1>Dashboard</h1>
             <div class="row gap-5 justify-content-between ">
-                <div class="br-card hover col-md-3 col-sm-5 ">
+                <div class="br-card hover col-md-3 col-sm-4 ">
                     <div class="card-content p-2 text-center">
                         <h2 class="h4 p-0 m-0 ">Processos<br>Seletivos</h2>
                         <span th:text="${processQtt}" class="  text-up-03 "></span>
                     </div>
                 </div>
-                <div class="br-card hover col-md-3 col-sm-5 ">
+                <div class="br-card hover col-md-3 col-sm-4">
                     <div class="card-content p-2 text-center">
                         <h2 class="h4 p-0 m-0 ">Inscrições em<br>Andamento</h2>
                         <span th:text="${processInProgressQtt}" class="text-up-03 "></span>
@@ -24,27 +24,35 @@
                 </div>
                 <div class="br-card hover col-md-3 col-sm-12 ">
                     <div class="card-content p-2 text-center">
-                        <h2 class="h4 p-0 m-0 ">Todas as<br>Incrições</h2>
+                        <h2 class="h4 p-0 m-0 ">Todas as<br>Inscrições</h2>
                         <span th:text="${countAllSubs}" class="text-up-03 "></span>
                     </div>
                 </div>  
-                <span class="br-divider md my-2"></span>
+                <span class="br-divider md mt-2 mb-4"></span>
             </div>
             <div class="row gap-0 justify-content-between ">
                 <div class="col-sm-12 col-md-6">
                     <h1>Processos Seletivos </h1>
-                    <div class="br-card p-5">
+                    <div class="br-card p-2">
                         <table id="tableProcessSeletive">
-                            <thead class="border-solid-sm">
+                            <thead>
                                 <tr class="">
-                                    <th class="col-4">Título</th>
-                                    <th class="col-3">Data de fechamento</th>
+                                    <th class="col-5">Título</th>
+                                    <th class="col-6">Data de fechamento</th>
+                                    <th class="col-1">Opções</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr th:each="process: ${processList}">
                                     <td class="border-left border-right" th:text="${process.title}"></td>
                                     <td class="border-right" th:text="${#dates.format(process.endDate, 'dd/MM/yyyy HH:mm')}"></td>
+                                    <td class="border-right">
+                                        <div class="text-nowrap ">
+                                            <a style="color: blue; cursor: pointer" th:href="'/dashboard/' + ${process.id}">
+                                                <i class="fa-solid fa-pen-to-square" title="Editar"></i>
+                                            </a>
+                                        </div>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -52,24 +60,32 @@
                 </div>
                 <div class="col-sm-12 col-md-6">
                     <h1>Inscrições</h1>
-                    <div class="br-card p-5">
+                    <div class="br-card p-2">
                         <table id="tableOpenSubs">
-                            <thead class="border-solid-sm">
+                            <thead>
                                 <tr class="border-top">
-                                    <th class="col-1">Nome</th>
-                                    <th class="col-4">Título</th>
-                                    <th class="col-3">Data de fechamento</th>
+                                    <th class="col-4">Nome</th>
+                                    <th class="col-4">Processo</th>
+                                    <th class="col-3">Data da inscrição</th>
+                                    <th class="col-1">Opções</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr th:each="currentsub: ${currentSubscriptions}">
-                                    <td class="border-right border-left text-nowrap" th:text="${currentsub.candidate.name}"></td>
-                                    <td class="border-right border-left" th:text="${currentsub.candidate.email}"></td>
-                                    <td class="border-right border-left" th:text="${currentsub.process.title}"></td>        
+                                    <td class="border-right border-left text-nowrap" th:text="${currentsub.candidate.name}"></td>        
+                                    <td class="border-right " th:text="${currentsub.process.title}"></td>        
+                                    <td class="border-right" th:text="${#dates.format(currentsub.createAt, 'dd/MM/yyyy HH:mm')}"></td> 
+                                    <td class="border-right">
+                                        <div class="text-nowrap ">
+                                            <a style="color: blue; cursor: pointer">
+                                                <i class="fa-solid fa-pen-to-square" title="Editar"></i>
+                                            </a>
+                                        </div>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
+                    </div>                   
                 </div>
             </div>
         </main>

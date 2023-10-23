@@ -51,7 +51,8 @@ public class ProcessoSeletivoApplication
         
 	@PostConstruct
 	public void createDefaultUser()
-	{            
+	{
+            
             Role roleComum = new Role("ROLE_COMUM");
             Role roleAdmin = new Role("ROLE_ADMIN");
             Role roleRoot = new Role("ROLE_ROOT");
