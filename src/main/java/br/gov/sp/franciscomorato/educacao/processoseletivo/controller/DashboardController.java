@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import br.gov.sp.franciscomorato.educacao.processoseletivo.repository.SubscriptionRepository;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.service.SubscriptionService;
+import com.google.gson.Gson;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -55,7 +56,7 @@ public class DashboardController
     @ResponseBody
     public ResponseEntity<?> subscriptions(@RequestParam Integer processId, Pageable pageable)
     {
-        return ResponseEntity.ok(subscriptionService.findProcessPageable(processId, pageable));
+        return ResponseEntity.ok(new Gson().toJson(subscriptionService.findProcessPageable(processId, pageable)));
     }
 
 }
