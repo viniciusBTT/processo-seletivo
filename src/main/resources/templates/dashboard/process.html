@@ -38,10 +38,12 @@
     </div>
     <script src="/assets/vendors/govBR/dist/core-init.js"></script>
     <script src="/assets/js/ThemeJS.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <!-- <script src="/assets/vendors/dataTable/js/jquery-3.6.0.min.js"></script> -->
     <script src="/assets/vendors/dataTable/js/datatables.min.js"></script>
 
+
     <!--export datablesnet-->
-    <script src="/assets/vendors/dataTable/js/jquery-3.6.0.min.js"></script>
 
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
@@ -49,88 +51,86 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+    
+
+
+    <script src="/assets/vendors/sweetAlert2/js/sweetalert2.all.js"></script>
+    <script>
+        let success = "[[${success}]]";
+        let error = "[[${error}]]";
+        let processId = "[[${processList.id}]]";
+    </script>
+    <script src="/assets/js/AlertTrigger.js"></script>
 
     <script>
-
         document.addEventListener('DOMContentLoaded', function () {
             let table = new DataTable('#tableProcessSeletive', {
-                language: {
-                    decimal: ',',
-                    thousands: '.',
-                    emptyTable: "Nenhum registro localizado",
-                    search: "Pesquisar",
-                    loadingRecords: "Carregando",
-                    zeroRecords: "Nenhum registro localizado",
-                    lengthMenu: "Mostrar _MENU_ registros",
-                    info: "Mostrando de _START_ a _END_ de _TOTAL_ resultados",
-                    infoEmpty: "Mostrando 0 a 0 de 0 registros",
-                    infoFiltered: "Filtrado de _MAX_ entradas totais",
-                    paginate: {
-                        firts: "Primeiro",
-                        last: "Ultimo",
-                        next: "Proximo",
-                        previous: "Anterior"
-                    }
-                },
-                
+                // language: {
+                //     decimal: ',',
+                //     thousands: '.',
+                //     emptyTable: "Nenhum registro localizado",
+                //     search: "Pesquisar",
+                //     loadingRecords: "Carregando",
+                //     zeroRecords: "Nenhum registro localizado",
+                //     lengthMenu: "Mostrar _MENU_ registros",
+                //     info: "Mostrando de _START_ a _END_ de _TOTAL_ resultados",
+                //     infoEmpty: "Mostrando 0 a 0 de 0 registros",
+                //     infoFiltered: "Filtrado de _MAX_ entradas totais",
+                //     paginate: {
+                //         firts: "Primeiro",
+                //         last: "Ultimo",
+                //         next: "Proximo",
+                //         previous: "Anterior"
+                //     }
+                // },                
+                lengthMenu: [ 1, 25, 50, 75, 100],                
                 responsive: true,
-                serverSide: true,
+                serverSide: false,
                 processing: true,
-                buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
-                ],
-                "lengthMenu": [ 1, 2, 10, 25, 50, 75, 100],
                 ajax: {
                     type: "GET",
-                    url: '/dashboard/subscriptions?processId=' + "[[${processList.id}]]",
-                    contentType: "application/json; charset=utf-8",
+                    url: '/dashboard/subscriptions?processId=' + processId,
+                    contentType: "application/json; charset=utf-8", 
                     dataType: "json",
+                    
                     //info da tabela
-                    // data: function (data) {
-                    //     console.log(data)
-                    //     return data;
+                    // data: function( d, a ) {
+                    //     console.log(d)
+                    //     d.recordsTotal = 10
+                    //     //a esquerda, parametro do servidor, a direita parametro datatable
+                    //     //d.size = d.length;
+                    //     //d.page = d.start;
                     // },
-                    data: function( d ) {
-                        console.log(d)
-                        //a esquerda, parametro do servidor, a direita parametro datatable
-                        d.size = d.length;
-                        d.page = d.start;
-
-                    },
-                    dataSrc: 'content'
-                    // dataSrc: function (result, d) {
-                    //     console.log(result)
-                    //     return result.content
-                    //     // return {result.content, result.pageable, result.total};
-                    // }
+                    // success: (e) => {
+                    //     console.log(e)
+                    //     return e.content;
+                    // },     
+                    dataSrc: (result) => {
+                        
+                        let data = result.content;
+                        
+                        // data['data'] = result.content;
+                        // data['recordsTotal'] = result.totalElements;
+                        // data['recordsFiltered'] = result.totalElements;
+                        // data['draw'] = result.totalPages;
+                        console.log(data)
+                        data['recordsTotal'] = result.totalElements;
+                        return data
+                    }
                 },
                 columns: [
                     { data: 'id' },
-                    {
-                        data: (data) => {
-                            return new Date(data.createAt).toLocaleString('pt-br')
-                        }
-                    },
-                    {
-                        data: (data) => {
-                            return data.candidate.name.toUpperCase();
-                        }
-                    },
-                    {
-                        data: "candidate.email"
-                    }
-                ]
-
-
+                    { data: (data) =>  new Date(data.createAt).toLocaleString('pt-br')},
+                    { data: (data) =>  data.candidate.name.toUpperCase()},
+                    { data: 'candidate.email' }
+                ],                
             });
+        // console.log(table)
+
         });
+
     </script>
-    <script src="/assets/vendors/sweetAlert2/js/sweetalert2.all.js"></script>
-    <script>
-        let success = "[[${success}]]"
-        let error = "[[${error}]]"  
-    </script>
-    <script src="/assets/js/AlertTrigger.js"></script>
+    
 </body>
 
 </html>

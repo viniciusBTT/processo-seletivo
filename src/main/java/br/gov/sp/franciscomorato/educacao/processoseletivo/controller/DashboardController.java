@@ -56,7 +56,7 @@ public class DashboardController
     @ResponseBody
     public ResponseEntity<?> subscriptions(@RequestParam Integer processId, Pageable pageable)
     {
-        return ResponseEntity.ok(new Gson().toJson(subscriptionService.findProcessPageable(processId, pageable)));
+        return ResponseEntity.ok(subscriptionService.findProcessPageable(processId, pageable));
     }
 
 }
