@@ -26,7 +26,7 @@ import org.springframework.beans.factory.annotation.Value;
 		"br.gov.sp.franciscomorato.educacao.processoseletivo.security",
 		"br.gov.sp.franciscomorato.educacao.processoseletivo.controller",
 		"br.gov.sp.franciscomorato.educacao.processoseletivo.model",
-                "br.gov.sp.franciscomorato.educacao.processoseletivo.model.address",
+		"br.gov.sp.franciscomorato.educacao.processoseletivo.model.address",
 		"br.gov.sp.franciscomorato.educacao.processoseletivo.repository",
 		"br.gov.sp.franciscomorato.educacao.processoseletivo.config",
 		"br.gov.sp.franciscomorato.educacao.processoseletivo.service",
@@ -39,15 +39,15 @@ import org.springframework.beans.factory.annotation.Value;
 
 public class ProcessoSeletivoApplication
 {
-    
-        @Value("${spring.datasource.password}")
-        private String password; 
+
+	@Value("${spring.datasource.password}")
+	private String password; 
 
 	@Autowired
 	private UserRepository userService;
         
-        @Autowired
-        private RoleRepository RoleRepository;
+	@Autowired
+	private RoleRepository RoleRepository;
         
 	@PostConstruct
 	public void createDefaultUser()

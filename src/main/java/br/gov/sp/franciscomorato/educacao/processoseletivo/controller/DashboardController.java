@@ -58,15 +58,15 @@ public class DashboardController {
     @ResponseBody
     public ResponseEntity<?> subscriptions(@RequestParam Integer processId, Pageable pageable) {
 
-        HashMap<Object, Object> test = new HashMap<>();
+        HashMap<String, Object> response = new HashMap<>();
 
         Page<Subscription> page = subscriptionService.findProcessPageable(processId, pageable);
 
-        test.put("draw", page.getSize());
-        test.put("recordsTotal", page.getTotalElements());
-        test.put("data", page.getContent());
-        test.put("recordsFiltered", page.getNumberOfElements());
-        return ResponseEntity.ok(test);
+        response.put("draw", page.getSize());
+        response.put("recordsTotal", page.getTotalElements());
+        response.put("data", page.getContent());
+        response.put("recordsFiltered", page.getNumberOfElements());
+        return ResponseEntity.ok(response);
     }
 
 }
