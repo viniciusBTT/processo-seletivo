@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -21,42 +22,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- <tr th:each="subscription: ${subscriptions}">
-                            <td class="border-left border-right" th:text="${subscription.candidate.name}"></td>
-                            <td class="border-right" th:text="${#dates.format(subscription.process.endDate, 'dd/MM/yyyy HH:mm')}"></td>
-                            <td class="border-right">
-                                <span class="br-tag  medium bg-green-cool-vivid-50 m-1" 
-                                th:each="modality : ${subscription.modalities}">
-                                    <i class="fa-solid fa-file bg-green-cool-vivid-50"></i>
-                                    <span class="ml-2" th:text="${modality.name}"></span>                               
-                                </span>
-                            </td>
-                        </tr> -->
+                        
                     </tbody>
                 </table>
-
-                <!-- <table id="example" class="display" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>First name</th>
-                            <th>Last name</th>
-                            <th>Position</th>
-                            <th>Office</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <th>First name</th>
-                            <th>Last name</th>
-                            <th>Position</th>
-                            <th>Office</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
-                        </tr>
-                    </tfoot>
-                </table> -->
             </div>
         </main>
     </div>
@@ -64,9 +32,7 @@
     <script src="/assets/js/ThemeJS.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="/assets/vendors/dataTable/js/datatables.min.js"></script>
-
-
-    <!--export datablesnet-->
+ 
 
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
@@ -77,7 +43,6 @@
 
 
 
-
     <script src="/assets/vendors/sweetAlert2/js/sweetalert2.all.js"></script>
     <script>
         let success = "[[${success}]]";
@@ -85,30 +50,65 @@
         let processId = "[[${processList.id}]]";
     </script>
     <script src="/assets/js/AlertTrigger.js"></script>
-
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-
-            new DataTable('#tableProcessSeletive', {
-                ajax: '/dashboard/subscriptions?processId=' + processId,
-                processing: true,
-                serverSide: true,
+            let table = new DataTable('#tableProcessSeletive', {
+                language: {
+                    decimal: ',',
+                    thousands: '.',
+                    emptyTable: "Nenhum registro localizado",
+                    search: "Pesquisar",
+                    loadingRecords: "Carregando",
+                    zeroRecords: "Nenhum registro localizado",
+                    lengthMenu: "Mostrar _MENU_ registros",
+                    info: "Mostrando de _START_ a _END_ de _TOTAL_ resultados",
+                    infoEmpty: "Mostrando 0 a 0 de 0 registros",
+                    infoFiltered: "Filtrado de _MAX_ entradas totais",
+                    paginate: {
+                        firts: "Primeiro",
+                        last: "Ultimo",
+                        next: "Proximo",
+                        previous: "Anterior"
+                    }
+                },
+                lengthMenu: [1,10, 25, 50, 75, 100],
                 responsive: true,
+                serverSide: false,
+                processing: true,
+                ajax: {
+                    type: "GET",
+                    url: '/dashboard/subscriptions?processId=' + processId,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",                    
+                    dataSrc: (result) => {
+                        let data = result.data;                        
+                        data['recordsTotal'] = result.recordsTotal;
+                        return data
+                    }
+                },
                 columns: [
-                    {data: "id"},
-                    {data: "createAt", render: (createdAt) => {
-                        return new Date(createdAt).toLocaleString('pt-br');
-                    }},
-                    {data: "candidate.name"},
-                    {data: "candidate.email"},
-                ]
+                    { data: 'id' },
+                    { data: (data) => new Date(data.createAt).toLocaleString('pt-br') },
+                    { data: (data) => data.candidate.name.toUpperCase() },
+                    { data: 'candidate.email' },
+                    // { data: (data) => data.modalities.map(modalidade => modalidade.name).join(',<br>')}
+                    {data: "modalities", render: (modalities) => {
+                        // let list =  modalities.map(element => `<li>${element.name}</li>`);
+
+                        let list = "";
+
+                        modalities.forEach(modality => {
+                            list += `<li>${modality.name}</li>`
+                        });
+
+                        console.log(list)
+                        return `<ul>${list}</ul>`
+                    }}
+                ],
             });
-
-
         });
 
     </script>
-
 
 </body>
 
