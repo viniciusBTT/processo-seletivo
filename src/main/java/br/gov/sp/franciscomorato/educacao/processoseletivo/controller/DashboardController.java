@@ -1,12 +1,17 @@
 package br.gov.sp.franciscomorato.educacao.processoseletivo.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
+import br.gov.sp.franciscomorato.educacao.processoseletivo.model.Subscription;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.repository.SubscriptionRepository;
 import br.gov.sp.franciscomorato.educacao.processoseletivo.service.SubscriptionService;
 import com.google.gson.Gson;
+
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -19,8 +24,7 @@ import br.gov.sp.franciscomorato.educacao.processoseletivo.service.SelectiveProc
 
 @Controller
 @RequestMapping("/dashboard")
-public class DashboardController
-{
+public class DashboardController {
 
     @Autowired
     private DashboardService dashboardService;
@@ -33,8 +37,7 @@ public class DashboardController
 
     @GetMapping
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ROOT')")
-    public String dashboard(Model model)
-    {
+    public String dashboard(Model model) {
         model.addAttribute("processQtt", dashboardService.processQtt());
         model.addAttribute("processInProgressQtt", dashboardService.processInProgressQtt());
         model.addAttribute("countAllSubs", dashboardService.countAllSubs());
@@ -44,19 +47,26 @@ public class DashboardController
     }
 
     @GetMapping(value = "/{processId}")
-    public String processDash(@PathVariable Integer processId, Model model)
-    {
+    public String processDash(@PathVariable Integer processId, Model model) {
         model.addAttribute("processList", processService.findById(processId));
-        model.addAttribute("subscriptions", subscriptionService.findByProcess(processId));
+        // model.addAttribute("subscriptions",
+        // subscriptionService.findByProcess(processId));
         return "dashboard/process";
     }
 
-
     @GetMapping("/subscriptions")
     @ResponseBody
-    public ResponseEntity<?> subscriptions(@RequestParam Integer processId, Pageable pageable)
-    {
-        return ResponseEntity.ok(subscriptionService.findProcessPageable(processId, pageable));
+    public ResponseEntity<?> subscriptions(@RequestParam Integer processId, Pageable pageable) {
+
+        HashMap<Object, Object> test = new HashMap<>();
+
+        Page<Subscription> page = subscriptionService.findProcessPageable(processId, pageable);
+
+        test.put("draw", page.getSize());
+        test.put("recordsTotal", page.getTotalElements());
+        test.put("data", page.getContent());
+        test.put("recordsFiltered", page.getNumberOfElements());
+        return ResponseEntity.ok(test);
     }
 
 }

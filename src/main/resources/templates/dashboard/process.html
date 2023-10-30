@@ -34,6 +34,29 @@
                         </tr> -->
                     </tbody>
                 </table>
+
+                <!-- <table id="example" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>First name</th>
+                            <th>Last name</th>
+                            <th>Position</th>
+                            <th>Office</th>
+                            <th>Start date</th>
+                            <th>Salary</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>First name</th>
+                            <th>Last name</th>
+                            <th>Position</th>
+                            <th>Office</th>
+                            <th>Start date</th>
+                            <th>Salary</th>
+                        </tr>
+                    </tfoot>
+                </table> -->
             </div>
         </main>
     </div>
@@ -54,6 +77,7 @@
 
 
 
+
     <script src="/assets/vendors/sweetAlert2/js/sweetalert2.all.js"></script>
     <script>
         let success = "[[${success}]]";
@@ -64,52 +88,27 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            let table = new DataTable('#tableProcessSeletive', {
-                language: {
-                    decimal: ',',
-                    thousands: '.',
-                    emptyTable: "Nenhum registro localizado",
-                    search: "Pesquisar",
-                    loadingRecords: "Carregando",
-                    zeroRecords: "Nenhum registro localizado",
-                    lengthMenu: "Mostrar _MENU_ registros",
-                    info: "Mostrando de _START_ a _END_ de _TOTAL_ resultados",
-                    infoEmpty: "Mostrando 0 a 0 de 0 registros",
-                    infoFiltered: "Filtrado de _MAX_ entradas totais",
-                    paginate: {
-                        firts: "Primeiro",
-                        last: "Ultimo",
-                        next: "Proximo",
-                        previous: "Anterior"
-                    }
-                },
-                lengthMenu: [10, 25, 50, 75, 100],
-                responsive: true,
-                serverSide: false,
-                processing: true,
-                ajax: {
-                    type: "GET",
-                    url: '/dashboard/subscriptions?processId=' + processId,
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",                    
-                    dataSrc: (result) => {
 
-                        let data = result.content;                        
-                        data['recordsTotal'] = result.totalElements;
-                        return data
-                    }
-                },
+            new DataTable('#tableProcessSeletive', {
+                ajax: '/dashboard/subscriptions?processId=' + processId,
+                processing: true,
+                serverSide: true,
+                responsive: true,
                 columns: [
-                    { data: 'id' },
-                    { data: (data) => new Date(data.createAt).toLocaleString('pt-br') },
-                    { data: (data) => data.candidate.name.toUpperCase() },
-                    { data: 'candidate.email' },
-                    { data: (data) => data.modalities.map(modalidade => modalidade.name).join(',<br>')}
-                ],
+                    {data: "id"},
+                    {data: "createAt", render: (createdAt) => {
+                        return new Date(createdAt).toLocaleString('pt-br');
+                    }},
+                    {data: "candidate.name"},
+                    {data: "candidate.email"},
+                ]
             });
+
+
         });
 
     </script>
+
 
 </body>
 
