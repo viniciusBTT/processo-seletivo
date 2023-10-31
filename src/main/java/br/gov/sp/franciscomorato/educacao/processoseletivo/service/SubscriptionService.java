@@ -147,8 +147,10 @@ public class SubscriptionService
      * @param pageable
      * @return
      */
-    public Page<Subscription> findProcessPageable(Integer processId, Pageable pageable)
+    public Page<Subscription> findProcessPageable(Integer processId, Pageable pageable, String searchValue)
     {
-        return subscriptionRepository.findSubscriptionByProcessPageable(processId, pageable);
+        if(searchValue.isEmpty() || searchValue.isBlank())
+            return subscriptionRepository.findSubscriptionByProcessPageable(processId, pageable);
+        return subscriptionRepository.findSubscriptionByProcessPageable(processId, pageable, searchValue);
     }
 }

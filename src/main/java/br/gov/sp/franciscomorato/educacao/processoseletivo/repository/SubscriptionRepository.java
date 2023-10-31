@@ -32,4 +32,7 @@ public interface SubscriptionRepository extends JpaRepository<Subscription, Long
     @Query(value = "SELECT s FROM Subscription  s WHERE s.process.id = :processId")
     Page<Subscription> findSubscriptionByProcessPageable(@Param("processId") Integer processId, Pageable pageable);
 
+    @Query(value = "SELECT s FROM Subscription  s WHERE s.process.id = :processId AND s.candidate.name LIKE %:search%")
+    Page<Subscription> findSubscriptionByProcessPageable(@Param("processId") Integer processId, Pageable pageable, @Param("search") String searchValue);
+
 }

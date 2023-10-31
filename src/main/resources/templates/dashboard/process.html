@@ -4,6 +4,31 @@
 
 <head th:replace="~{fragments/internal/head}"></head>
 
+<style>
+    #tableProcessSeletive_wrapper:first-child{
+        padding: 10px!important
+    }
+    .dataTables_filter {
+        margin-right: 2.5%!important;
+    }
+
+    .dataTables_filter input {
+        width: 300px!important;
+        border: none!important;
+        border-bottom: 2px solid #2196F3!important; /* Cor da linha de foco */
+        border-radius: 4px!important;
+        padding: 10px 0!important;
+        font-size: 16px!important;
+        transition: border-bottom 0.3s ease!important;
+    }
+
+    .dataTables_filter input:focus {
+        outline: none!important;
+        border-bottom: 2px solid #FF5722!important; /* Cor da linha quando o input está em foco */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)!important; /* Sombra quando o input está em foco */
+    }
+</style>
+
 <body>
     <div class="template-base">
 
@@ -17,8 +42,8 @@
                             <th class="col-1">#</th>
                             <th class="col-2">Data de Inscrição</th>
                             <th class="col-3">Nome</th>
-                            <th class="col-2">E-mail</th>
-                            <th class="col-4">Modalidades</th>
+                            <th class="col-1">E-mail</th>
+                            <th class="col-5">Modalidades</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -57,17 +82,18 @@
                     decimal: ',',
                     thousands: '.',
                     emptyTable: "Nenhum registro localizado",
-                    search: "Pesquisar",
-                    loadingRecords: "Carregando",
+                    search: "",
+                    loadingRecords: "Carregando...",
                     zeroRecords: "Nenhum registro localizado",
                     lengthMenu: "Mostrar _MENU_ registros",
                     info: "Mostrando de _START_ a _END_ de _TOTAL_ resultados",
                     infoEmpty: "Mostrando 0 a 0 de 0 registros",
                     infoFiltered: "Filtrado de _MAX_ entradas totais",
+                    searchPlaceholder: 'Pesquise por um candidato',
                     paginate: {
                         firts: "Primeiro",
-                        last: "Ultimo",
-                        next: "Proximo",
+                        last: "Último",
+                        next: "Próximo",
                         previous: "Anterior"
                     }
                 },
@@ -76,10 +102,13 @@
                 responsive: true,
                 serverSide: true,
                 processing: true,
+                paging: true,
+                info: true,
                 ajax: {
                     type: "GET",
                     url: '/dashboard/subscriptions?processId=' + processId,
                     contentType: "application/json; charset=utf-8",
+                    "cache": false,
                     dataType: "json",                    
                     dataSrc: (result) => {
                         let data = result.data;                        
@@ -87,8 +116,9 @@
                         return data
                     },
                     data: (d) => {
-                        console.log(d)
-                        d['size'] = d.length
+                        d['size'] = d.length;
+                        d['page'] = d.start / d.length;
+                        d['searchValue'] = d.search.value;
                     }
                 },
                 columns: [
@@ -106,7 +136,6 @@
                             list += `<li>${modality.name}</li>`
                         });
 
-                        console.log(list)
                         return `<ul>${list}</ul>`
                     }}
                 ],
