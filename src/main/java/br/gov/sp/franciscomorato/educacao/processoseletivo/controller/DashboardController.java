@@ -68,5 +68,4 @@ public class DashboardController {
         response.put("recordsFiltered", page.getTotalElements());
         return ResponseEntity.ok(response);
     }
-
 }
