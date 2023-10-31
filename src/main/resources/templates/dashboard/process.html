@@ -71,9 +71,10 @@
                         previous: "Anterior"
                     }
                 },
-                lengthMenu: [1,10, 25, 50, 75, 100],
+                lengthMenu: [10, 20, 25, 50, 75, 100],
+                pageLength: 20,
                 responsive: true,
-                serverSide: false,
+                serverSide: true,
                 processing: true,
                 ajax: {
                     type: "GET",
@@ -84,6 +85,10 @@
                         let data = result.data;                        
                         data['recordsTotal'] = result.recordsTotal;
                         return data
+                    },
+                    data: (d) => {
+                        console.log(d)
+                        d['size'] = d.length
                     }
                 },
                 columns: [

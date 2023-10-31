@@ -65,7 +65,7 @@ public class DashboardController {
         response.put("draw", page.getSize());
         response.put("recordsTotal", page.getTotalElements());
         response.put("data", page.getContent());
-        response.put("recordsFiltered", page.getNumberOfElements());
+        response.put("recordsFiltered", page.getTotalElements());
         return ResponseEntity.ok(response);
     }
 
