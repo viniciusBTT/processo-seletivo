@@ -38,7 +38,7 @@
 
 ### Modelagem De Dados
 
-<img src="modelagem de dados">
+<img src="documentation/modelagem de dados.png">
 
 ### Fluxo de Navegação de Páginas
 
