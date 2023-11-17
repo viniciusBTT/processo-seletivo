@@ -38,11 +38,11 @@
 
 ### Modelagem De Dados
 
-![modelagem de dados da aplicação](doc/modelagem de dados.png)
+![Untitled](doc/modelagem de dados.png)
 
 ### Fluxo de Navegação de Páginas
 
-![modelagem do fluxo de uso da apliocação](doc/modelagem de fluxo.png)
+![Untitled](doc/modelagem de fluxo.png)
 
 # **Instruções de Compilação e Execução (Local)**
 
