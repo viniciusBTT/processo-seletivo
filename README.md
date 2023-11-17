@@ -42,7 +42,7 @@
 
 ### Fluxo de Navegação de Páginas
 
-![fluxo de navegação] (documentation/modelagem de fluxo.png)
+<img src="documentation/modelagem de fluxo.png">
 
 # **Instruções de Compilação e Execução (Local)**
 
