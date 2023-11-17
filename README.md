@@ -1,5 +1,3 @@
-# Processos Seletivos
-
 # Tecnologias
 
 - Back-end
@@ -72,3 +70,16 @@ Para rodar o projeto no servidor é necessário seguir os seguintes paços:
 2. Montar um docker com java 17  instalada no servidor que será utilizado.
 3. Colocar o arquivo .jar do projeto dentro da pasta dockerfile da docker.
 4. Em seguida devemos rodas os seguintes comandos:
+
+   //Contruindo a docker
+    docker build -t <name> .
+    
+   //Iniciando a docker e definindo as variaveis de ambiente necessarias para rodar o projeto
+    sudo docker run -d -p 53080:53080 --name="processo-seletivo" 
+	-e DB_SERVER="{IP do servidor que estará o banco de dados}" 
+	-e DB_USERNAME="{Nome do banco de dados}" 
+	-e DB_PASSWORD="{Senha do banco de dados de produção}" 
+	-e LDAP_URL="{Ip do servidor LDAP que sera ultilizado}" -e LDAP_USERNAME="{Username do LDAP}" 
+	-e LDAP_PASS="{Senha do LDAP}" 
+	-e SMTP_LOGIN="{Login do SMTP" 
+	-e SMTP_PASSWORD="{Senha do SMTP}"
