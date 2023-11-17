@@ -12,9 +12,9 @@
 - **Front-end**
     - HTML 5
     - CSS 3
-    - JavaScript
-    - [Padrão de governo](https://www.gov.br/ds/home)
     - Bootstrap 5
+    - [Padrão de governo](https://www.gov.br/ds/home)
+    - JavaScript
         - Vanillas Masker
         - Tiny Slider
         - DataTable
