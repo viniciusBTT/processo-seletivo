@@ -1,6 +1,5 @@
 # Tecnologias
-
-- Back-end
+- **Back-end**
     - Java 17+
     - Maven
     - Spring-Boot
@@ -10,7 +9,7 @@
         - Spring Web
         - Thymeleaf
 
-- Front-end
+- **Front-end**
     - HTML 5
     - CSS 3
     - JavaScript
@@ -21,11 +20,11 @@
     - Padrão de governo
     - BootsTrap 512
 
-- Banco de dados
+- **Banco de dados**
     - MySql
         - MySql Workbench
 
-# Design Patterns
+## Design Patterns
 
 - **Classes:** ClasseComposta
 - **Objetos:** objetoComposto
@@ -46,21 +45,21 @@
 
 ### Para rodar o projeto localmente é necessário configurar a variáveis de ambiente que são:
 
-- DB_SERVER="localhost"
-- DB_USERNAME=”{Username do banco de dados usado}”
-- DB_PASSWORD="{Senha do banco de dados usado}"
-- LDAP_URL="{Ip do servidor LDAP ultilizado}"
-- LDAP_USERNAME="{LDAP username}"
-- LDAP_PASS="{Senha do LDAP}"
-- SMTP_LOGIN="{Login do SMTP"
-- SMTP_PASSWORD="{Senha do SMTP}"
+- **DB_SERVER**="localhost"
+- **DB_USERNAME**=”{Username do banco de dados usado}”
+- **DB_PASSWORD**="{Senha do banco de dados usado}"
+- **LDAP_URL**="{Ip do servidor LDAP ultilizado}"
+- **LDAP_USERNAME**="{LDAP username}"
+- **LDAP_PASS**="{Senha do LDAP}"
+- **SMTP_LOGIN**="{Login do SMTP"
+- **SMTP_PASSWORD**="{Senha do SMTP}"
 
 ### Instalações necessárias
 
-- Mysql
+- **Mysql**
     - Mysql Workbench
-- Java 17
-- IDE(IntelliJ ou NetBeans)
+- **Java 17**
+- **IDE(IntelliJ ou NetBeans)**
 
 # **Instruções de Compilação e Execução (Servidor)**
 
@@ -71,9 +70,13 @@ Para rodar o projeto no servidor é necessário seguir os seguintes paços:
 3. Colocar o arquivo .jar do projeto dentro da pasta dockerfile da docker.
 4. Em seguida devemos rodas os seguintes comandos:
 
-   //Contruindo a docker
-    docker build -t <name> .
-    
+  
+   ```sh
+    //Contruindo a docker
+    docker build -t <name> .   
+   ```
+   
+   ```sh
    //Iniciando a docker e definindo as variaveis de ambiente necessarias para rodar o projeto
     sudo docker run -d -p 53080:53080 --name="processo-seletivo" 
 	-e DB_SERVER="{IP do servidor que estará o banco de dados}" 
@@ -83,3 +86,4 @@ Para rodar o projeto no servidor é necessário seguir os seguintes paços:
 	-e LDAP_PASS="{Senha do LDAP}" 
 	-e SMTP_LOGIN="{Login do SMTP" 
 	-e SMTP_PASSWORD="{Senha do SMTP}"
+	```
