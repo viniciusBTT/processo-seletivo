@@ -38,7 +38,7 @@
 
 ### Modelagem De Dados
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/5b3775d6-f482-41f9-9022-efa949e658b2/a4e28dc0-a739-46e0-977f-ddb6a8d3e41b/Untitled.png)
+<img src="modelagem de dados">
 
 ### Fluxo de Navegação de Páginas
 
