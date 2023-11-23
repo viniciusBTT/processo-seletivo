@@ -94,9 +94,11 @@
                         </div>
                         <div class=" mb-3 col-md-4 col-sm-12 d-flex ">
                             <!-- check -->
+                            [[${candidate.diseaseInducedDeficiency}]]
                             <div class="br-checkbox align-self-end mb-2">
-                                <input id="h-checkbox-1" name="checkSpecialCondition" type="checkbox" onChange="showSpecialCondition()"
-                                 th:checked="${diseaseInducedDeficiency != ''} ? true : false" />
+                                <input id="h-checkbox-1" name="checkSpecialCondition"
+                                       type="checkbox" onChange="showSpecialCondition()"
+                                       th:checked="${diseaseInducedDeficiency}"/>
                                 <label for="h-checkbox-1" id="checkSpecialCondition" >Possui alguma condição
                                     especial?</label>
                             </div>
@@ -154,11 +156,23 @@
                             <input type="text" th:field="*{street.district.city.state.uf}" id="stateID">
                         </div>
                     </div>
-                    <span class="br-divider md my-3"></span>                  
-                    <div class="d-flex justify-content-end">
-                        <button class="br-button  primary btn-login mt-2" type="submit">
+                    <span class="br-divider md my-3"></span>
+                    <div class="d-flex justify-content-end" th:if="${mayUpdate}">
+                        <button class="br-button  primary btn-login mt-2" type="submit" >
                             <span class="material-symbols-outlined">Atualizar</span>
                         </button>
+                    </div>
+                    <div class="br-message warning" role="alert" th:unless="${mayUpdate}">
+                        <div class="icon">
+                            <i class="fas fa-exclamation-triangle fa-lg" aria-hidden="true"></i>
+                        </div>
+                        <div class="content">
+                            <span class="message-title">Atenção,</span>
+                            <span class="message-body">no momento
+                                    <strong> não temos nenhum processo seletivo em aberto</strong>
+                                    devido a isso a opção de atualização de dados está bloqueada até o próximo processo seletivo.
+                                </span>
+                        </div>
                     </div>
                 </form>
 
