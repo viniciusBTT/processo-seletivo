@@ -174,14 +174,30 @@
                                         </button>
                                       </div>
                                 </div>
-                              
+
                             </div>
-                            <div class="d-flex justify-content-end">
-                                <button class="br-button  primary btn-login mt-2" type="submit">
+                            <span class="br-divider md my-3"></span>
+
+                            <div class="d-flex justify-content-between  mt-2 ">
+
+                                <div class="br-checkbox " >
+                                    <input id="termsUse" name="termsUse" type="checkbox" required/>
+                                    <label  id="termsUse"  for="termsUse"></label>
+                                    <span class="ml-2 label">
+                                        Voce concordar com os
+                                        <span class="nativo-hover text-blue-warm-vivid-90" onclick="termsOfService()">termos de uso</span>
+                                    </span>
+                                </div>
+
+
+                                <button class="br-button  primary btn-loginml-auto" type="submit">
                                     <span class="material-symbols-outlined">Cadastrar</span>
                                 </button>
                             </div>
                         </form>
+                        <div>
+                            
+                        </div>
                     </div>
                 </div>
             </main>
@@ -197,10 +213,5 @@
         <script src="/assets/js/AlertTrigger.js"></script>
         <script src="/assets/vendors/vanillaMasker/vanilla-masker.min.js"></script>
         <script src="/assets/js/auth/Masker.js"></script>        
-
-
-
-
-        
     </body>
 </html>

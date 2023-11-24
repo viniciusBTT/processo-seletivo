@@ -182,3 +182,65 @@ function setInputAdressValues(logradouro,districtName, cityName,cityId,districId
     document.querySelector("#districtId").value = districId;
     document.querySelector("#stateID").value = stateUF;
 }
+
+
+//modal de termos de uso
+
+function termsOfService(){
+    Swal.fire({
+      html: `
+            <div class="text-justify">
+                <h3 class="h3">Termos de Uso para o Sistema de Publicação de Processos Seletivos</h3>
+                <ol>
+                    <li class="text-weight-bold	mb-2">Aceitação dos Termos
+                        <ol>
+                            <li class="text-weight-regular	">1 acessar e usar o sistema de publicação de processos seletivos para a Prefeitura de Francisco Morato, você concorda e aceita integralmente estes Termos de Uso. Se não concordar com algum termo ou condição, por favor, não use o sistema.</li>
+                        </ol>
+                    </li>
+                    <li class="text-weight-bold	mb-2">Uso Autorizado
+                        <ol>
+                            <li class="text-weight-regular">1 Este sistema destina-se exclusivamente à publicação de processos seletivos relacionados à Prefeitura de Francisco Morato.</li>
+                            <li class="text-weight-regular">2 O usuário concorda em utilizar o sistema de maneira ética, responsável e em conformidade com todas as leis e regulamentações aplicáveis.</li>
+                        </ol>
+                    </li>
+                    <li class="text-weight-bold	mb-2">Responsabilidades do Usuário
+                        <ol>
+                            <li class="text-weight-regular">1 O usuário é responsável por manter a confidencialidade de suas credenciais de acesso.</li>
+                            <li class="text-weight-regular">2 Ao publicar informações no sistema, o usuário garante que todas as informações são precisas e atualizadas.</li>
+                        </ol>
+                    </li>
+                    <li class="text-weight-bold mb-2"> Propriedade Intelectual
+                        <ol>
+                            <li class="text-weight-regular">1 Todo o conteúdo disponibilizado no sistema, incluindo textos, logotipos, imagens e outros materiais, é de propriedade da Prefeitura de Francisco Morato ou devidamente licenciado para uso.</li>
+                        </ol>
+                    </li>
+                    <li class="text-weight-bold mb-2">Limitações de Responsabilidade
+                        <ol>
+                            <li class="text-weight-regular">1 O sistema é fornecido "como está", sem garantias de qualquer tipo, expressas ou implícitas.</li>
+                            <li class="text-weight-regular">2 A Prefeitura de Francisco Morato não se responsabiliza por qualquer dano direto, indireto, incidental, consequencial ou especial decorrente do uso ou incapacidade de usar o sistema.</li>
+                        </ol>
+                    </li>
+                    <li class="text-weight-bold mb-2">Alterações nos Termos
+                        <ol>
+                            <li class="text-weight-regular">1 Reservamo-nos o direito de modificar estes Termos de Uso a qualquer momento, mediante aviso prévio. O uso continuado do sistema após tais modificações constitui aceitação dos Termos atualizados.</li>
+                        </ol>
+                    </li>
+                    <li class="text-weight-bold mb-2">Encerramento do Acesso
+                        <ol>
+                            <li class="text-weight-regular">1 A Prefeitura de Francisco Morato reserva-se o direito de encerrar o acesso de qualquer usuário ao sistema, a seu exclusivo critério, sem aviso prévio.</li>
+                        </ol>
+                    </li>
+                    <li class="text-weight-bold mb-2">Disposições Gerais
+                        <ol>
+                            <li class="text-weight-regular">1 Estes Termos de Uso constituem o acordo completo entre o usuário e a Prefeitura de Francisco Morato em relação ao sistema de publicação de processos seletivos.</li>
+                            <li class="text-weight-regular">2 Em caso de conflito entre estes Termos de Uso e qualquer legislação aplicável, a legislação prevalecerá na medida necessária.</li>
+                        </ol>
+                    </li>
+                </ol>
+            </div>
+      `,
+      width: "80%",
+      padding: "3em",
+      color: "#716add",
+    });
+}
