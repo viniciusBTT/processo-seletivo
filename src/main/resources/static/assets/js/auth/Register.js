@@ -240,7 +240,7 @@ function termsOfService(){
             </div>
       `,
       width: "80%",
-      padding: "3em",
-      color: "#716add",
+      padding: "1em",
+      color: "#1351B4",
     });
 }
