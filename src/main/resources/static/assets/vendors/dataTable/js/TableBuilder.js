@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
             paginate: {
                 firts: "Primeiro",
                 last: "Ultimo",
-                next: "Proximo",
+                next: "Próximo",
                 previous: "Anterior"
             }
         },
