@@ -1,14 +1,15 @@
-let inputSpecialCondition = document.querySelector("#diseaseInducedDeficiency");
-
 function showSpecialCondition(){
-    if(inputSpecialCondition.hasAttribute("disabled"))   
+    const inputSpecialCondition = document.querySelector("#diseaseInducedDeficiency");
+    const divSpecialConditionInput = document.querySelector("#divSpecialConditionInput");
+    if(divSpecialConditionInput.classList.contains("d-none"))
     {
-        inputSpecialCondition.removeAttribute("disabled")
+        divSpecialConditionInput.classList.remove("d-none");
     }
     else
     {
-        inputSpecialCondition.setAttribute("disabled","") 
-        inputSpecialCondition.value = " "
+        divSpecialConditionInput.classList.add("d-none");
+        inputSpecialCondition.value = "";
+
     }
 }
 
@@ -25,7 +26,7 @@ let registerForm = document.querySelector("#formRegister")
         document.querySelector('#cpf').value = document.querySelector('#cpf').value.replace(/[^a-zA-Z0-9 ]/g,'')
 
         let passwordInput = document.querySelector('#password')
-        //verificar se existe o campo senha, caso tem faz a verificação 
+        //verificar se existe algum valor no input password, caso tem faz a verificação
         if( passwordInput)
         {              
             //se a senha não confere retorna msg de erro
@@ -33,15 +34,15 @@ let registerForm = document.querySelector("#formRegister")
             {
                 Swal.fire({
                     icon: 'error',
-                    html: 'As senhas digitadas nao conferem',
+                    html: 'As senhas digitadas não conferem',
                     timerProgressBar: true,     
                     background: '#f1f1f1 ',                  
                     backdrop: "rgba(0, 0, 0, 0)" ,
                     })
-            }       
+            }
             else
             {
-                e.currentTarget.submit();   
+                e.currentTarget.submit();
             }
         }
         else
@@ -54,63 +55,57 @@ let registerForm = document.querySelector("#formRegister")
 //verificar se o valor do cpf é valido e se já existe no banco de dados
 function verifyCPF(){
     let cpfValide = document.querySelector('#cpf').value.replace(/[^a-zA-Z0-9 ]/g,'')
-    
-    if(testaCPF(cpfValide))
-    {        //verificando se o cpf está valido e se já foi cadastrado
-        axios.get(`/register/candidate?cpf=${cpfValide}`)
-        .then(function (response) {
-          console.log(response.data)
-            Swal.fire({
-                icon: 'info',
-                title: 'Este CPF já foi cadastrado',
-                html:  "<a href='/acesso'>clique aqui para acessar o sistema</a> ",
-                timerProgressBar: true,     
-                background: '#f1f1f1 ',                  
-                backdrop: "rgba(0, 0, 0, 0)" ,                     
-                showConfirmButton: false,  
+    //verifica se tem algum valor no input
+    if(cpfValide.length > 0 ){
+        //verificando se o cpf está valido e se já foi cadastrado
+        if(testCPF(cpfValide)){
+            axios.get(`/register/candidate?cpf=${cpfValide}`)
+            .then(function (response) {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Este CPF já foi cadastrado',
+                    html:  "<a href='/acesso'>clique aqui para acessar o sistema</a> ",
+                    timerProgressBar: true,
+                    background: '#f1f1f1 ',
+                    backdrop: "rgba(0, 0, 0, 0)",
+                    showConfirmButton: false,
                 })
-
-        })
-        .catch(function (error) {
-            console.log(`CPF valido e nunca salvo`);
-        })
-    }
-    else
-    {
-        Swal.fire({
-            icon: 'error',
-            html: 'valor do cpf invalido',
-            timerProgressBar: true,     
-            background: '#f1f1f1 ',                  
-            backdrop: "rgba(0, 0, 0, 0)" ,
             })
-    
+        }
+        else
+        {
+            Swal.fire({
+                icon: 'error',
+                html: 'CPF Inválido',
+                timerProgressBar: true,
+                background: '#f1f1f1 ',
+                backdrop: "rgba(0, 0, 0, 0)" ,
+            })
+        }
     }
-
-    
 }
 
 //valida se o numero do cpf é valido ou nao
-function testaCPF(strCPF)
+function testCPF(strCPF)
 {
-    var Soma;
-    var Resto;
-    Soma = 0;
+    var sum;
+    var rest;
+    sum = 0;
     //verifica se os caracteres do cpf são iguais    
     if (allCharecterEquals(strCPF) ) return false;
 
-  for (i=1; i<=9; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i);
-  Resto = (Soma * 10) % 11;
+      for (i=1; i<=9; i++) sum = sum+ parseInt(strCPF.substring(i-1, i)) * (11 - i);
+      rest = (sum* 10) % 11;
 
-    if ((Resto == 10) || (Resto == 11))  Resto = 0;
-    if (Resto != parseInt(strCPF.substring(9, 10)) ) return false;
+    if ((rest == 10) || (rest == 11))  rest = 0;
+    if (rest != parseInt(strCPF.substring(9, 10)) ) return false;
 
-  Soma = 0;
-    for (i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (12 - i);
-    Resto = (Soma * 10) % 11;
+    sum = 0;
+    for (i = 1; i <= 10; i++) sum= sum+ parseInt(strCPF.substring(i-1, i)) * (12 - i);
+    rest = (sum* 10) % 11;
 
-    if ((Resto == 10) || (Resto == 11))  Resto = 0;
-    if (Resto != parseInt(strCPF.substring(10, 11) ) ) return false;
+    if ((rest == 10) || (rest == 11))  rest = 0;
+    if (rest != parseInt(strCPF.substring(10, 11) ) ) return false;
     return true;
 }
 
@@ -158,7 +153,7 @@ function verifyCEP()
             //mensagem de erro
             Swal.fire({
                 icon: 'error',
-                html: 'valor do CEP invalido',
+                html: 'CEP inválido',
                 timerProgressBar: true,     
                 background: '#f1f1f1 ',                  
                 backdrop: "rgba(0, 0, 0, 0)" ,
