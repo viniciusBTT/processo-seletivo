@@ -55,7 +55,7 @@
                                 </div>
                                 <!-- E-mail -->
                                 <div class="br-input mb-3 col-md-4 col-sm-12 ">
-                                    <label for="input-title">Email*</label>
+                                    <label for="input-title">E-mail*</label>
                                     <input name="email" id="email" type="email" required="true" placeholder="email@email.com" />
                                 </div>
                             </div>
@@ -64,7 +64,7 @@
                                     <!-- Genero -->
                                     <div class="br-input ">
                                         <label for="gender">Gênero*</label>
-                                        <input id="gender" name="gender" type="text" placeholder="Selecione uma opção" required/>
+                                        <input id="gender" name="gender" type="text" placeholder="Selecione uma opção" required autocomplete="off"/>
                                         <button class="br-button" type="button" aria-label="Exibir lista" tabindex="-1"
                                             data-trigger="data-trigger">
                                             <i class="fas fa-angle-down" aria-hidden="true"></i>
@@ -95,13 +95,13 @@
                                     <!-- check -->
                                     <div class="br-checkbox align-self-end mb-2" >
                                       <input id="h-checkbox-1" name="checkSpecialCondition" type="checkbox" onChange="showSpecialCondition()"/>
-                                      <label for="h-checkbox-1" id="checkSpecialCondition" >Possui alguma condição especial?</label>
+                                      <label for="h-checkbox-1" id="checkSpecialCondition" >Possui alguma condição?</label>
                                     </div>
                                   </div>
-                                <div class="br-input mb-3 col-md-4 col-sm-12 " >
+                                <div class="br-input mb-3 col-md-4 col-sm-12 d-none" id="divSpecialConditionInput">
                                     <!-- Condição especial -->
                                     <label for="diseaseInducedDeficiency ">Especifique a condição*</label>
-                                    <input  type="text" disabled name="diseaseInducedDeficiency"   id="diseaseInducedDeficiency"/>
+                                    <input  type="text"  name="diseaseInducedDeficiency"   id="diseaseInducedDeficiency"/>
                                 </div>
                              
                             </div>
@@ -131,21 +131,20 @@
                             </div>
                             <div class="row">
                                 <!-- Bairro -->
-                                <div class="br-input mb-3 col-md-5 col-sm-12 ">
+                                <div class="br-input mb-3 col-md-6 col-sm-12 ">
                                     <label for="districtName">Bairro*</label>
                                     <input name="street.district.name" id="districtName" type="text" required="true" readonly/>
                                     <input type="text" name="street.district.id" id="districtId" placeholder="bairro id" hidden readonly>
                                 </div>
                                 <!-- cidade -->
-                                <div class="br-input mb-3 col-md-5 col-sm-12 ">
+                                <div class="br-input mb-3 col-md-6 col-sm-12 ">
                                     <label for="city">Cidade*</label>
                                     <input name="street.district.city.name" id="city" type="text" required="true" readonly/>
                                     <input type="text" name="street.district.city.id" id="cityID" placeholder="cidade id" hidden readonly>
                                 </div>
                                 <!-- EStado -->
                                 <div class="br-input mb-3 col-md-2 col-sm-12 ">
-                                    <label for="districtName">Estado*</label>
-                                    <input type="text" name="street.district.city.state.uf" id="stateID" >
+                                    <input type="hidden" name="street.district.city.state.uf" id="stateID" >
                                 </div>
                                 
                                   
@@ -189,7 +188,7 @@
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="/assets/vendors/govBR/dist/core-init.js"></script>
         <script src="/assets/vendors/sweetAlert2/js/sweetalert2.all.js"></script>
-        <script src="/assets/js/auth/Register.js"></script>        
+        <script src="/assets/js/candidate/Candidate.js"></script>
         <script>
             let success = "[[${success}]]"
             let error = "[[${error}]]"  

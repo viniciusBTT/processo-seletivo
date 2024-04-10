@@ -13,12 +13,13 @@
                 <img th:src="${subscription.process.imageUrl}" alt="">
             </div>
             <div>
-                <h1 class="h2">[[${subscription.process.title}]]</h1>
-                <span class="legend">[[${subscription.process.description}]]</span>
-                <span class="br-divider md my-6"></span>
-                <p class="h3 m-0 my-2">Confirme os seu dados</p>
-                <div class="border-solid-sm p-3">
-                    <h3 class="mt-2 h3">Dados pessoai </h3>
+                <div class="mb-6">
+                    <h1 class="h2">[[${subscription.process.title}]]</h1>
+                    <span class="legend">[[${subscription.process.description}]]</span>
+                </div>
+                <p class="h3 m-0 my-2">Confirme os seus dados</p>
+                <div class="border-solid-sm p-3 mb-6">
+                    <h3 class="mt-2 h3">Dados pessoais </h3>
                     <div class="form-horizontal">
                         <div class="row">
                             <div class="br-input mb-3 col-md-4 col-sm-12 ">
@@ -54,7 +55,7 @@
                                     th:value="${subscription.candidate.phone}" />
                             </div>
                             <div class="br-input mb-3 col-md-4 col-sm-12 ">
-                                <label for="input-title">Email*</label>
+                                <label for="input-title">E-mail*</label>
                                 <input name="email" id="email" type="email" readonly
                                     th:value="${subscription.candidate.email}" />
                             </div>
@@ -63,25 +64,25 @@
                             <div class="br-select mb-3 col-md-4 col-sm-12 " style="max-width: 100%!important;">
                                 <div class="br-input ">
                                     <label for="gender">Gênero*</label>
-                                    <input name="email" id="email" type="email" readonly
+                                    <input name="text" id="gender" type="text" readonly
                                         th:value="${subscription.candidate.gender}" />
                                 </div>
                                 <div class="br-list" tabindex="0">
                                     <div class="br-item" tabindex="-1">
                                         <div class="br-radio">
-                                            <input id="men" type="radio" name="estados-simples" value="masculino" />
+                                            <input id="men" type="radio" value="masculino" />
                                             <label for="men">Masculino</label>
                                         </div>
                                     </div>
                                     <div class="br-item" tabindex="-1">
                                         <div class="br-radio">
-                                            <input id="woman" type="radio" name="estados-simples" value="feminino" />
+                                            <input id="woman" type="radio"  value="feminino" />
                                             <label for="woman">Feminino</label>
                                         </div>
                                     </div>
                                     <div class="br-item" tabindex="-1">
                                         <div class="br-radio ">
-                                            <input id="outher" type="radio" name="estados-simples" value="outher" />
+                                            <input id="outher" type="radio"  value="outher" />
                                             <label for="outher">Outro</label>
                                         </div>
                                     </div>
@@ -90,18 +91,17 @@
                             <div class=" mb-3 col-md-4 col-sm-12 d-flex ">
                                 <div class="br-checkbox align-self-end mb-2">
                                     <input id="h-checkbox-1" name="checkSpecialCondition" type="checkbox"
-                                        onChange="showSpecialCondition()"
-                                        th:checked="${subscription.candidate.diseaseInducedDeficiency}" disabled />
+                                        onChange="showSpecialCondition()" readonly disabled
+                                       th:checked="${subscription.candidate.diseaseInducedDeficiency != ''}" />
 
                                     <label for="h-checkbox-1" id="checkSpecialCondition">Possui alguma condição
                                         especial?</label>
                                 </div>
                             </div>
-                            <div class="br-input mb-3 col-md-4 col-sm-12 ">
+                            <div class="br-input mb-3 col-md-4 col-sm-12 " th:classappend="${subscription.candidate.diseaseInducedDeficiency == '' ? 'd-none' : ''}">
                                 <label for="specialCondition ">Especifique a condição*</label>
-                                <input name="specialCondition" type="text" id="specialCondition"
-                                    th:value="${subscription.candidate.diseaseInducedDeficiency} ?: 'Não informado'"
-                                    readonly />
+                                <input name="specialCondition" type="text" id="specialCondition" readonly
+                                       th:value="${subscription.candidate.diseaseInducedDeficiency == '' ? '' : subscription.candidate.diseaseInducedDeficiency}"/>
                             </div>
                         </div>
                         <span class="br-divider md my-3"></span>
@@ -128,22 +128,21 @@
                         </div>
                         <div class="row">
                             <!-- Bairro -->
-                            <div class="br-input mb-3 col-md-5 col-sm-12 ">
+                            <div class="br-input mb-3 col-md-6 col-sm-12 ">
                                 <label for="districtName">Bairro*</label>
                                 <input th:value="${subscription.candidate.street.district.name}" type="text" readonly />
                             </div>
                             <!-- cidade -->
-                            <div class="br-input mb-3 col-md-5 col-sm-12 ">
+                            <div class="br-input mb-3 col-md-6 col-sm-12 ">
                                 <label for="city">Cidade*</label>
                                 <input type="text" th:value="${subscription.candidate.street.district.city.name}"
                                     readonly>
                             </div>
                             <!-- EStado -->
-                            <div class="br-input mb-3 col-md-2 col-sm-12 ">
-                                <label for="districtName">Estado*</label>
-                                <input type="text" th:value="${subscription.candidate.street.district.city.state.uf}"
+
+                                <input type="hidden" th:value="${subscription.candidate.street.district.city.state.uf}"
                                     id="stateID" placeholder="estado" readonly>
-                            </div>
+
 
 
                         </div>
@@ -155,7 +154,6 @@
                     </div>
                 </div>
 
-                <span class="br-divider md my-6"></span>
 
                 <p class="h4">Escolha as modalidades do processo que deseja participar</p>
                 <div class="mx-1 mb-6">
@@ -169,7 +167,7 @@
                             <div class="content">
                                 <span class="message-title">Você já está inscrito </span>
                                 <span class="message-body">neste processo seletivo.</span>
-                                <span class="message-title">O numero da sua inscrição é: [[${subscription.process.id}]]
+                                <span class="message-title">O número da sua inscrição é: [[${subscription.process.id}]]
                                 </span>
                             </div>
                         </div>
@@ -179,8 +177,8 @@
                             </div>
                             <div class="content">
                                 <span class="message-title">Atenção,</span>
-                                <span class="message-body">é possivel selecionar <strong>mais de uma
-                                        modalidade.</strong> após a inscrição não haverá possibilidade de mudanças.
+                                <span class="message-body">é possível selecionar <strong>mais de uma
+                                        modalidade.</strong> após a inscrição não haverá possibilidade de alteração.
                                 </span>
                             </div>
                         </div>

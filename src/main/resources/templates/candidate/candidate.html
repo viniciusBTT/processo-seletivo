@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
     <div th:replace="~{fragments/internal/head}"></div>
@@ -8,9 +8,8 @@
 
 <body>
     <div class="template-base">
-        <head th:replace="~{fragments/internal/header}"></head>
-        <main class="container-fluid" id="main">
-            <div class="card-content p-3">
+        <header th:replace="~{fragments/internal/header}"></header>
+        <main class="container-fluid p-5" id="main">
                 <h3 class="mt-2 h3">Informações Pessoais </h3>
                 <form class="form-horizontal"  th:object="${candidate}"
                       method="POST" th:action="@{/candidate}" id="formRegister">
@@ -94,16 +93,15 @@
                         </div>
                         <div class=" mb-3 col-md-4 col-sm-12 d-flex ">
                             <!-- check -->
-                            [[${candidate.diseaseInducedDeficiency}]]
                             <div class="br-checkbox align-self-end mb-2">
                                 <input id="h-checkbox-1" name="checkSpecialCondition"
                                        type="checkbox" onChange="showSpecialCondition()"
-                                       th:checked="${diseaseInducedDeficiency}"/>
+                                       th:checked="${candidate.diseaseInducedDeficiency != ''}" />
                                 <label for="h-checkbox-1" id="checkSpecialCondition" >Possui alguma condição
                                     especial?</label>
                             </div>
                         </div>
-                        <div class="br-input mb-3 col-md-4 col-sm-12 ">
+                        <div class="br-input mb-3 col-md-4 col-sm-12 "  th:classappend="${candidate.diseaseInducedDeficiency == '' ? 'd-none' : ''}" id="divSpecialConditionInput">
                             <!-- Condição especial -->
                             <label for="diseaseInducedDeficiencyInput ">Especifique a condição*</label>
                             <input type="text" th:disabled="${diseaseInducedDeficiency != ''} ? false : true"  th:field="*{diseaseInducedDeficiency}" id="diseaseInducedDeficiency" />
@@ -137,26 +135,22 @@
                     </div>
                     <div class="row">
                         <!-- Bairro -->
-                        <div class="br-input mb-3 col-md-5 col-sm-12 ">
+                        <div class="br-input mb-3 col-md-6 col-sm-12 ">
                             <label for="districtName">Bairro*</label>
                             <input th:field="*{street.district.name}" id="districtName" type="text" required="true" readonly />
                             <input type="text" th:field="*{street.district.id}" id="districtId" placeholder="bairro id" hidden
                                 readonly>
                         </div>
                         <!-- cidade -->
-                        <div class="br-input mb-3 col-md-5 col-sm-12 ">
+                        <div class="br-input mb-3 col-md-6 col-sm-12 ">
                             <label for="city">Cidade*</label>
                             <input th:field="*{street.district.city.name}" id="city" type="text" required="true" readonly />
                             <input type="text" th:field="*{street.district.city.id}" id="cityID" placeholder="cidade id" hidden
                                 readonly>
                         </div>
                         <!-- EStado -->
-                        <div class="br-input mb-3 col-md-2 col-sm-12 ">
-                            <label for="districtName">Estado*</label>
-                            <input type="text" th:field="*{street.district.city.state.uf}" id="stateID">
-                        </div>
+                            <input type="hidden" th:field="*{street.district.city.state.uf}" id="stateID">
                     </div>
-                    <span class="br-divider md my-3"></span>
                     <div class="d-flex justify-content-end" th:if="${mayUpdate}">
                         <button class="br-button  primary btn-login mt-2" type="submit" >
                             <span class="material-symbols-outlined">Atualizar</span>
@@ -176,7 +170,6 @@
                     </div>
                 </form>
 
-            </div>
 
         </main>
 
@@ -191,7 +184,7 @@
         let error = "[[${error}]]"  
     </script>
     <script src="/assets/js/AlertTrigger.js"></script>
-    <script src="/assets/js/auth/Register.js"></script>   
+    <script src="/assets/js/candidate/Candidate.js"></script>
     <script src="/assets/vendors/vanillaMasker/vanilla-masker.min.js"></script>
     <script src="/assets/js/auth/Masker.js"></script>        
 
