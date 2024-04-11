@@ -22,21 +22,6 @@ import org.springframework.beans.factory.annotation.Value;
 
 @SpringBootApplication
 
-@ComponentScan(basePackages = {
-		"br.gov.sp.franciscomorato.educacao.processoseletivo.security",
-		"br.gov.sp.franciscomorato.educacao.processoseletivo.controller",
-		"br.gov.sp.franciscomorato.educacao.processoseletivo.model",
-		"br.gov.sp.franciscomorato.educacao.processoseletivo.model.address",
-		"br.gov.sp.franciscomorato.educacao.processoseletivo.repository",
-		"br.gov.sp.franciscomorato.educacao.processoseletivo.config",
-		"br.gov.sp.franciscomorato.educacao.processoseletivo.service",
-		"br.gov.sp.franciscomorato.educacao.processoseletivo.util"
-})
-
-@EntityScan(basePackages = {"br.gov.sp.franciscomorato.educacao.processoseletivo.model"})
-
-@EnableJpaRepositories(basePackages = {"br.gov.sp.franciscomorato.educacao.processoseletivo.repository"})
-
 public class ProcessoSeletivoApplication
 {
 
