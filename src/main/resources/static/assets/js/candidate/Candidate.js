@@ -21,34 +21,39 @@ let registerForm = document.querySelector("#formRegister")
 
     registerForm.addEventListener("submit", e => {
         e.preventDefault();
-        
+
+        //capturandon o valor do rg
+        inputRgLength = document.querySelector("#rg").value.length;
+        //verificando se o rg tem um comprimento adequado
+        if(inputRgLength < 7 || inputRgLength > 15)  {
+             Swal.fire({
+                 icon: 'error',
+                 html: 'RG Inválido',
+                 timerProgressBar: true,
+                 background: '#f1f1f1 ',
+                 backdrop: "rgba(0, 0, 0, 0)" ,
+                 })
+                 return;
+        }
+
+
         //Tirando a mascara do cpf antes de enviar
         document.querySelector('#cpf').value = document.querySelector('#cpf').value.replace(/[^a-zA-Z0-9 ]/g,'')
 
-        let passwordInput = document.querySelector('#password')
-        //verificar se existe algum valor no input password, caso tem faz a verificação
-        if( passwordInput)
-        {              
-            //se a senha não confere retorna msg de erro
-            if(document.querySelector("#password").value !== document.querySelector("#confirmPassword").value)
-            {
-                Swal.fire({
-                    icon: 'error',
-                    html: 'As senhas digitadas não conferem',
-                    timerProgressBar: true,     
-                    background: '#f1f1f1 ',                  
-                    backdrop: "rgba(0, 0, 0, 0)" ,
-                    })
-            }
-            else
-            {
-                e.currentTarget.submit();
-            }
-        }
-        else
+        //verificar as senhas são iguais
+        if(document.querySelector("#password").value !== document.querySelector("#confirmPassword").value)
         {
-            e.currentTarget.submit();   
-        }
+            Swal.fire({
+                icon: 'error',
+                html: 'As senhas digitadas não conferem',
+                timerProgressBar: true,
+                background: '#f1f1f1 ',
+                backdrop: "rgba(0, 0, 0, 0)" ,
+                })
+                return;
+       }
+       e.currentTarget.submit();
+
     })
 
 
